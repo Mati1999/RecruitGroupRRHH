@@ -1,0 +1,31 @@
+// Variables
+
+$colorFontPrimario: #ffffff;
+$colorPrimario: #00425d;
+$colorSecundario: #005a7c;
+$colorTerciario: #2bb091;
+
+// $colorTerciario:#fdfffa;
+
+@mixin medidas($width, $height) {
+  width: $width;
+  height: $height;
+}
+
+@mixin tablet {
+  @media only screen and (max-width: 1024px) {
+    @content;
+  }
+}
+
+@mixin mobile {
+  @media only screen and (max-width: 767px) {
+    @content;
+  }
+}
+
+@mixin miniMobile {
+  @media only screen and (max-width: 575px) {
+    @content;
+  }
+}

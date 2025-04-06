@@ -1,0 +1,39 @@
+@use "./variable.scss" as v;
+
+.headerContainer {
+  @include v.medidas(100vw, 5rem);
+  background-color: v.$colorPrimario;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 0 2rem 0;
+
+  img {
+    @include v.medidas(15%, 100%);
+    object-fit: none;
+  }
+
+  ul {
+    @include v.medidas(65%, 100%);
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    li {
+      color: v.$colorFontPrimario;
+      list-style-type: none;
+    }
+  }
+
+  .iconsDiv {
+    @include v.medidas(20%, 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    img {
+      @include v.medidas(2rem, 2rem);
+      color: blue;
+      object-fit: contain;
+    }
+  }
+}

@@ -1,0 +1,57 @@
+@use "./variable.scss" as v;
+
+.footer {
+  @include v.medidas(100%, 20rem);
+  background-color: v.$colorSecundario;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  color: v.$colorFontPrimario;
+  gap: 1rem;
+  padding-top: 1rem;
+  margin-top: 5rem;
+  img {
+    @include v.medidas(10%, auto);
+  }
+
+  &--infoContainer {
+    @include v.medidas(90%, 20rem);
+    display: flex;
+    justify-content: space-evenly;
+
+    div {
+      @include v.medidas(25%, auto);
+    }
+
+    p {
+      @include v.medidas(30%, auto);
+      padding: 0 1rem 1rem 1rem;
+    }
+  }
+
+  &--contact {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    gap: 0.3rem;
+    p {
+      @include v.medidas(100%, auto);
+      padding: 0;
+    }
+  }
+
+  &--social {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .iconsDiv {
+    display: flex;
+    gap: 1rem;
+    img {
+      @include v.medidas(2rem, 2rem);
+    }
+  }
+}

@@ -1,0 +1,31 @@
+@use "../styles/variable.scss" as v;
+
+main {
+  @include v.medidas(100vw, auto);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.crecemosConVos {
+  @include v.medidas(70%, 20rem);
+  display: flex;
+  justify-content: center;
+  color: v.$colorPrimario;
+
+  div {
+    @include v.medidas(55%, 100%);
+  }
+  img {
+    @include v.medidas(45%, 100%);
+  }
+  h3 {
+    font-size: 2rem;
+    width: 70%;
+  }
+  p {
+    // @include v.medidas(50%, 100%);
+    font-size: 1.2rem;
+  }
+}
