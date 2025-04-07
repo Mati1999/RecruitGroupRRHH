@@ -8,6 +8,8 @@ import Testimonios from "./components/Testimonios";
 import crecemosConVos from "../public/crecemosConVos.png";
 import Footer from "./components/Footer";
 import { useResource } from "./recursos";
+import { auth } from "./firebase/firebaseConfig";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 
 function App() {
   const estadoBolsaActualizado = useRef(false);
@@ -40,13 +42,17 @@ function App() {
   }, [getCandidatos, setCantidatos, deteleCandidato, updateCandidatos, candidatos]);
 
   const addDocsToFirebase = async () => {
-    await setBolsa({ ...bolsa[0], nombre: "agregado nuevo" });
-    await getBolsa();
+    await setBolsa({
+      nombre: "agregado nuevo",
+      ubicacion: "",
+      modalidad: "",
+      info: { descripcion: "", responsabilidades: [""], requisitos: [""] },
+      candidatos: []
+    });
   };
 
   const deleteDocsToFirebase = async (idBolsa) => {
     await deteleBolsa(idBolsa);
-    await getBolsa();
   };
 
   const updateDocsToFirebase = async () => {
@@ -56,24 +62,37 @@ function App() {
       modalidad: "",
       info: { descripcion: "", responsabilidades: [""], requisitos: [""] },
       candidatos: [],
+      id: "TBv6vaN6EMUoZFk4VEoV"
+    };
+    await updateBolsa(bolsa, true, false);
+  };
+
+  const updateDeleteDocsToFirebase = async () => {
+    let bolsa = {
+      nombre: "test actualizado",
+      ubicacion: "",
+      modalidad: "",
+      info: { descripcion: "", responsabilidades: [""], requisitos: [""] },
+      candidatos: [
+        {
+          apellido: "aguiTest",
+          cv: "",
+          nombre: "matiTest",
+          anosExp: 0,
+          aptoPsico: false,
+          estudios: "",
+          foto: "",
+          profesion: "",
+          id: "ONnxRyEBG96DNsgMXdiD"
+        }
+      ],
       id: "aqKKTzGQQxxE5Wtk4XeC"
     };
-    await updateBolsa(bolsa, true);
-    await getBolsa();
+    await updateBolsa(bolsa, false, "test1@cand.com");
   };
 
   const addCandToFirebase = async () => {
-    await setCantidatos({ ...candidatos[0], nombre: "agregado nuevo" });
-    await getCandidatos();
-  };
-
-  const deleteCandToFirebase = async (idCandidato) => {
-    await deteleCandidato(idCandidato);
-    await getCandidatos();
-  };
-
-  const updateCandToFirebase = async () => {
-    let newCantidato = {
+    await setCantidatos({
       apellido: "aguiTest",
       cv: "",
       nombre: "matiTest",
@@ -82,10 +101,59 @@ function App() {
       estudios: "",
       foto: "",
       profesion: "",
-      id: "ONnxRyEBG96DNsgMXdiD"
+      email: "cand@test1.com"
+    });
+  };
+
+  const deleteCandToFirebase = async (idCandidato) => {
+    await deteleCandidato(idCandidato);
+  };
+
+  const updateCandToFirebase = async () => {
+    let newCantidato = {
+      apellido: "aguiTest",
+      cv: "",
+      nombre: "matiTestModificadojejeje",
+      anosExp: 0,
+      aptoPsico: false,
+      estudios: "",
+      foto: "",
+      profesion: "",
+      email: "cand@test1.com",
+      id: "m0MZOawyU98H1qDTXzbJ"
     };
     await updateCandidatos(newCantidato);
-    await getCandidatos();
+  };
+
+  const submitAuth = (e) => {
+    e.preventDefault();
+
+    createUserWithEmailAndPassword(auth, e.target.elements[0].value, e.target.elements[1].value)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        console.log(user);
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        console.error(errorCode);
+        const errorMessage = error.message;
+        console.error(errorMessage);
+      });
+  };
+  const submitSignIn = (e) => {
+    e.preventDefault();
+
+    signInWithEmailAndPassword(auth, e.target.elements[0].value, e.target.elements[1].value)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        console.log(user);
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        console.error(errorCode);
+        const errorMessage = error.message;
+        console.error(errorMessage);
+      });
   };
 
   return (
@@ -93,11 +161,24 @@ function App() {
       <Header />
       <main>
         <button onClick={() => addDocsToFirebase()}>AGREGAR DATA</button>
-        <button onClick={() => deleteDocsToFirebase("fLpc4fK8WVRkx4mykb7t")}>DELETE DATA</button>
+        <button onClick={() => deleteDocsToFirebase({ id: "9puD4FFXIb2lhYb2LTIv" })}>DELETE DATA</button>
         <button onClick={() => updateDocsToFirebase()}>UPDATE DATA</button>
+        <button onClick={() => updateDeleteDocsToFirebase()}>UPDATE Delete DATA</button>
         <button onClick={() => addCandToFirebase()}>AGREGAR CAND</button>
-        <button onClick={() => deleteCandToFirebase("1ngHJnxz7ClOWTT1D6mc")}>DELETE CAND</button>
+        <button onClick={() => deleteCandToFirebase({ id: "o0ewGCWgA0GzZRvB8TuD", email: "cand@test1.com" })}>
+          DELETE CAND
+        </button>
         <button onClick={() => updateCandToFirebase()}>UPDATE DATA</button>
+        <form onSubmit={(e) => submitAuth(e)}>
+          <input type="email" />
+          <input type="text" />
+          <button type="submit">submit</button>
+        </form>
+        <form onSubmit={(e) => submitSignIn(e)}>
+          <input type="email" />
+          <input type="text" />
+          <button type="submit">submit</button>
+        </form>
         <Carousel />
         <ServiciosSection />
         <InfiniteCarousel />
