@@ -13,18 +13,18 @@ const CarouselItems = ({ children: slides }) => {
   };
 
   return (
-    <div className="overflow-hidden relative w-3/4 h-full">
+    <div className="overflow-hidden relative w-full h-full">
       <div
         className="flex transition-transform ease-out duration-1000 w-full h-full"
         style={{ transform: `translateX(-${curr * 100}%)` }}
       >
         {slides}
       </div>
-      <div className="absolute inset-0 flex items-center justify-between p-4">
-        <button onClick={prev} className="p-1 rounded-full shadow bg-white/80 text-gray-800 hover:bg-white">
+      <div className="absolute inset-1 flex items-center justify-between p-4">
+        <button onClick={prev} className="rounded-full shadow bg-white/80 text-gray-800 hover:bg-white">
           <ChevronLeftIcon className="text-lg" />
         </button>
-        <button onClick={next} className="p-1 rounded-full shadow bg-white/80 text-gray-800 hover:bg-white">
+        <button onClick={next} className="rounded-full shadow bg-white/80 text-gray-800 hover:bg-white">
           <ChevronRightIcon className="text-lg" />
         </button>
       </div>

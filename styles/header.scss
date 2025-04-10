@@ -1,15 +1,22 @@
 @use "./variable.scss" as v;
 
 .headerContainer {
-  @include v.medidas(100vw, 5rem);
+  @include v.medidas(100%, 5rem);
   background-color: v.$colorPrimario;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 0 0 2rem 0;
+  overflow-x: hidden;
+
+  .linkImg {
+    @include v.medidas(15%, 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+  }
 
   img {
-    @include v.medidas(15%, 100%);
     object-fit: none;
   }
 

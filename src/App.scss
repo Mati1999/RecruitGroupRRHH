@@ -1,11 +1,12 @@
 @use "../styles/variable.scss" as v;
 
-main {
-  @include v.medidas(100vw, auto);
+.appMain {
+  @include v.medidas(100%, auto);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
 }
 
 .crecemosConVos {
@@ -27,5 +28,25 @@ main {
   p {
     // @include v.medidas(50%, 100%);
     font-size: 1.2rem;
+  }
+}
+
+.wppIcon {
+  @include v.medidas(5rem, 5rem);
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 1000;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  &:hover {
+    transform: scale(1.1);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+    background-color: v.$colorPrimario;
+    color: white;
+  }
+  img {
+    @include v.medidas(100%, 100%);
   }
 }

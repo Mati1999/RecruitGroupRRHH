@@ -1,0 +1,12 @@
+@use "./variable.scss" as v;
+
+.bolsaDeTrabajoPageBanner {
+  @include v.medidas(100%, 25rem);
+  margin-bottom: 2rem;
+
+  img {
+    @include v.medidas(100%, 100%);
+    object-fit: fill;
+    object-position: top;
+  }
+}

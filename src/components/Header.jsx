@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router";
 import Logo from "/Logo.png";
 import LinkedInLogo from "/linkedInLogo.png";
 import InstagramLogo from "/instagramLogo.png";
@@ -7,14 +8,28 @@ import "../../styles/header.scss";
 const Header = () => {
   return (
     <div className="headerContainer">
-      <img src={Logo} alt="" />
+      <NavLink className="linkImg" to="/">
+        <img src={Logo} alt="" />
+      </NavLink>
       <ul>
-        <li className="">Inicio</li>
-        <li>Servicios</li>
-        <li>Bolsa de trabajo</li>
-        <li>Candidatos</li>
-        <li>Institucional</li>
-        <li>Contacto</li>
+        <NavLink to="/">
+          <li className="">Inicio</li>
+        </NavLink>
+        <NavLink to="/servicios">
+          <li>Servicios</li>
+        </NavLink>
+        <NavLink to="/bolsa-de-trabajo">
+          <li>Bolsa de trabajo</li>
+        </NavLink>
+        <NavLink to="/candidatos">
+          <li>Candidatos</li>
+        </NavLink>
+        <NavLink to="/institucional">
+          <li>Institucional</li>
+        </NavLink>
+        <NavLink to="/contacto">
+          <li>Contacto</li>
+        </NavLink>
       </ul>
       <div className="iconsDiv">
         <img src={LinkedInLogo} alt="" />

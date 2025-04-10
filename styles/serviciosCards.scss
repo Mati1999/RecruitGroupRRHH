@@ -1,0 +1,17 @@
+@use "./variable.scss" as v;
+
+.serviciosCard {
+  @include v.medidas(30%, 30rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  border: 1px solid v.$colorSecundario;
+  border-radius: 0.5rem;
+
+  img {
+    @include v.medidas(90%, 70%);
+  }
+}

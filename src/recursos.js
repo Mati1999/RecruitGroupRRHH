@@ -43,33 +43,27 @@ const setResourceHelper = async (dbName, object, bolOrCand) => {
  */
 
 const updateResourceHelper = async (dbName, object, candidato, idDeleteCandidato, bolOrCand, filteredBolsaCand) => {
-  const updateRef = doc(db, dbName, object.id);
+  console.log(object[0]);
+  console.log(candidato);
+
+  const updateRef = doc(db, dbName, object[0].id);
 
   if (bolOrCand.toLowerCase() === "bolsa") {
     try {
       if (candidato) {
-        const response = await fetch("/CV-MatiasAguilera-EN.pdf");
-        const blob = await response.blob();
-        let newCantidato = {
-          apellido: "aguiTest",
-          cv: "",
-          nombre: "matiTest",
-          email: "test1@cand.com",
-          motivo: "",
-          telefono: ""
-        };
+        const response = candidato.curriculum;
 
-        const mountainsRef = ref(storage, `${object.id}/${newCantidato.email}/CV-MatiasAguilera-EN.pdf`);
+        const mountainsRef = ref(storage, `${object[0].id}/${candidato.email}/${candidato.curriculum.name}`);
 
-        const snapshot = await uploadBytes(mountainsRef, blob);
+        const snapshot = await uploadBytes(mountainsRef, response);
         const urlDescarga = await getDownloadURL(snapshot.ref);
-        newCantidato.cv = urlDescarga;
-        const candidatosActuales = object.candidatos || []; // Obtener el array actual o un array vacío si no existe
+        candidato.curriculum = urlDescarga;
+        const candidatosActuales = object[0].candidatos || []; // Obtener el array actual o un array vacío si no existe
 
-        const candidatosActualizados = [...candidatosActuales, newCantidato]; // Agregar el nuevo candidato
-        object.candidatos = candidatosActualizados;
-        await updateDoc(updateRef, object);
-        return object;
+        const candidatosActualizados = [...candidatosActuales, candidato]; // Agregar el nuevo candidato
+        object[0].candidatos = candidatosActualizados;
+        await updateDoc(updateRef, object[0]);
+        return object[0];
       } else if (idDeleteCandidato) {
         //eliminar archivo de storage
         const deleteRef = ref(storage, `${object.id}/${idDeleteCandidato}/CV-MatiasAguilera-EN.pdf`);
