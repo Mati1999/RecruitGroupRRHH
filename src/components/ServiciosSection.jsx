@@ -32,7 +32,7 @@ const ServiciosSection = () => {
           <p>ARMADO DE CV</p>
         </div>
       </div>
-      <p className="w-1/10 text-center">¡Contactanos para mas servicios!</p>
+      <button className="w-1/10 text-center">¡VER MÁS SERVICIOS!</button>
     </div>
   );
 };

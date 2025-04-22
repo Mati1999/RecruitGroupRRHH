@@ -7,7 +7,7 @@ const Carousel = () => {
   const slides = [imgBanner2, imgBanner2, imgBanner2, imgBanner2];
 
   return (
-    <div className="App w-full h-[25rem] flex justify-center">
+    <div className="App w-full h-[30rem] flex justify-center">
       <CarouselItems>
         {slides.map((img, i) => (
           // <div key={i} className="bg-[url(/imgBanner.png)] w-[15rem]"></div>

@@ -40,35 +40,51 @@ const BolsaDeTrabajoItemPage = () => {
       <div className="bolsaDeTrabajoPageBanner">
         <img src={imgBanner} alt="" />
       </div>
-      <main className="bolsaDeTrabajoItemMain">
-        {bolsaActual
-          ? bolsaActual.map((item, i) => (
-              <div key={i}>
-                <div className="bolsaDeTrabajoPageItem">
-                  <h2>{item.nombre}</h2>
-                  <p>Ubicación: {item.ubicacion}</p>
-                  <p>Modalidad: {item.modalidad}</p>
-                  <p>{item.info.descripcion}</p>
-                  <p>Responsabilidades: {item.info.responsabilidades.join(", ")}</p>
-                  <p>Requisitos: {item.info.requisitos.join(", ")}</p>
+      {bolsaActual
+        ? bolsaActual.map((item, i) => (
+            <main key={i} className="bolsaDeTrabajoItemMain">
+              <div className="bolsaDeTrabajoItemMain-info">
+                <h2>{item.nombre}</h2>
+                <p className="bolsaDeTrabajoItemMain-info_ubicacion">
+                  Ubicación: <span>{item.ubicacion}</span>
+                </p>
+                <p className="bolsaDeTrabajoItemMain-info_modalidad">
+                  Modalidad: <span>{item.modalidad}</span>
+                </p>
+                <p className="bolsaDeTrabajoItemMain-info-descripcion">{item.info.descripcion}</p>
+                <div className="bolsaDeTrabajoItemMain-info_responsabilidades">
+                  <p>Responsabilidades:</p>
+                  <ul>
+                    {item.info.responsabilidades.map((resp, i) => (
+                      <li key={i}>{resp}</li>
+                    ))}
+                  </ul>
                 </div>
-                <h2>¡POSTULATE!</h2>
-
-                <form onSubmit={submitForm}>
-                  <div>
-                    <input type="text" name="nombre" id="nombre" placeholder="Nombre:" />
-                    <input type="text" name="apellido" id="apellido" placeholder="Apellido:" />
-                  </div>
-                  <input type="email" name="email" id="email" placeholder="Correo electrónico" />
-                  <input type="text" name="telefono" id="telefono" placeholder="Teléfono:" />
-                  <textarea name="motivo" id="motivo" placeholder="¿Por qué te gustaría postular?"></textarea>
-                  <input type="file" name="curriculum" id="curriculum" />
-                  <button type="submit">ENVIAR</button>
-                </form>
+                <div className="bolsaDeTrabajoItemMain-info_requisitos">
+                  <p>Requisitos:</p>
+                  <ul>
+                    {item.info.requisitos.map((req, i) => (
+                      <li key={i}>{req}</li>
+                    ))}
+                  </ul>
+                </div>
               </div>
-            ))
-          : "No hay nada"}
-      </main>
+              <h2>¡POSTULATE!</h2>
+
+              <form onSubmit={submitForm}>
+                <div>
+                  <input type="text" name="nombre" id="nombre" placeholder="Nombre:" />
+                  <input type="text" name="apellido" id="apellido" placeholder="Apellido:" />
+                </div>
+                <input type="email" name="email" id="email" placeholder="Correo electrónico" />
+                <input type="text" name="telefono" id="telefono" placeholder="Teléfono:" />
+                <textarea name="motivo" id="motivo" placeholder="¿Por qué te gustaría postular?"></textarea>
+                <input type="file" name="curriculum" id="curriculum" />
+                <button type="submit">ENVIAR</button>
+              </form>
+            </main>
+          ))
+        : "No hay nada"}
     </>
   );
 };

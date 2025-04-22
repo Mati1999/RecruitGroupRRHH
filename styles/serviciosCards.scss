@@ -1,17 +1,27 @@
 @use "./variable.scss" as v;
 
 .serviciosCard {
-  @include v.medidas(30%, 30rem);
+  @include v.medidas(22%, 30rem);
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
   gap: 1rem;
   padding: 1rem;
-  border: 1px solid v.$colorSecundario;
+  margin: 2rem;
+  background: linear-gradient(white, white) padding-box,
+    linear-gradient(to top, v.$colorBoderStart, v.$colorBoderEnd) border-box;
+  border: 2px solid transparent;
   border-radius: 0.5rem;
+  box-shadow: 4px 4px 4px rgba(128, 128, 128, 0.5);
 
   img {
     @include v.medidas(90%, 70%);
+  }
+
+  &:hover {
+    scale: 1.05;
+    transition: all 0.3s ease;
+    cursor: pointer;
   }
 }

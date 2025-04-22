@@ -16,5 +16,46 @@
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 1rem;
+  padding: 0 5rem;
+}
+
+.servicioPageModal {
+  @include v.medidas(40%, 50%);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: linear-gradient(white, white) padding-box,
+    linear-gradient(to top, v.$colorBoderStart, v.$colorBoderEnd) border-box;
+  border: 1px solid transparent;
+  box-shadow: 4px 4px 4px rgba(128, 128, 128, 0.5);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  border-radius: 0.5rem;
+
+  button {
+    @include v.medidas(50%, 3rem);
+    cursor: pointer;
+    border: 1px solid black;
+  }
+}
+
+.servicioPageContact {
+  @include v.medidas(100%, 10rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+
+  button {
+    @include v.medidas(20%, 4rem);
+    cursor: pointer;
+    background-color: v.$colorPrimario;
+    color: v.$colorFontPrimario;
+    font-size: 2rem;
+  }
 }

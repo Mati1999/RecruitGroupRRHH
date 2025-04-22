@@ -4,6 +4,7 @@ import imgBanner from "/imgBanner.png";
 import "../../styles/BolsaDeTrabajoPage.scss";
 import { useResource } from "../recursos";
 import { NavLink } from "react-router";
+import Footer from "../components/Footer";
 
 const BolsaDeTrabajoPage = () => {
   const estadoBolsaActualizado = useRef(false);
@@ -18,21 +19,24 @@ const BolsaDeTrabajoPage = () => {
   }, [getBolsa, bolsa]);
 
   return (
-    <div>
+    <>
       <Header />
       <div className="bolsaDeTrabajoPageBanner">
         <img src={imgBanner} alt="" />
       </div>
-      {bolsa.length != 0
-        ? bolsa.map((item, i) => (
-            <div key={i} className="bolsaDeTrabajoPageItem">
-              <h2>Nombre: {item.nombre}</h2>
-              <p>Ubicación: {item.ubicacion}</p>
-              <NavLink to={`/bolsa-de-trabajo/${item.id}`}>Ver más</NavLink>
-            </div>
-          ))
-        : "No hay nada"}
-    </div>
+      <div className="bolsaDeTrabajoPageTrabajos">
+        {bolsa.length != 0
+          ? bolsa.map((item, i) => (
+              <div key={i} className="bolsaDeTrabajoPageItem">
+                <h2>{item.nombre}</h2>
+                <p>{item.ubicacion}</p>
+                <NavLink to={`/bolsa-de-trabajo/${item.id}`}>Ver más</NavLink>
+              </div>
+            ))
+          : "No hay nada"}
+      </div>
+      <Footer />
+    </>
   );
 };
 

@@ -7,7 +7,6 @@ import ServiciosSection from "./components/ServiciosSection";
 import Testimonios from "./components/Testimonios";
 import crecemosConVos from "/crecemosConVos.png";
 import Footer from "./components/Footer";
-import wppIcon from "/whatsapp.svg";
 // import { useResource } from "./recursos";
 // import { auth } from "./firebase/firebaseConfig";
 // import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
@@ -197,11 +196,6 @@ function App() {
         <Testimonios />
         <InfiniteCarousel />
         <Footer />
-        <button className="wppIcon">
-          <a href="https://wa.me/+5492615655914" target="_blank" rel="noopener noreferrer">
-            <img src={wppIcon} alt="" />
-          </a>
-        </button>
       </main>
     </>
   );

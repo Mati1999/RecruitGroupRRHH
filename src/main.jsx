@@ -3,6 +3,7 @@ import { createRoot } from "react-dom/client";
 import { BrowserRouter, Route, Routes } from "react-router";
 import "./index.css";
 import "./main.scss";
+import wppIcon from "/whatsapp.svg";
 
 import App from "./App.jsx";
 import ServiciosPage from "./pages/ServiciosPage.jsx";
@@ -26,5 +27,10 @@ createRoot(document.getElementById("root")).render(
         <Route path="/*" element={<App />} />
       </Routes>
     </BrowserRouter>
+    <button className="wppIcon">
+      <a href="https://wa.me/+5492615655914" target="_blank" rel="noopener noreferrer">
+        <img src={wppIcon} alt="" />
+      </a>
+    </button>
   </StrictMode>
 );
