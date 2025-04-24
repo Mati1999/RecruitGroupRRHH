@@ -8,23 +8,41 @@ import { ref, uploadBytes, getDownloadURL, deleteObject } from "firebase/storage
 
 const setResourceHelper = async (dbName, object, bolOrCand) => {
   try {
-    const docRef = await addDoc(collection(db, dbName), object);
     if (bolOrCand.toLowerCase() === "bolsa") {
+      const docRef = await addDoc(collection(db, dbName), object);
+      const updateRef = doc(db, dbName, docRef.id);
+      await updateDoc(updateRef, { ...object, id: docRef.id });
       return docRef;
     } else {
       //candidatos
       try {
-        const response = await fetch("/CV-MatiasAguilera-EN.pdf");
-        const blob = await response.blob();
-        const mountainsRef = ref(storage, `${object.email}/CV-MatiasAguilera-EN.pdf`);
+        let mountainsRef = ref(storage, `${object.idFirestore}/CV-${object.idFirestore}`);
+        // CUANDO PUEDAS OPTIMIZAR LO DE ABAJO PARA HACER UNA FUNCIÓN QUE EJECUTE LAS SUBIDAS A LA DB
+        if (typeof object.cv === "object") {
+          const snapshotCv = await uploadBytes(mountainsRef, object.cv);
+          const urlDescargaCV = await getDownloadURL(snapshotCv.ref);
+          object.cv = urlDescargaCV;
+        }
+        if (typeof object.aptoPsico === "object") {
+          mountainsRef = ref(storage, `${object.idFirestore}/aptoPsico-${object.idFirestore}`);
+          const snapshotPsico = await uploadBytes(mountainsRef, object.aptoPsico);
+          const urlDescargaPsico = await getDownloadURL(snapshotPsico.ref);
+          object.aptoPsico = urlDescargaPsico;
+        }
+        if (typeof object.foto === "object") {
+          mountainsRef = ref(storage, `${object.idFirestore}/foto-${object.idFirestore}`);
+          const snapshotFoto = await uploadBytes(mountainsRef, object.foto);
+          const urlDescargaFoto = await getDownloadURL(snapshotFoto.ref);
+          object.foto = urlDescargaFoto;
+        }
 
-        const snapshot = await uploadBytes(mountainsRef, blob);
-        const urlDescarga = await getDownloadURL(snapshot.ref);
-        object.cv = urlDescarga;
+        const docRef = await addDoc(collection(db, dbName), object);
+        const updateRef = doc(db, dbName, docRef.id);
+        await updateDoc(updateRef, { ...object, id: docRef.id });
+        return [docRef, object];
       } catch (e) {
         console.error("Error fetching data:", e);
       }
-      return [docRef, object];
     }
   } catch (e) {
     console.error("Error fetching data:", e);
@@ -42,44 +60,50 @@ const setResourceHelper = async (dbName, object, bolOrCand) => {
  * @returns
  */
 
+// helperResult = await updateResourceHelper("BolsaDeTrabajo", updatedBolsa, candidato, false, "bolsa", "");
 const updateResourceHelper = async (dbName, object, candidato, idDeleteCandidato, bolOrCand, filteredBolsaCand) => {
-  console.log(object[0]);
-  console.log(candidato);
-
-  const updateRef = doc(db, dbName, object[0].id);
-
   if (bolOrCand.toLowerCase() === "bolsa") {
+    console.log(dbName);
+    console.log(object.id);
+
+    const updateRef = doc(db, dbName, object.id);
     try {
       if (candidato) {
-        const response = candidato.curriculum;
-
-        const mountainsRef = ref(storage, `${object[0].id}/${candidato.email}/${candidato.curriculum.name}`);
-
-        const snapshot = await uploadBytes(mountainsRef, response);
-        const urlDescarga = await getDownloadURL(snapshot.ref);
-        candidato.curriculum = urlDescarga;
-        const candidatosActuales = object[0].candidatos || []; // Obtener el array actual o un array vacío si no existe
-
-        const candidatosActualizados = [...candidatosActuales, candidato]; // Agregar el nuevo candidato
-        object[0].candidatos = candidatosActualizados;
-        await updateDoc(updateRef, object[0]);
-        return object[0];
+        if (typeof candidato.cv === "object") {
+          const response = candidato.cv;
+          const mountainsRef = ref(storage, `${object.id}/${candidato.email}/CV-${candidato.email}`);
+          const snapshot = await uploadBytes(mountainsRef, response);
+          const urlDescarga = await getDownloadURL(snapshot.ref);
+          candidato.cv = urlDescarga;
+        }
+        const candidatosActuales = object.candidatos || []; // Obtener el array actual o un array vacío si no existe
+        if (!candidatosActuales.some((cand) => cand.email === candidato.email)) {
+          const candidatosActualizados = [...candidatosActuales, candidato]; // Agregar el nuevo candidato
+          object.candidatos = candidatosActualizados;
+        }
+        await updateDoc(updateRef, object);
+        return object;
       } else if (idDeleteCandidato) {
         //eliminar archivo de storage
-        const deleteRef = ref(storage, `${object.id}/${idDeleteCandidato}/CV-MatiasAguilera-EN.pdf`);
+        if (idDeleteCandidato.cv) {
+          const deleteRef = ref(storage, `${object.id}/${idDeleteCandidato.email}/CV-${idDeleteCandidato.email}`);
 
-        deleteObject(deleteRef)
-          .then(() => {
-            console.log("eliminado con éxito");
-          })
-          .catch((error) => {
-            console.error(error);
-          });
+          deleteObject(deleteRef)
+            .then(() => {
+              console.log("eliminado con éxito");
+            })
+            .catch((error) => {
+              console.error(error);
+            });
+        }
         await updateDoc(updateRef, { ...filteredBolsaCand[0], candidatos: filteredBolsaCand[1] });
         object = { ...object, candidatos: filteredBolsaCand[1] };
         return object;
       } else {
+        console.log("object", object);
+
         await updateDoc(updateRef, object);
+        return object;
       }
     } catch (e) {
       console.error("Error fetching data:", e);
@@ -89,14 +113,29 @@ const updateResourceHelper = async (dbName, object, candidato, idDeleteCandidato
     try {
       const updateRef = doc(db, dbName, object.id);
 
-      const response = await fetch("/CV-MatiasAguilera-EN.pdf");
-      const blob = await response.blob();
-
-      const mountainsRef = ref(storage, `${object.email}/CV-MatiasAguilera-EN.pdf`);
-
-      const snapshot = await uploadBytes(mountainsRef, blob);
-      const urlDescarga = await getDownloadURL(snapshot.ref);
-      object.cv = urlDescarga;
+      if (
+        object.idFirestore &&
+        (typeof object.cv === "object" || typeof object.aptoPsico === "object" || typeof object.foto === "object")
+      ) {
+        let mountainsRef = ref(storage, `${object.idFirestore}/CV-${object.idFirestore}`);
+        if (typeof object.cv === "object") {
+          const snapshot = await uploadBytes(mountainsRef, object.cv);
+          const urlDescarga = await getDownloadURL(snapshot.ref);
+          object.cv = urlDescarga;
+        }
+        mountainsRef = ref(storage, `${object.idFirestore}/aptoPsico-${object.idFirestore}`);
+        if (typeof object.aptoPsico === "object") {
+          const snapshotPsico = await uploadBytes(mountainsRef, object.aptoPsico);
+          const urlDescargaPsico = await getDownloadURL(snapshotPsico.ref);
+          object.aptoPsico = urlDescargaPsico;
+        }
+        mountainsRef = ref(storage, `${object.idFirestore}/foto-${object.idFirestore}`);
+        if (typeof object.foto === "object") {
+          const snapshotFoto = await uploadBytes(mountainsRef, object.foto);
+          const urlDescargaFoto = await getDownloadURL(snapshotFoto.ref);
+          object.foto = urlDescargaFoto;
+        }
+      }
       await updateDoc(updateRef, object);
       return object;
     } catch (e) {
@@ -108,9 +147,9 @@ const updateResourceHelper = async (dbName, object, candidato, idDeleteCandidato
 const deleteResourceHelper = async (isBolsa, object) => {
   try {
     if (isBolsa) {
-      //eliminar archivo de storage
-      const deleteRef = ref(storage, `${object.id}/`);
+      // eliminar archivo de storage
 
+      const deleteRef = ref(storage, `${object.id}/`);
       deleteObject(deleteRef)
         .then(() => {
           console.log("eliminado con éxito");
@@ -121,15 +160,17 @@ const deleteResourceHelper = async (isBolsa, object) => {
 
       await deleteDoc(doc(db, "BolsaDeTrabajo", object.id));
     } else {
-      const deleteRef = ref(storage, `${object.email}/CV-MatiasAguilera-EN.pdf`);
+      if (object.idFirestore) {
+        const deleteRef = ref(storage, `${object.idFirestore}/CV-${object.idFirestore}`);
 
-      deleteObject(deleteRef)
-        .then(() => {
-          console.log("eliminado con éxito");
-        })
-        .catch((error) => {
-          console.error(error);
-        });
+        deleteObject(deleteRef)
+          .then(() => {
+            console.log("eliminado con éxito");
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      }
 
       await deleteDoc(doc(db, "Candidatos", object.id));
     }
@@ -141,6 +182,8 @@ const deleteResourceHelper = async (isBolsa, object) => {
 const resource = (set, get) => ({
   bolsa: [],
   candidatos: [],
+  logedIn: false,
+  setLogedIn: (loged) => set(() => ({ logedIn: loged })),
 
   getBolsa: async () => {
     try {
@@ -176,7 +219,7 @@ const resource = (set, get) => ({
   deteleBolsa: async (idBolsa) => {
     try {
       await deleteResourceHelper(true, idBolsa);
-      let filteredBolsa = get().bolsa.filter((bol) => bol.id !== idBolsa);
+      let filteredBolsa = get().bolsa.filter((bol) => bol.id !== idBolsa.id);
 
       set(() => ({ bolsa: filteredBolsa }));
     } catch (e) {
@@ -201,7 +244,7 @@ const resource = (set, get) => ({
         helperResult = await updateResourceHelper("BolsaDeTrabajo", updatedBolsa, candidato, false, "bolsa", "");
       } else if (idDeleteCandidato) {
         let filteredBolsa = get().bolsa.find((bol) => bol.id === updatedBolsa.id);
-        let filteredCandidatos = filteredBolsa.candidatos.filter((cand) => cand.email !== idDeleteCandidato);
+        let filteredCandidatos = filteredBolsa.candidatos.filter((cand) => cand.email !== idDeleteCandidato.email);
         helperResult = await updateResourceHelper(
           "BolsaDeTrabajo",
           updatedBolsa,
@@ -226,6 +269,8 @@ const resource = (set, get) => ({
 
       let newCandidatos = [];
       querySnapshot.forEach((doc) => {
+        console.log({ ...doc.data() });
+
         newCandidatos.push({ ...doc.data() });
       });
       set(() => ({ candidatos: newCandidatos }));
@@ -235,6 +280,10 @@ const resource = (set, get) => ({
   },
   setCantidatos: async (newCandidato) => {
     try {
+      if (newCandidato.cv || newCandidato.aptoPsico || newCandidato.foto) {
+        const newId = Date.now().toString(36) + Math.random().toString(36).substring(2, 7);
+        newCandidato.idFirestore = newId;
+      }
       let docRef = await setResourceHelper("Candidatos", newCandidato, "candidato");
       set((resource) => ({ candidatos: [...resource.candidatos, { ...docRef[1], id: docRef[0].id }] }));
       console.log("Document written with ID: ", docRef[0].id);
@@ -257,6 +306,11 @@ const resource = (set, get) => ({
     /******  Tener en cuenta, updatedBolsa va a ser solo el candidato, de ahí saco el id y demas datos que vengan del "front" *******/
     let helperResult;
     try {
+      if (!updatedCandidato.idFirestore) {
+        const newId = Date.now().toString(36) + Math.random().toString(36).substring(2, 7);
+        updatedCandidato.idFirestore = newId;
+      }
+
       helperResult = await updateResourceHelper("Candidatos", updatedCandidato, false, false, "candidato", "");
 
       let filteredCandidatos = get().candidatos.map((cand) => (cand.id === helperResult.id ? helperResult : cand));

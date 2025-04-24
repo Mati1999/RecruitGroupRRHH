@@ -1,0 +1,35 @@
+@use "./variable.scss" as v;
+
+.adminMain {
+  @include v.medidas(100%, 70vh);
+  padding-top: 5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.adminLogedIn {
+  @include v.medidas(70%, 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.adminFormDiv {
+  padding-top: 5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.adminButtons {
+  @include v.medidas(100%, 20%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}

@@ -7,9 +7,8 @@ import ServiciosSection from "./components/ServiciosSection";
 import Testimonios from "./components/Testimonios";
 import crecemosConVos from "/crecemosConVos.png";
 import Footer from "./components/Footer";
+
 // import { useResource } from "./recursos";
-// import { auth } from "./firebase/firebaseConfig";
-// import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 
 function App() {
   // <div>
@@ -119,36 +118,6 @@ function App() {
   //   //   await updateCandidatos(newCantidato);
   //   // };
 
-  //   // const submitAuth = (e) => {
-  //   //   e.preventDefault();
-
-  //   //   createUserWithEmailAndPassword(auth, e.target.elements[0].value, e.target.elements[1].value)
-  //   //     .then((userCredential) => {
-  //   //       const user = userCredential.user;
-  //   //       console.log(user);
-  //   //     })
-  //   //     .catch((error) => {
-  //   //       const errorCode = error.code;
-  //   //       console.error(errorCode);
-  //   //       const errorMessage = error.message;
-  //   //       console.error(errorMessage);
-  //   //     });
-  //   // };
-  //   // const submitSignIn = (e) => {
-  //   //   e.preventDefault();
-
-  //   //   signInWithEmailAndPassword(auth, e.target.elements[0].value, e.target.elements[1].value)
-  //   //     .then((userCredential) => {
-  //   //       const user = userCredential.user;
-  //   //       console.log(user);
-  //   //     })
-  //   //     .catch((error) => {
-  //   //       const errorCode = error.code;
-  //   //       console.error(errorCode);
-  //   //       const errorMessage = error.message;
-  //   //       console.error(errorMessage);
-  //   //     });
-  //   // };
   //   {
   //     /* <button onClick={() => addDocsToFirebase()}>AGREGAR DATA</button>
   //   <button onClick={() => deleteDocsToFirebase({ id: "9puD4FFXIb2lhYb2LTIv" })}>DELETE DATA</button>

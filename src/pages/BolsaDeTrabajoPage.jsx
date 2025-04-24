@@ -26,13 +26,16 @@ const BolsaDeTrabajoPage = () => {
       </div>
       <div className="bolsaDeTrabajoPageTrabajos">
         {bolsa.length != 0
-          ? bolsa.map((item, i) => (
-              <div key={i} className="bolsaDeTrabajoPageItem">
-                <h2>{item.nombre}</h2>
-                <p>{item.ubicacion}</p>
-                <NavLink to={`/bolsa-de-trabajo/${item.id}`}>Ver más</NavLink>
-              </div>
-            ))
+          ? bolsa.map(
+              (item, i) =>
+                item.closed === "open" && (
+                  <div key={i} className="bolsaDeTrabajoPageItem">
+                    <h2>{item.nombre}</h2>
+                    <p>{item.ubicacion}</p>
+                    <NavLink to={`/bolsa-de-trabajo/${item.id}`}>Ver más</NavLink>
+                  </div>
+                )
+            )
           : "No hay nada"}
       </div>
       <Footer />

@@ -11,6 +11,12 @@ const BolsaDeTrabajoItemPage = () => {
   const getBolsa = useResource((resource) => resource.getBolsa);
   const bolsa = useResource((resource) => resource.bolsa);
   const [bolsaActual, setBolsaActual] = useState([]);
+  const [formNombre, setFormNombre] = useState("");
+  const [formApellido, setFormApellido] = useState("");
+  const [formEmail, setFormEmail] = useState("");
+  const [formTelefono, setFormTelefono] = useState("");
+  const [formMotivo, setFormMotivo] = useState("");
+  const [formCv, setFormCv] = useState("");
   let { bolsaId } = useParams();
 
   useEffect(() => {
@@ -24,14 +30,21 @@ const BolsaDeTrabajoItemPage = () => {
     e.preventDefault();
 
     let candidato = {
-      nombre: e.target.elements.nombre.value,
-      apellido: e.target.elements.apellido.value,
-      email: e.target.elements.email.value,
-      telefono: e.target.elements.telefono.value,
-      motivo: e.target.elements.motivo.value,
-      curriculum: e.target.elements.curriculum.files[0]
+      nombre: formNombre || "" + " " + formApellido || "",
+      email: formEmail || "",
+      telefono: formTelefono || "",
+      motivo: formMotivo || "",
+      cv: formCv || ""
     };
-    await updateBolsa(bolsaActual, candidato, false);
+
+    setFormNombre("");
+    setFormApellido("");
+    setFormEmail("");
+    setFormTelefono("");
+    setFormMotivo("");
+    setFormCv("");
+
+    await updateBolsa(bolsaActual[0], candidato, false);
   };
 
   return (
@@ -73,13 +86,56 @@ const BolsaDeTrabajoItemPage = () => {
 
               <form onSubmit={submitForm}>
                 <div>
-                  <input type="text" name="nombre" id="nombre" placeholder="Nombre:" />
-                  <input type="text" name="apellido" id="apellido" placeholder="Apellido:" />
+                  <input
+                    type="text"
+                    name="nombre"
+                    id="nombre"
+                    placeholder="Nombre:"
+                    value={formNombre}
+                    onChange={(e) => setFormNombre(e.target.value)}
+                  />
+                  <input
+                    type="text"
+                    name="apellido"
+                    id="apellido"
+                    placeholder="Apellido:"
+                    value={formApellido}
+                    onChange={(e) => setFormApellido(e.target.value)}
+                  />
                 </div>
-                <input type="email" name="email" id="email" placeholder="Correo electrónico" />
-                <input type="text" name="telefono" id="telefono" placeholder="Teléfono:" />
-                <textarea name="motivo" id="motivo" placeholder="¿Por qué te gustaría postular?"></textarea>
-                <input type="file" name="curriculum" id="curriculum" />
+                <input
+                  type="email"
+                  name="email"
+                  id="email"
+                  placeholder="Correo electrónico"
+                  value={formEmail}
+                  onChange={(e) => setFormEmail(e.target.value)}
+                />
+                <input
+                  type="number"
+                  name="telefono"
+                  id="telefono"
+                  placeholder="Teléfono:"
+                  value={formTelefono}
+                  onChange={(e) => setFormTelefono(e.target.value)}
+                />
+                <textarea
+                  name="motivo"
+                  id="motivo"
+                  placeholder="¿Por qué te gustaría postular?"
+                  value={formMotivo}
+                  onChange={(e) => setFormMotivo(e.target.value)}
+                ></textarea>
+                <div>
+                  <span>Adjunta tu CV en .PDF</span>
+                  <input
+                    type="file"
+                    name="curriculum"
+                    id="curriculum"
+                    accept=".pdf"
+                    onChange={(e) => setFormCv(e.target.files[0])}
+                  />
+                </div>
                 <button type="submit">ENVIAR</button>
               </form>
             </main>

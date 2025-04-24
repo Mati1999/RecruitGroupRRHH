@@ -12,6 +12,10 @@ import CandidatosPage from "./pages/CandidatosPage.jsx";
 import InstitucionalPage from "./pages/InstitucionalPage.jsx";
 import ContactoPage from "./pages/ContactoPage.jsx";
 import BolsaDeTrabajoItemPage from "./pages/BolsaDeTrabajoItemPage.jsx";
+import AdminPanel from "./pages/AdminPanel.jsx";
+import CandidatosPanel from "./components/CandidatosPanel.jsx";
+import BolsaDeTrabajoPanel from "./components/BolsaDeTrabajoPanel.jsx";
+import Postulantes from "./pages/Postulantes.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -24,6 +28,10 @@ createRoot(document.getElementById("root")).render(
         <Route path="/candidatos" element={<CandidatosPage />} />
         <Route path="/institucional" element={<InstitucionalPage />} />
         <Route path="/contacto" element={<ContactoPage />} />
+        <Route path="/adminRRHHRecruitGroup" element={<AdminPanel />} />
+        <Route path="/adminRRHHRecruitGroup/candidatos" element={<CandidatosPanel />} />
+        <Route path="/adminRRHHRecruitGroup/bolsaDeTrabajo" element={<BolsaDeTrabajoPanel />} />
+        <Route path="/adminRRHHRecruitGroup/bolsaDeTrabajo/:bolsaPostulantesId" element={<Postulantes />} />
         <Route path="/*" element={<App />} />
       </Routes>
     </BrowserRouter>

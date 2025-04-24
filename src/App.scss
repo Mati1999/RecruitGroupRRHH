@@ -15,7 +15,6 @@
   display: flex;
   justify-content: center;
   color: v.$colorPrimario;
-
   div {
     @include v.medidas(55%, 100%);
   }
