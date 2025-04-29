@@ -1,10 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
+import "../../styles/candidatosPage.scss";
 import Header from "../components/Header";
-import imgBanner from "/imgBanner.png";
+import candidatosBanner from "/candidatos/candidatos.png";
 import { useResource } from "../recursos";
 import Footer from "../components/Footer";
 import { useForm } from "react-hook-form";
 import emailjs from "@emailjs/browser";
+import { ToastContainer, toast } from "react-toastify";
 
 const CandidatosPage = () => {
   const estadoCandidatosActualizado = useRef(false);
@@ -41,9 +43,9 @@ const CandidatosPage = () => {
   });
 
   const onSubmit = (data) => {
-    data = { ...data, asunto: `${currentCand.nombre} ${currentCand.apellido}` };
+    data = { ...data, asunto: `${currentCand.nombre}` };
     emailjs
-      .send(import.meta.env.VITE_YOUR_SERVICE_ID, import.meta.env.VITE_YOUR_TEMPLATE_ID, data, {
+      .send(import.meta.env.VITE_YOUR_SERVICE_ID, import.meta.env.VITE_YOUR_TEMPLATE_ID_CANDIDATO, data, {
         publicKey: import.meta.env.VITE_YOUR_PUBLIC_KEY
       })
       .then(
@@ -52,106 +54,148 @@ const CandidatosPage = () => {
           resetField("empresa");
           resetField("nombre");
           resetField("apellido");
-          resetField("asunto");
           resetField("telefono");
 
-          // Toastify({
-          //   text: "Gracias por contactarte con nosotros!",
-          //   duration: 3000,
-          //   destination: "https://github.com/apvarun/toastify-js",
-          //   newWindow: true,
-          //   close: true,
-          //   gravity: "top", // `top` or `bottom`
-          //   position: "right", // `left`, `center` or `right`
-          //   stopOnFocus: true, // Prevents dismissing of toast on hover
-          //   style: {
-          //     background: "linear-gradient(to right, #00b09b, #96c93d)"
-          //   },
-          //   onClick: function () {} // Callback after click
-          // }).showToast();
+          toast.success("Gracias por contactarte!", {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: false,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored"
+          });
         },
         (error) => {
           console.log("FAILED...", error);
         }
       );
-
-    console.log(currentCand);
-
-    console.log(data);
   };
 
   return (
-    <div>
+    <>
       <Header />
-      <div className="bolsaDeTrabajoPageBanner">
-        <img src={imgBanner} alt="" />
+      <ToastContainer
+        position="top-right"
+        style={{ top: "6rem" }}
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick={false}
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
+      <div className="candidatosPageBanner">
+        <img src={candidatosBanner} alt="" />
       </div>
-      {candidatos.length != 0
-        ? candidatos.map((item, i) => (
-            <div key={i} className="candidatosPageItem">
-              <h2>
-                {item.nombre} {item.apellido}
-              </h2>
-              <p> {item.profesion}</p>
-              <p> {item.anosExp} años de experiencia</p>
-              <button
-                onClick={() => {
-                  setCurrentCand(item);
-                  setShowModal(true);
-                }}
-              >
-                Solicitar información
-              </button>
-            </div>
-          ))
-        : "No hay nada"}
+      <div className="candidatosPageMain">
+        <div className="candidatosPageMainContainer">
+          {candidatos.length != 0
+            ? candidatos.map((item, i) => (
+                <div key={i} className="candidatosPageItem">
+                  <div>
+                    <img loading="lazy" src={item.foto} alt="" />
+                    <button
+                      onClick={() => {
+                        setCurrentCand(item);
+                        setShowModal(true);
+                      }}
+                    >
+                      Solicitar información
+                    </button>
+                  </div>
+                  <h2>
+                    {item.nombre} {item.apellido}
+                  </h2>
+                  <p> {item.profesion}</p>
+                  <p> {item.anosExp} años de experiencia</p>
+                </div>
+              ))
+            : "No hay nada"}
+        </div>
+      </div>
       {showModal && (
         <div className="solicitarInfoModal">
           <form ref={form} action="" onSubmit={handleSubmit(onSubmit)}>
-            <input type="text" name="nombre" placeholder="Nombre" {...register("nombre", { required: true })} />
-            {errors.email?.type === "required" && (
-              <p className="bg-red-400 text-white pl-3 rounded-md w-1/3" role="alert">
-                El email es requerido!
-              </p>
-            )}
-            <input type="text" name="apellido" placeholder="Apellido" {...register("apellido", { required: true })} />
-            {errors.email?.type === "required" && (
-              <p className="bg-red-400 text-white pl-3 rounded-md w-1/3" role="alert">
-                El email es requerido!
-              </p>
-            )}
-            <input type="text" name="empresa" placeholder="Empresa" {...register("empresa", { required: true })} />
-            {errors.email?.type === "required" && (
-              <p className="bg-red-400 text-white pl-3 rounded-md w-1/3" role="alert">
-                El email es requerido!
-              </p>
-            )}
-            <input
-              type="email"
-              name="email"
-              placeholder="Email"
-              {...register("email", {
-                required: true,
-                pattern: /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/
-              })}
-            />
-            {errors.email?.type === "required" && (
-              <p className="bg-red-400 text-white pl-3 rounded-md w-1/3" role="alert">
-                El email es requerido!
-              </p>
-            )}
-            <input type="tel" name="telefono" placeholder="Teléfono" {...register("telefono", { required: true })} />
-            {errors.email?.type === "required" && (
-              <p className="bg-red-400 text-white pl-3 rounded-md w-1/3" role="alert">
-                El email es requerido!
-              </p>
-            )}
-            <button type="submit">Enviar</button>
+            <button
+              className="modalCloseButton"
+              onClick={() => {
+                setShowModal(false);
+              }}
+            >
+              X
+            </button>
+            <div>
+              <div>
+                <input type="text" name="nombre" placeholder="Nombre" {...register("nombre", { required: true })} />
+                {errors.nombre?.type === "required" && (
+                  <p className="bg-red-400 text-white pl-3 rounded-md w-1/3" role="alert">
+                    El nombre es requerido!
+                  </p>
+                )}
+              </div>
+              <div>
+                <input
+                  type="text"
+                  name="apellido"
+                  placeholder="Apellido"
+                  {...register("apellido", { required: true })}
+                />
+                {errors.apellido?.type === "required" && (
+                  <p className="bg-red-400 text-white pl-3 rounded-md w-1/3" role="alert">
+                    El apellido es requerido!
+                  </p>
+                )}
+              </div>
+            </div>
+            <div className="empresa">
+              <input type="text" name="empresa" placeholder="Empresa" {...register("empresa", { required: true })} />
+              {errors.empresa?.type === "required" && (
+                <p className="bg-red-400 text-white pl-3 rounded-md w-1/3" role="alert">
+                  El nombre del empresa es requerido!
+                </p>
+              )}
+            </div>
+            <div className="email">
+              <input
+                type="email"
+                name="email"
+                placeholder="Email"
+                {...register("email", {
+                  required: true,
+                  pattern: /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/
+                })}
+              />
+              {errors.email?.type === "required" && (
+                <p className="bg-red-400 text-white pl-3 rounded-md w-1/3" role="alert">
+                  El email es requerido!
+                </p>
+              )}
+            </div>
+
+            <div className="telefono">
+              <input
+                type="number"
+                name="telefono"
+                placeholder="Teléfono"
+                {...register("telefono", { required: true })}
+              />
+              {errors.telefono?.type === "required" && (
+                <p className="bg-red-400 text-white pl-3 rounded-md w-1/3" role="alert">
+                  El telefono es requerido!
+                </p>
+              )}
+            </div>
+            <button type="submit">Solicitar información</button>
           </form>
         </div>
       )}
       <Footer />
-    </div>
+    </>
   );
 };
 

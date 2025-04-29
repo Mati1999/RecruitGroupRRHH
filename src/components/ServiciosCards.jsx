@@ -1,8 +1,7 @@
 import React from "react";
 import "../../styles/serviciosCards.scss";
-import servicioImg from "/servicioImg.png";
 
-const ServiciosCards = ({ nombre, descripcion, setCurrentServicio, setShowModal }) => {
+const ServiciosCards = ({ nombre, descripcion, setCurrentServicio, setShowModal, imgRoute }) => {
   return (
     <div
       className="serviciosCard"
@@ -12,7 +11,7 @@ const ServiciosCards = ({ nombre, descripcion, setCurrentServicio, setShowModal 
       }}
     >
       <h2>{nombre}</h2>
-      <img src={servicioImg} alt="" />
+      <img src={imgRoute} alt="" loading="lazy" />
     </div>
   );
 };

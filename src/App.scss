@@ -11,22 +11,48 @@
 }
 
 .crecemosConVos {
-  @include v.medidas(70%, 20rem);
+  @include v.medidas(100vw, 30rem);
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   color: v.$colorPrimario;
-  div {
-    @include v.medidas(55%, 100%);
-  }
+  position: relative;
+  padding: 0 5rem;
+
   img {
-    @include v.medidas(45%, 100%);
+    @include v.medidas(50%, 100%);
+    position: absolute;
+    right: 10rem;
+    top: 0;
   }
   h3 {
-    font-size: 2rem;
+    font-size: 1rem;
+    font-weight: bold;
     width: 70%;
   }
   p {
     // @include v.medidas(50%, 100%);
     font-size: 1.2rem;
+  }
+
+  .infoContainer {
+    @include v.medidas(40%, 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    position: relative;
+
+    div {
+      @include v.medidas(100%, 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: left;
+      h3 {
+        @include v.medidas(100%, 20%);
+      }
+    }
   }
 }

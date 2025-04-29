@@ -3,6 +3,7 @@ import { persist } from "zustand/middleware";
 // firestore
 import { query, collection, getDocs, addDoc, doc, updateDoc, deleteDoc } from "firebase/firestore/lite";
 import { db, storage } from "./firebase/firebaseConfig";
+import { listAll } from "firebase/storage";
 // storage
 import { ref, uploadBytes, getDownloadURL, deleteObject } from "firebase/storage";
 
@@ -71,7 +72,7 @@ const updateResourceHelper = async (dbName, object, candidato, idDeleteCandidato
       if (candidato) {
         if (typeof candidato.cv === "object") {
           const response = candidato.cv;
-          const mountainsRef = ref(storage, `${object.id}/${candidato.email}/CV-${candidato.email}`);
+          const mountainsRef = ref(storage, `${object.id}/CV-${candidato.email}`);
           const snapshot = await uploadBytes(mountainsRef, response);
           const urlDescarga = await getDownloadURL(snapshot.ref);
           candidato.cv = urlDescarga;
@@ -86,7 +87,7 @@ const updateResourceHelper = async (dbName, object, candidato, idDeleteCandidato
       } else if (idDeleteCandidato) {
         //eliminar archivo de storage
         if (idDeleteCandidato.cv) {
-          const deleteRef = ref(storage, `${object.id}/${idDeleteCandidato.email}/CV-${idDeleteCandidato.email}`);
+          const deleteRef = ref(storage, `${object.id}/CV-${idDeleteCandidato.email}`);
 
           deleteObject(deleteRef)
             .then(() => {
@@ -148,31 +149,35 @@ const deleteResourceHelper = async (isBolsa, object) => {
   try {
     if (isBolsa) {
       // eliminar archivo de storage
-
       const deleteRef = ref(storage, `${object.id}/`);
-      deleteObject(deleteRef)
-        .then(() => {
-          console.log("eliminado con éxito");
-        })
-        .catch((error) => {
-          console.error(error);
-        });
+      try {
+        const res = await listAll(deleteRef);
+        console.log(res);
+
+        const deletePromises = res.items.map((itemRef) => deleteObject(itemRef));
+        await Promise.all(deletePromises);
+        console.log(`Todos los archivos fueron eliminados con éxito.`);
+      } catch (error) {
+        console.error(`Error al listar o eliminar archivos`, error);
+      }
 
       await deleteDoc(doc(db, "BolsaDeTrabajo", object.id));
     } else {
       if (object.idFirestore) {
-        const deleteRef = ref(storage, `${object.idFirestore}/CV-${object.idFirestore}`);
+        const deleteRef = ref(storage, `${object.idFirestore}/`);
+        try {
+          const res = await listAll(deleteRef);
+          console.log(res);
 
-        deleteObject(deleteRef)
-          .then(() => {
-            console.log("eliminado con éxito");
-          })
-          .catch((error) => {
-            console.error(error);
-          });
+          // const deletePromises = res.items.map((itemRef) => deleteObject(itemRef));
+          // await Promise.all(deletePromises);
+          console.log(`Todos los archivos fueron eliminados con éxito.`);
+        } catch (error) {
+          console.error(`Error al listar o eliminar archivos`, error);
+        }
       }
 
-      await deleteDoc(doc(db, "Candidatos", object.id));
+      // await deleteDoc(doc(db, "Candidatos", object.id));
     }
   } catch (error) {
     console.error("Error deleting document:", error);

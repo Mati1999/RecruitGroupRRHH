@@ -13,7 +13,7 @@ const CarouselItems = ({ children: slides }) => {
   };
 
   return (
-    <div className="overflow-hidden relative w-full h-full">
+    <div className="overflow-hidden relative w-full h-full flex justify-center">
       <div
         className="flex transition-transform ease-out duration-1000 w-full h-[90%]"
         style={{ transform: `translateX(-${curr * 100}%)` }}

@@ -1,13 +1,15 @@
 @use "./variable.scss" as v;
 
 .bolsaDeTrabajoPageBanner {
-  @include v.medidas(100%, 25rem);
+  @include v.medidas(100%, 35rem);
+  padding-top: 5rem;
   margin-bottom: 2rem;
 
   img {
     @include v.medidas(100%, 100%);
-    object-fit: fill;
+    object-fit: contain;
     object-position: top;
+    aspect-ratio: 16;
   }
 }
 
@@ -19,6 +21,16 @@
   align-items: center;
   padding: 0 5rem;
   gap: 2rem;
+
+  a {
+    @include v.medidas(10%, 3rem);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: v.$colorPrimario;
+    color: v.$colorFontPrimario;
+    border-radius: 0.5rem;
+  }
 }
 
 .bolsaDeTrabajoPageItem {

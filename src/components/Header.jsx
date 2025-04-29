@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router";
-import Logo from "/Logo.png";
+import logoBlanco from "/logo/logoBlanco.png";
 import LinkedInLogo from "/linkedInLogo.png";
 import InstagramLogo from "/instagramLogo.png";
 import "../../styles/header.scss";
@@ -11,7 +11,7 @@ const Header = () => {
   return (
     <div className="headerContainer">
       <NavLink className="linkImg" to="/">
-        <img src={Logo} alt="" />
+        <img src={logoBlanco} alt="" />
       </NavLink>
       {!logedIn ? (
         <>

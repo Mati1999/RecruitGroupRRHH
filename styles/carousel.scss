@@ -1,9 +1,48 @@
 @use "./variable.scss" as v;
 
-.carousellItemsImg {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.App {
+  .swiper-button-prev {
+    left: 5rem;
+  }
+  .swiper-button-next {
+    right: 5rem;
+  }
+}
+
+.carouselItem {
+  @include v.medidas(100%, 100%);
+  display: flex;
+  justify-content: center;
   aspect-ratio: 16;
+  object-fit: contain;
   object-position: top;
+  position: relative;
+
+  a {
+    @include v.medidas(85%, 100%);
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.carousellItemsImg {
+  @include v.medidas(100%, 100%);
+  aspect-ratio: 16;
+  object-fit: contain;
+  object-position: top;
+}
+
+[data-id="0"],
+[data-id="3"] {
+  position: absolute;
+  bottom: 4rem;
+  left: 10%;
+  z-index: 20;
+}
+
+[data-id="1"],
+[data-id="2"] {
+  position: absolute;
+  bottom: 4rem;
+  right: 5rem;
 }

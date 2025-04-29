@@ -1,7 +1,7 @@
 @use "./variable.scss" as v;
 
 .footer {
-  @include v.medidas(100%, 20rem);
+  @include v.medidas(100%, 25rem);
   background-color: v.$colorSecundario;
   display: flex;
   flex-direction: column;
@@ -11,12 +11,13 @@
   gap: 1rem;
   padding-top: 1rem;
   margin-top: 5rem;
+  position: relative;
   img {
-    @include v.medidas(10%, auto);
+    @include v.medidas(15%, auto);
   }
 
   &--infoContainer {
-    @include v.medidas(90%, 20rem);
+    @include v.medidas(100%, 100%);
     display: flex;
     justify-content: space-evenly;
 
@@ -25,7 +26,7 @@
     }
 
     p {
-      @include v.medidas(30%, auto);
+      @include v.medidas(40%, auto);
       padding: 0 1rem 1rem 1rem;
     }
   }
@@ -54,4 +55,10 @@
       @include v.medidas(2rem, 2rem);
     }
   }
+}
+
+.byZeko {
+  position: absolute;
+  right: 10rem;
+  bottom: 2rem;
 }

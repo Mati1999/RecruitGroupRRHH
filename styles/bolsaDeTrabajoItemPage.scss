@@ -1,5 +1,18 @@
 @use "./variable.scss" as v;
 
+.bolsaDeTrabajoItemPageBanner {
+  @include v.medidas(100%, 35rem);
+  padding-top: 5rem;
+  margin-bottom: 2rem;
+
+  img {
+    @include v.medidas(100%, 100%);
+    object-fit: contain;
+    object-position: top;
+    aspect-ratio: 16;
+  }
+}
+
 .bolsaDeTrabajoItemMain {
   display: flex;
   flex-direction: column;
@@ -15,7 +28,7 @@
   }
 
   &-info {
-    @include v.medidas(100%, 100%);
+    @include v.medidas(60%, 100%);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -35,6 +48,13 @@
       display: flex;
       justify-content: space-between;
       gap: 2rem;
+
+      div {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 1rem;
+      }
     }
     span {
       @include v.medidas(30%, 100%);
@@ -44,7 +64,6 @@
       @include v.medidas(100%, 100%);
       padding: 0.5rem;
       border-radius: 0.5rem;
-      // background-color: v.$colorFontPrimario;
       background: linear-gradient(white, white) padding-box,
         linear-gradient(to top, v.$colorBoderStart, v.$colorBoderEnd) border-box;
       border: 1px solid transparent;
@@ -65,7 +84,6 @@
     #curriculum {
       padding: 0;
       border-radius: 0;
-      // background-color: v.$colorFontPrimario;
       background: none;
       border: none;
       box-shadow: none;
@@ -82,6 +100,13 @@
       &:hover {
         cursor: pointer;
       }
+    }
+
+    button {
+      @include v.medidas(15%, 3rem);
+      background: v.$colorPrimario;
+      color: v.$colorFontPrimario;
+      border-radius: 0.3rem;
     }
   }
 }
@@ -101,6 +126,9 @@
 
   &_responsabilidades,
   &_requisitos {
+    width: 60%;
+    padding-top: 1rem;
+
     p {
       font-weight: bold;
     }

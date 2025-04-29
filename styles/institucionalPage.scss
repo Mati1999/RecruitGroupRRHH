@@ -1,0 +1,139 @@
+@use "./variable.scss" as v;
+
+.institucionalPageBanner {
+  @include v.medidas(100%, 35rem);
+  padding-top: 5rem;
+  margin-bottom: 2rem;
+
+  img {
+    @include v.medidas(100%, 100%);
+    object-fit: contain;
+    aspect-ratio: 16;
+  }
+}
+
+.institucionalMain {
+  @include v.medidas(100%, 100%);
+  padding: 0 10rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  color: v.$colorFontSecundario;
+}
+
+.institucionalMain-quienesSomos,
+.institucionalMain-quienesSomos2 {
+  @include v.medidas(100%, 70%);
+  display: flex;
+  justify-content: space-evenly;
+
+  div {
+    @include v.medidas(30%, 100%);
+
+    h2 {
+      font-size: 1.5rem;
+    }
+    p {
+      @include v.medidas(100%, 100%);
+      font-size: 1.2rem;
+    }
+  }
+
+  img {
+    @include v.medidas(50%, 100%);
+    border-radius: 0.5rem;
+    aspect-ratio: 16/9;
+  }
+}
+
+.institucionalMain-quienesSomos2 {
+  img {
+    @include v.medidas(40%, 100%);
+    border-radius: 0.5rem;
+    aspect-ratio: 1;
+  }
+
+  div {
+    @include v.medidas(40%, 100%);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
+
+.institucionalMain-queNosDistingue {
+  @include v.medidas(100%, 100%);
+  padding: 0 5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.institucionalMain-nuestroEquipo {
+  @include v.medidas(100%, 100%);
+  padding: 0 5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 2rem;
+}
+
+.institucionalMain-quienesSomos_contenedor {
+  @include v.medidas(100%, 100%);
+  display: flex;
+  justify-content: space-evenly;
+  align-items: start;
+  text-align: center;
+  gap: 2rem;
+
+  & > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1rem;
+    position: relative;
+
+    & > div {
+      @include v.medidas(10rem, 10rem);
+      position: relative;
+      a {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1;
+      }
+      .profileLinkedIn {
+        @include v.medidas(100%, 100%);
+        filter: opacity(0);
+        transition: all 0.3s ease;
+      }
+      .profileImg {
+        @include v.medidas(100%, 100%);
+        border-radius: 100%;
+        transition: filter 0.3s ease;
+      }
+    }
+
+    &:hover {
+      & > div {
+        .profileLinkedIn {
+          filter: opacity(1);
+        }
+        .profileImg {
+          filter: blur(5px);
+        }
+      }
+    }
+
+    h3 {
+      font-weight: bold;
+    }
+    p {
+      width: 70%;
+    }
+  }
+}

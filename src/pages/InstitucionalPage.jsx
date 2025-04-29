@@ -1,37 +1,41 @@
 import React from "react";
 import Header from "../components/Header";
-import imgBanner from "/imgBanner.png";
-import institucionalImg1 from "/institucionalImg1.png";
-import agusImg from "/agusImg.png";
-import romiImg from "/romiImg.png";
-import daniImg from "/daniImg.png";
-import luciImg from "/luciImg.png";
+import somorRecruitBanner from "/institucional/somosRecruit.png";
+import institucionalImg1 from "/institucional/imagen1.jpg";
+import institucionalImg2 from "/institucional/imagen2.jpg";
+import agusImg from "/institucional/AGUSTINA.jpg";
+import romiImg from "/institucional/ROMINA.jpg";
+import daniImg from "/institucional/DANIEL.jpg";
+import luciImg from "/institucional/LUCIA.jpg";
 import Footer from "../components/Footer";
+import linkedIn from "/linkedInLogo.png";
+import "../../styles/institucionalPage.scss";
 
 const InstitucionalPage = () => {
   return (
-    <div>
+    <>
       <Header />
-      <div className="bolsaDeTrabajoPageBanner">
-        <img src={imgBanner} alt="" />
+      <div className="institucionalPageBanner">
+        <img src={somorRecruitBanner} alt="" />
       </div>
 
-      <main className="institucionarMain">
-        <div>
+      <main className="institucionalMain">
+        <div className="institucionalMain-quienesSomos">
           <div>
             <h2>¿QUIENES SOMOS?</h2>
             <p>
-              Somos Recruit Group, una consultora de recursos humanos que nació hace tres años de la mano de dos amigas
-              psicólogas con una meta clara: adentrarse en el mundo de los RRHH y aportar valor a las organizaciones a
-              través de nuestras capacidades y experiencia. Iniciamos nuestra historia ofreciendo el servicio de
-              reclutamiento, enfocado en la búsqueda y selección de talento, y con el tiempo hemos ido creciendo y
-              diversificando nuestras áreas de trabajo, logrando un enfoque integral en los servicios que brindamos.
+              Somos <b>Recruit Group</b>, una consultora de recursos humanos que nació hace tres años de la mano de dos
+              amigas psicólogas con una meta clara: adentrarse en el mundo de los RRHH y aportar valor a las
+              organizaciones a través de nuestras capacidades y experiencia. Iniciamos nuestra historia ofreciendo el
+              servicio de reclutamiento, enfocado en la búsqueda y selección de talento, y con el tiempo hemos ido
+              creciendo y diversificando nuestras áreas de trabajo, logrando un enfoque integral en los servicios que
+              brindamos.
             </p>
           </div>
           <img src={institucionalImg1} alt="" />
         </div>
-        <div>
-          <img src={institucionalImg1} alt="" />
+        <div className="institucionalMain-quienesSomos2">
+          <img src={institucionalImg2} alt="" />
           <div>
             <p>
               Hoy, contamos con un equipo sólido y capacitado, que trabaja con pasión y compromiso. A lo largo de estos
@@ -46,7 +50,7 @@ const InstitucionalPage = () => {
             </p>
           </div>
         </div>
-        <div>
+        <div className="institucionalMain-queNosDistingue">
           <h2>¿QUÉ NOS DISTINGUE?</h2>
           <p>
             Nuestros conocimientos y experiencia en salud mental nos brinda un abanico de oportunidades al momento de
@@ -58,29 +62,49 @@ const InstitucionalPage = () => {
             estratégica para analizar dinámicas grupales.
           </p>
         </div>
-        <div>
+        <div className="institucionalMain-nuestroEquipo">
           <h2>NUESTRO EQUIPO</h2>
-          <div>
+          <div className="institucionalMain-quienesSomos_contenedor">
             <div>
-              <img src={agusImg} alt="" />
+              <div>
+                <a href="">
+                  <img className="profileLinkedIn" src={linkedIn} alt="" />
+                </a>
+                <img className="profileImg" src={agusImg} alt="" />
+              </div>
               <h3>Agustina Marini</h3>
               <p>Psicóloga y fundadora</p>
               <p>Mat 3351</p>
             </div>
             <div>
-              <img src={romiImg} alt="" />
+              <div>
+                <a href="">
+                  <img className="profileLinkedIn" src={linkedIn} alt="" />
+                </a>
+                <img className="profileImg" src={romiImg} alt="" />
+              </div>
               <h3>Romina Abdala</h3>
               <p>Psicóloga y fundadora</p>
               <p>Mat 3617</p>
             </div>
             <div>
-              <img src={daniImg} alt="" />
+              <div>
+                <a href="">
+                  <img className="profileLinkedIn" src={linkedIn} alt="" />
+                </a>
+                <img className="profileImg" src={daniImg} alt="" />
+              </div>
               <h3>Daniel Cebreros</h3>
               <p>Psicólogo clínico</p>
               <p>Mat 1886</p>
             </div>
             <div>
-              <img src={luciImg} alt="" />
+              <div>
+                <a href="">
+                  <img className="profileLinkedIn" src={linkedIn} alt="" />
+                </a>
+                <img className="profileImg" src={luciImg} alt="" />
+              </div>
               <h3>Lucia Pecoraro</h3>
               <p>Recruiter</p>
             </div>
@@ -88,7 +112,7 @@ const InstitucionalPage = () => {
         </div>
       </main>
       <Footer />
-    </div>
+    </>
   );
 };
 

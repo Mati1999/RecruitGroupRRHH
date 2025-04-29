@@ -1,5 +1,5 @@
 import React from "react";
-import Logo from "/Logo.png";
+import logoBlanco from "/logo/logoBlanco.png";
 import LinkedInLogo from "/linkedInLogo.png";
 import InstagramLogo from "/instagramLogo.png";
 import "../../styles/footer.scss";
@@ -7,7 +7,7 @@ import "../../styles/footer.scss";
 const Footer = () => {
   return (
     <div className="footer">
-      <img src={Logo} alt="" />
+      <img src={logoBlanco} alt="" />
       <div className="footer--infoContainer">
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste, rerum nemo quod modi repellendus qui sint
@@ -19,6 +19,7 @@ const Footer = () => {
           <h4>CONTACTO</h4>
           <p>Mendoza, Argentina</p>
           <p>rrhh@recruitgroupar.com</p>
+          <h4 style={{ marginTop: "1rem" }}>¡ENVIANOS TU CV!</h4>
           <p>seleccion@recruitgroupar.com</p>
         </div>
         <div className="footer--social">
@@ -27,9 +28,9 @@ const Footer = () => {
             <img src={LinkedInLogo} alt="" />
             <img src={InstagramLogo} alt="" />
           </div>
-          <h4>¡ENVIANOS TU CV!</h4>
         </div>
       </div>
+      <p className="byZeko">Página por: ZEKO</p>
     </div>
   );
 };

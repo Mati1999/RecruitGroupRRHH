@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import Header from "../components/Header";
-import imgBanner from "/imgBanner.png";
+import bolsaDeTrabajoBanner from "/bolsaDeTrabajo/bolsaDeTrabajoBanner.png";
 import "../../styles/BolsaDeTrabajoPage.scss";
 import { useResource } from "../recursos";
 import { NavLink } from "react-router";
@@ -22,7 +22,7 @@ const BolsaDeTrabajoPage = () => {
     <>
       <Header />
       <div className="bolsaDeTrabajoPageBanner">
-        <img src={imgBanner} alt="" />
+        <img src={bolsaDeTrabajoBanner} alt="" />
       </div>
       <div className="bolsaDeTrabajoPageTrabajos">
         {bolsa.length != 0

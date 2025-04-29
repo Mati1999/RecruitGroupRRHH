@@ -131,11 +131,11 @@ const BolsaDeTrabajoPanel = () => {
       ...currentBolsa,
       closed: closedBolsa === "closed" ? "open" : "closed"
     };
-    setClosedBolsa(closedBolsa === "closed" ? "open" : "closed");
     console.log("Cerrando bolsa", currentBolsa);
     updateBolsa(updatedBolsa, "", "");
     setCurrentBolsa({});
     setEditBolsa(false);
+    setClosedBolsa(closedBolsa === "closed" ? "open" : "closed");
   };
 
   const handleUpdateBolsa = () => {
@@ -164,7 +164,7 @@ const BolsaDeTrabajoPanel = () => {
       disponibilidad: disponibilidadBolsa,
       info: { descripcion: descripcionBolsa, responsabilidades: responsabilidadesBolsa, requisitos: requisitosBolsa },
       candidatos: [...candidatosBolsa],
-      closed: false
+      closed: "closed"
     };
     console.log(updatedBolsa);
     setBolsa(updatedBolsa);
@@ -310,7 +310,8 @@ const BolsaDeTrabajoPanel = () => {
                 </h4>
                 <div>
                   <button
-                    onClick={() => {
+                    onClick={(e) => {
+                      e.preventDefault();
                       handleCloseBolsa();
                     }}
                   >

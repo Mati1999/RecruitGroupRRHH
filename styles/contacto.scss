@@ -1,0 +1,70 @@
+@use "./variable.scss" as v;
+
+.contactoPageBanner {
+  @include v.medidas(100%, 35rem);
+  padding-top: 5rem;
+  margin-bottom: 2rem;
+
+  img {
+    @include v.medidas(100%, 100%);
+    object-fit: contain;
+    object-position: top;
+    aspect-ratio: 16;
+  }
+}
+
+.contactMain {
+  @include v.medidas(100%, 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+
+  form {
+    @include v.medidas(50%, 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+
+    h2 {
+      font-size: 1.5rem;
+    }
+
+    .contactFormInputContainer {
+      @include v.medidas(100%, 10%);
+      display: flex;
+      gap: 1rem;
+
+      input {
+        @include v.medidas(100%, 100%);
+        padding: 1rem;
+        border-radius: 0.5rem;
+      }
+    }
+
+    input,
+    textarea {
+      @include v.medidas(100%, 10%);
+      border-radius: 0.5rem;
+      padding: 1rem;
+      background: linear-gradient(white, white) padding-box,
+        linear-gradient(to top, v.$colorBoderStart, v.$colorBoderEnd) border-box;
+      border: 1px solid transparent;
+      box-shadow: 4px 4px 4px rgba(128, 128, 128, 0.5);
+    }
+
+    textarea {
+      @include v.medidas(100%, 10%);
+      min-height: 20rem;
+    }
+
+    button {
+      @include v.medidas(30%, 3rem);
+      background: v.$colorPrimario;
+      color: v.$colorFontPrimario;
+      border-radius: 0.5rem;
+    }
+  }
+}

@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import "../../styles/serviciosPage.scss";
 import Header from "../components/Header";
-import imgBanner from "/imgBanner.png";
+import ServiciosBanner from "/servicios/ServiciosBanner.png";
 import ServiciosCards from "../components/ServiciosCards";
 import Footer from "../components/Footer";
 
@@ -24,7 +24,7 @@ const ServiciosPage = () => {
     <>
       <Header />
       <div className="servicioPageBanner">
-        <img src={imgBanner} alt="" />
+        <img src={ServiciosBanner} alt="" />
       </div>
 
       <main className="servicioPageMain">
@@ -33,6 +33,7 @@ const ServiciosPage = () => {
             key={index}
             nombre={servicio.nombre}
             descripcion={servicio.descripcion}
+            imgRoute={servicio.image}
             setCurrentServicio={() => setCurrentServicio(servicio)}
             setShowModal={() => setShowModal(true)}
           />
@@ -40,17 +41,20 @@ const ServiciosPage = () => {
       </main>
 
       {showModal && (
-        <div className="servicioPageModal">
-          <h2>{currentServicio.nombre}</h2>
-          <p>{currentServicio.descripcion}</p>
-          <button
-            onClick={() => {
-              setCurrentServicio({});
-              setShowModal(false);
-            }}
-          >
-            Cerrar
-          </button>
+        <div className="servicioPageModalContainer">
+          <div className="servicioPageModal">
+            <h2>{currentServicio.nombre}</h2>
+            <p>{currentServicio.descripcion}</p>
+            <button
+              style={{ position: "absolute", top: "10px", right: "10px" }}
+              onClick={() => {
+                setCurrentServicio({});
+                setShowModal(false);
+              }}
+            >
+              X
+            </button>
+          </div>
         </div>
       )}
 
