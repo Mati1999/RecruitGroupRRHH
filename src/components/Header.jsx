@@ -90,11 +90,11 @@ const Header = () => {
               </NavLink>
             </ul>
             <div className="headerMobile-icons">
-              <a href="">
-                <img src={LinkedInLogo} alt="https://www.linkedin.com/company/recuit-group-consultora-rrhh/" />
+              <a href="https://www.linkedin.com/company/recuit-group-consultora-rrhh/" target="_blank">
+                <img src={LinkedInLogo} alt="" />
               </a>
-              <a href="">
-                <img src={InstagramLogo} alt="https://www.instagram.com/recruitgrouprrhh?igsh=MWsxa2lrbml0aXhiMg== " />
+              <a href="https://www.instagram.com/recruitgrouprrhh?igsh=MWsxa2lrbml0aXhiMg==" target="_blank">
+                <img src={InstagramLogo} alt="" />
               </a>
             </div>
           </div>
