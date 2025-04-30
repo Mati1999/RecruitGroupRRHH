@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useResource } from "../recursos";
-import "../../styles/candidatospanel.scss";
+import "../styles/candidatospanel.scss";
 import Header from "./Header";
 import Footer from "./Footer";
 import { Navigate } from "react-router";

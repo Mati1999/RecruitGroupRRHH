@@ -9,7 +9,7 @@ import daniImg from "/institucional/DANIEL.jpg";
 import luciImg from "/institucional/LUCIA.jpg";
 import Footer from "../components/Footer";
 import linkedIn from "/linkedInLogo.png";
-import "../../styles/institucionalpage.scss";
+import "../styles/institucionalpage.scss";
 
 const InstitucionalPage = () => {
   return (

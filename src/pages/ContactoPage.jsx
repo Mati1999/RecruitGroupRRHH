@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import "../../styles/contacto.scss";
+import "../styles/contacto.scss";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import contactoBanner from "/contactos/contacto.png";

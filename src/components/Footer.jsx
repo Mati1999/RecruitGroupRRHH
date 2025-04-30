@@ -2,7 +2,7 @@ import React from "react";
 import logoBlanco from "/logo/logoBlanco.png";
 import LinkedInLogo from "/linkedInLogo.png";
 import InstagramLogo from "/instagramLogo.png";
-import "../../styles/footer.scss";
+import "../styles/footer.scss";
 
 const Footer = () => {
   return (

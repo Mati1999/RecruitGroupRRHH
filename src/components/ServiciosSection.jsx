@@ -1,5 +1,5 @@
 import React from "react";
-import "../../styles/serviciossection.scss";
+import "../styles/serviciossection.scss";
 import { NavLink } from "react-router";
 import { FaBrain } from "react-icons/fa";
 

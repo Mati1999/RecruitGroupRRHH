@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import Header from "../components/Header";
 import bolsaDeTrabajoBanner from "/bolsaDeTrabajo/bolsaDeTrabajoBanner.png";
-import "../../styles/bolsadetrabajopage.scss";
+import "../styles/bolsadetrabajopage.scss";
 import { useResource } from "../recursos";
 import { NavLink } from "react-router";
 import Footer from "../components/Footer";

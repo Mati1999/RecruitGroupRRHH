@@ -3,7 +3,7 @@ import { useResource } from "../recursos";
 import { useParams } from "react-router";
 import bolsaDeTrabajoBanner from "/bolsaDeTrabajo/bolsaDeTrabajoBanner.png";
 import Header from "../components/Header";
-import "../../styles/bolsadetrabajoitempage.scss";
+import "../styles/bolsadetrabajoitempage.scss";
 import Footer from "../components/Footer";
 import { useForm } from "react-hook-form";
 import { ToastContainer, toast } from "react-toastify";

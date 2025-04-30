@@ -3,7 +3,7 @@ import { NavLink } from "react-router";
 import logoBlanco from "/logo/logoBlanco.png";
 import LinkedInLogo from "/linkedInLogo.png";
 import InstagramLogo from "/instagramLogo.png";
-import "../../styles/header.scss";
+import "../styles/header.scss";
 import { useResource } from "../recursos";
 
 const Header = () => {

@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router";
-import "../../styles/carousel.scss";
+import "../styles/carousel.scss";
 import BannerHomeAhorraTiempo from "/bannersHome/BannerHomeAhorraTiempo.png";
 import BannerHomeBolsaDeTrabajo from "/bannersHome/BannerHomeBolsaDeTrabajo.png";
 import BannerHomeServicios from "/bannersHome/BannerHomeServicios.png";

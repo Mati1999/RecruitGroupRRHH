@@ -3,7 +3,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
-import "../../styles/testimonios.scss";
+import "../styles/testimonios.scss";
 import INKA from "/logos/INKA.jpg";
 import elNido from "/logos/elNido.jpg";
 import rocasDelPlata from "/logos/rocasDelPlata.jpg";

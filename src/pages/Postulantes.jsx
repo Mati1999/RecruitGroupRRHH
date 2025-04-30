@@ -3,7 +3,7 @@ import { useResource } from "../recursos";
 import { useParams } from "react-router";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import "../../styles/postulantes.scss";
+import "../styles/postulantes.scss";
 import { CiStar } from "react-icons/ci";
 import { FaStar } from "react-icons/fa";
 import { ToastContainer, toast } from "react-toastify";
