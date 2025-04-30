@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import "../../styles/candidatosPage.scss";
+import "../../styles/candidatospage.scss";
 import Header from "../components/Header";
 import candidatosBanner from "/candidatos/candidatos.png";
 import { useResource } from "../recursos";

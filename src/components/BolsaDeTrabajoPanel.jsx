@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useResource } from "../recursos";
 import Header from "./Header";
 import Footer from "./Footer";
-import "../../styles/bolsaDeTrabajoPanel.scss";
+import "../../styles/bolsadetrabajopanel.scss";
 import { NavLink, useNavigate } from "react-router";
 import { ToastContainer, toast } from "react-toastify";
 import Swal from "sweetalert2";

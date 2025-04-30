@@ -17,7 +17,7 @@ import rocasDelPlata from "/logos/rocasDelPlata.jpg";
 import silvestre from "/logos/silvestre.jpg";
 import spinQuimica from "/logos/spinQuimica.jpg";
 import winear from "/logos/winear.jpg";
-import "../../styles/infiniteCarousel.scss";
+import "../../styles/infinitecarousel.scss";
 
 const InfiniteCarousel = () => {
   return (

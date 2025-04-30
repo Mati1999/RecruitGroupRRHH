@@ -1,5 +1,5 @@
 import React from "react";
-import "../../styles/serviciosCards.scss";
+import "../../styles/servicioscards.scss";
 
 const ServiciosCards = ({ nombre, descripcion, setCurrentServicio, setShowModal, imgRoute }) => {
   return (

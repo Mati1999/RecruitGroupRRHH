@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { ChevronLeftIcon, ChevronRightIcon } from "flowbite-react";
+import React from "react";
 import { NavLink } from "react-router";
 import "../../styles/carousel.scss";
 import BannerHomeAhorraTiempo from "/bannersHome/BannerHomeAhorraTiempo.png";

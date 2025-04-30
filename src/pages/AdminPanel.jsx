@@ -4,7 +4,7 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { useResource } from "../recursos";
 import { NavLink } from "react-router";
 import Header from "../components/Header";
-import "../../styles/adminPanel.scss";
+import "../../styles/adminpanel.scss";
 import Footer from "../components/Footer";
 import { ToastContainer, toast } from "react-toastify";
 

@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import "../../styles/serviciosPage.scss";
+import "../../styles/serviciospage.scss";
 import Header from "../components/Header";
 import ServiciosBanner from "/servicios/ServiciosBanner.png";
 import ServiciosCards from "../components/ServiciosCards";
