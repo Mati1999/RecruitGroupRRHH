@@ -86,7 +86,7 @@ const ServiciosPage = () => {
     {
       nombre: "Selección DAI y AT.",
       descripcion:
-        "Lorem ipsum dolor sit amet consectetur adipiscing elit fermentum curabitur vestibulum elementum, tempor bibendum cum quisque aliquet auctor hendrerit morbi eu cras fusce, phasellus malesuada scelerisque curae habitant consequat montes nascetur eget dapibus. Lacinia montes mauris praesent nec varius odio in proin ornare mattis himenaeos aenean, inceptos metus porttitor facilisis sociis sagittis euismod vel quam risus.",
+        "Nuestro equipo está conformado por profesionales de salud mental, no solo con experiencia organizacional, sino también con un abanico de herramientas y formación clínica. Realizamos búsquedas de Docentes de Apoyo a la Inclusión (DAI) y Acompañantes Terapéuticos (AT) para cada persona que lo necesite y solicite. Somos ampliamente conscientes de la necesidad de que las personas que vayan a ocupar estos lugares, deben de tener ciertas competencias y un perfil que se ajuste a cada familia. A partir de escuchar tus necesidades, en conjunto con expertos en el área, realizamos un cuidadoso filtrado de nuestros CV y escuchamos con mucha atención cada entrevista con los candidatos para observar su capacidad de comunicación, inteligencia emocional, conocimientos técnicos y experiencia, además, se le realizan pruebas psicológicas, para que, de esa forma, se elija a quien sea el más indicado.",
       image: "/servicios/ATyDAI.jpg"
     }
   ];

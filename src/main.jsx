@@ -36,7 +36,7 @@ createRoot(document.getElementById("root")).render(
       </Routes>
     </BrowserRouter>
     <button className="wppIcon">
-      <a href="https://wa.me/+5492615655914" target="_blank" rel="noopener noreferrer">
+      <a href="https://wa.me/+5492617741234" target="_blank" rel="noopener noreferrer">
         <img src={wppIcon} alt="" />
       </a>
     </button>

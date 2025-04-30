@@ -48,6 +48,15 @@
   color: v.$colorSecundario;
   gap: 1rem;
   padding: 0 0 5rem 0;
+  margin-top: -3rem;
+
+  @include v.tabletBig() {
+    margin-top: -3rem;
+  }
+
+  @include v.tablet() {
+    margin-top: -3rem;
+  }
 
   h2 {
     font-size: 2rem;

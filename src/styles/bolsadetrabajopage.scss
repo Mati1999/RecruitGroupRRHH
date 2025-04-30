@@ -50,9 +50,16 @@
   align-items: center;
   padding: 0 5rem;
   gap: 2rem;
+  margin-top: -3rem;
+
+  @include v.tabletBig() {
+    padding: 0 1rem;
+    margin-top: -3rem;
+  }
 
   @include v.tablet() {
     padding: 0 1rem;
+    margin-top: -3rem;
   }
 
   @include v.mobile() {
