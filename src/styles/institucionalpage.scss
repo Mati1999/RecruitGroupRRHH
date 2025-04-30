@@ -338,10 +338,35 @@
     @include v.medidas(30%, 100%);
     text-align: center;
     font-size: 2rem;
+
+    @include v.desktop() {
+      @include v.medidas(40%, 4rem);
+      font-size: 1.5rem;
+    }
+
+    @include v.tabletBig() {
+      @include v.medidas(50%, 4rem);
+      font-size: 1.5rem;
+    }
+
+    @include v.tablet() {
+      @include v.medidas(60%, 4rem);
+      font-size: 1.5rem;
+    }
+
+    @include v.mobile() {
+      @include v.medidas(70%, 4rem);
+      font-size: 1.5rem;
+    }
+
+    @include v.miniMobile() {
+      @include v.medidas(100%, 4rem);
+      font-size: 1.5rem;
+    }
   }
 
   a {
-    @include v.medidas(20%, 4rem);
+    @include v.medidas(25%, 4rem);
 
     @include v.tabletBig() {
       @include v.medidas(30%, 4rem);
