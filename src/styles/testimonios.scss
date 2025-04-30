@@ -37,7 +37,7 @@
   }
 
   @include v.miniMobile() {
-    @include v.medidas(100%, 20rem);
+    @include v.medidas(100%, 23rem);
     padding: 0 1rem;
   }
 
