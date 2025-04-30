@@ -1,4 +1,4 @@
-@use "../styles/variable.scss" as v;
+@use "./styles/variable.scss" as v;
 
 .appMain {
   @include v.medidas(100%, auto);
