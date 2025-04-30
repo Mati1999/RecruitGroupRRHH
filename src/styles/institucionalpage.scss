@@ -150,6 +150,10 @@
 
   p {
     text-align: right;
+
+    @include v.tablet() {
+      text-align: center;
+    }
   }
 
   img {
@@ -217,7 +221,7 @@
     font-size: 2rem;
   }
   p {
-    @include v.medidas(60%, 100%);
+    @include v.medidas(90%, 100%);
     font-family: Arial, Helvetica, sans-serif;
     font-size: 1.5rem;
   }
@@ -355,7 +359,7 @@
     }
 
     @include v.miniMobile() {
-      @include v.medidas(60%, 4rem);
+      @include v.medidas(80%, 4rem);
       font-size: 1.5rem;
     }
   }

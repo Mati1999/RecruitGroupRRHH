@@ -170,7 +170,7 @@
     }
 
     @include v.miniMobile() {
-      @include v.medidas(60%, 4rem);
+      @include v.medidas(80%, 4rem);
       font-size: 1.5rem;
     }
 
