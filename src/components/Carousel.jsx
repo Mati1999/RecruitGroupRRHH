@@ -7,7 +7,7 @@ import BannerHomeServicios from "/bannersHome/BannerHomeServicios.png";
 import BannerHomeSomosRecruit from "/bannersHome/BannerHomeSomosRecruit.png";
 
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper/modules";
+import { Navigation, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 
@@ -25,7 +25,7 @@ const Carousel = () => {
         pagination={{
           clickable: true
         }}
-        modules={[Navigation]}
+        modules={[Navigation, Autoplay]}
         navigation={{
           nextEl: ".swiper-button-next",
           prevEl: ".swiper-button-prev"
@@ -34,6 +34,10 @@ const Carousel = () => {
         slidesPerView={1}
         centeredSlides={true}
         spaceBetween={30}
+        autoplay={{
+          delay: 4000,
+          disableOnInteraction: false
+        }}
         className="mySwiper h-[10rem] sm:h-[15rem] md:w-full md:h-full"
       >
         {slides.map((img, i) => (
