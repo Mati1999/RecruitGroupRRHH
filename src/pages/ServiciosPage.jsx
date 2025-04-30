@@ -1,12 +1,12 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import "../styles/serviciospage.scss";
 import Header from "../components/Header";
 import ServiciosBanner from "/servicios/ServiciosBanner.png";
 import ServiciosCards from "../components/ServiciosCards";
 import Footer from "../components/Footer";
+import { NavLink } from "react-router";
 
 const ServiciosPage = () => {
-  const servicioEstadoActual = useRef(false);
   const [currentServicio, setCurrentServicio] = useState({});
   const [showModal, setShowModal] = useState(false);
 
@@ -131,7 +131,9 @@ const ServiciosPage = () => {
 
       <div className="servicioPageContact">
         <h4>¿NECESITAS MÁS INFORMACIÓN?</h4>
-        <button>CONTÁCTANOS</button>
+        <NavLink to={`/contacto`}>
+          <button>CONTÁCTANOS</button>
+        </NavLink>
       </div>
       <Footer />
     </>

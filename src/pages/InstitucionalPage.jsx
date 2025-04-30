@@ -10,6 +10,7 @@ import luciImg from "/institucional/LUCIA.jpg";
 import Footer from "../components/Footer";
 import linkedIn from "/linkedInLogo.png";
 import "../styles/institucionalpage.scss";
+import { NavLink } from "react-router";
 
 const InstitucionalPage = () => {
   return (
@@ -113,7 +114,9 @@ const InstitucionalPage = () => {
 
         <div className="institucionalPageContact">
           <h3>¿QUIERES TRABAJAR CON NUESTRO EQUIPO?</h3>
-          <button>CONTÁCTANOS</button>
+          <NavLink to={`/contacto`}>
+            <button>CONTÁCTANOS</button>
+          </NavLink>
         </div>
       </main>
       <Footer />

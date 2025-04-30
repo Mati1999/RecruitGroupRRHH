@@ -335,12 +335,9 @@
     text-align: center;
     font-size: 2rem;
   }
-  button {
+
+  a {
     @include v.medidas(20%, 4rem);
-    cursor: pointer;
-    background-color: v.$colorPrimario;
-    color: v.$colorFontPrimario;
-    font-size: 2rem;
 
     @include v.tabletBig() {
       @include v.medidas(30%, 4rem);
@@ -348,7 +345,7 @@
     }
 
     @include v.tablet() {
-      @include v.medidas(50%, 4rem);
+      @include v.medidas(40%, 4rem);
       font-size: 1.5rem;
     }
 
@@ -358,8 +355,16 @@
     }
 
     @include v.miniMobile() {
-      @include v.medidas(50%, 4rem);
+      @include v.medidas(60%, 4rem);
       font-size: 1.5rem;
     }
+  }
+
+  button {
+    @include v.medidas(100%, 4rem);
+    cursor: pointer;
+    background-color: v.$colorPrimario;
+    color: v.$colorFontPrimario;
+    font-size: 2rem;
   }
 }
