@@ -68,7 +68,7 @@ const BolsaDeTrabajoPage = () => {
                   </>
                 )
             )
-          : "No hay nada"}
+          : "Por ahora no hay búsquedas publicadas."}
       </div>
       <Footer />
     </>

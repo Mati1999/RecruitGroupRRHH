@@ -114,7 +114,7 @@ const CandidatosPage = () => {
                   <p> {item.anosExp} años de experiencia</p>
                 </div>
               ))
-            : "No hay nada"}
+            : "Por ahora no hay candidatos publicados."}
         </div>
       </div>
       {showModal && (
