@@ -13,7 +13,7 @@ const ServiciosPage = () => {
 
   useEffect(() => {
     if (!servicioEstadoActual.current) {
-      fetch("/src/servicios.json")
+      fetch("../servicios.json")
         .then((res) => res.json())
         .then((data) => setServicios(data));
       servicioEstadoActual.current = true;
