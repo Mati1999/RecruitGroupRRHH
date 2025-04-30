@@ -56,8 +56,6 @@ const ContactoPage = () => {
           console.log("FAILED...", error);
         }
       );
-
-    console.log(data);
   };
 
   return (

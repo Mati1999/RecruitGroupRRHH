@@ -1,9 +1,35 @@
 @use "./variable.scss" as v;
 
 .bolsaDeTrabajoItemPageBanner {
-  @include v.medidas(100%, 35rem);
+  @include v.medidas(100%, 50rem);
   padding-top: 5rem;
   margin-bottom: 2rem;
+
+  @include v.desktop() {
+    @include v.medidas(100%, 42em);
+    padding-top: 5rem;
+  }
+
+  @include v.tabletBig() {
+    @include v.medidas(100%, 35rem);
+    padding-top: 5rem;
+  }
+
+  @include v.tablet() {
+    @include v.medidas(100%, 30rem);
+    padding-top: 5rem;
+  }
+
+  @include v.mobile() {
+    @include v.medidas(100%, 25rem);
+    padding-top: 6rem;
+  }
+
+  @include v.miniMobile() {
+    @include v.medidas(100%, 20rem);
+    padding-top: 6rem;
+    margin-bottom: 0;
+  }
 
   img {
     @include v.medidas(100%, 100%);
@@ -33,6 +59,20 @@
     flex-direction: column;
     align-items: center;
     gap: 1rem;
+    font-family: Arial, Helvetica, sans-serif;
+    h2 {
+      @include v.fonts("Julius Sans One", 400);
+    }
+
+    @include v.mobile() {
+      @include v.medidas(100%, 100%);
+      padding: 0 1rem;
+    }
+
+    @include v.miniMobile() {
+      @include v.medidas(100%, 100%);
+      padding: 0 1rem;
+    }
   }
 
   form {
@@ -42,12 +82,35 @@
     align-items: center;
     justify-content: center;
     gap: 1rem;
+    font-family: Arial, Helvetica, sans-serif;
+
+    @include v.mobile() {
+      @include v.medidas(100%, 100%);
+      padding: 0 1rem;
+    }
+
+    @include v.miniMobile() {
+      @include v.medidas(100%, 100%);
+      padding: 0 1rem;
+    }
 
     div {
       @include v.medidas(100%, 100%);
       display: flex;
       justify-content: space-between;
       gap: 2rem;
+
+      @include v.mobile() {
+        flex-direction: column;
+        justify-content: space-evenly;
+        gap: 1rem;
+      }
+
+      @include v.miniMobile() {
+        flex-direction: column;
+        justify-content: space-evenly;
+        gap: 1rem;
+      }
 
       div {
         display: flex;
@@ -107,6 +170,34 @@
       background: v.$colorPrimario;
       color: v.$colorFontPrimario;
       border-radius: 0.3rem;
+
+      @include v.mobile() {
+        @include v.medidas(40%, 3rem);
+        align-self: self-start;
+      }
+
+      @include v.miniMobile() {
+        @include v.medidas(40%, 3rem);
+        align-self: self-start;
+      }
+    }
+
+    p {
+      @include v.tabletBig() {
+        @include v.medidas(100%, 100%);
+      }
+
+      @include v.tablet() {
+        @include v.medidas(100%, 100%);
+      }
+
+      @include v.mobile() {
+        @include v.medidas(100%, 100%);
+      }
+
+      @include v.miniMobile() {
+        @include v.medidas(100%, 100%);
+      }
     }
   }
 }

@@ -7,6 +7,15 @@ import { listAll } from "firebase/storage";
 // storage
 import { ref, uploadBytes, getDownloadURL, deleteObject } from "firebase/storage";
 
+const uploadFile = async (path, file) => {
+  if (typeof file === "object" && file !== null) {
+    const storageRef = ref(storage, path);
+    const snapshot = await uploadBytes(storageRef, file);
+    return await getDownloadURL(snapshot.ref);
+  }
+  return null; // Si no es un archivo, devuelve null
+};
+
 const setResourceHelper = async (dbName, object, bolOrCand) => {
   try {
     if (bolOrCand.toLowerCase() === "bolsa") {
@@ -15,38 +24,27 @@ const setResourceHelper = async (dbName, object, bolOrCand) => {
       await updateDoc(updateRef, { ...object, id: docRef.id });
       return docRef;
     } else {
-      //candidatos
+      // candidatos
       try {
-        let mountainsRef = ref(storage, `${object.idFirestore}/CV-${object.idFirestore}`);
-        // CUANDO PUEDAS OPTIMIZAR LO DE ABAJO PARA HACER UNA FUNCIÓN QUE EJECUTE LAS SUBIDAS A LA DB
-        if (typeof object.cv === "object") {
-          const snapshotCv = await uploadBytes(mountainsRef, object.cv);
-          const urlDescargaCV = await getDownloadURL(snapshotCv.ref);
-          object.cv = urlDescargaCV;
-        }
-        if (typeof object.aptoPsico === "object") {
-          mountainsRef = ref(storage, `${object.idFirestore}/aptoPsico-${object.idFirestore}`);
-          const snapshotPsico = await uploadBytes(mountainsRef, object.aptoPsico);
-          const urlDescargaPsico = await getDownloadURL(snapshotPsico.ref);
-          object.aptoPsico = urlDescargaPsico;
-        }
-        if (typeof object.foto === "object") {
-          mountainsRef = ref(storage, `${object.idFirestore}/foto-${object.idFirestore}`);
-          const snapshotFoto = await uploadBytes(mountainsRef, object.foto);
-          const urlDescargaFoto = await getDownloadURL(snapshotFoto.ref);
-          object.foto = urlDescargaFoto;
-        }
+        const idFirestore = object.idFirestore;
+
+        // Subir y obtener URLs de descarga de los archivos
+        object.cv = await uploadFile(`${idFirestore}/CV-${idFirestore}`, object.cv);
+        object.aptoPsico = await uploadFile(`${idFirestore}/aptoPsico-${idFirestore}`, object.aptoPsico);
+        object.foto = await uploadFile(`${idFirestore}/foto-${idFirestore}`, object.foto);
 
         const docRef = await addDoc(collection(db, dbName), object);
         const updateRef = doc(db, dbName, docRef.id);
         await updateDoc(updateRef, { ...object, id: docRef.id });
         return [docRef, object];
       } catch (e) {
-        console.error("Error fetching data:", e);
+        console.error("Error al procesar candidato:", e);
+        throw e; // Re-lanza el error para que el bloque de nivel superior también lo capture
       }
     }
   } catch (e) {
-    console.error("Error fetching data:", e);
+    console.error("Error general en setResourceHelper:", e);
+    throw e; // Re-lanza el error para un manejo más robusto
   }
 };
 
@@ -64,9 +62,6 @@ const setResourceHelper = async (dbName, object, bolOrCand) => {
 // helperResult = await updateResourceHelper("BolsaDeTrabajo", updatedBolsa, candidato, false, "bolsa", "");
 const updateResourceHelper = async (dbName, object, candidato, idDeleteCandidato, bolOrCand, filteredBolsaCand) => {
   if (bolOrCand.toLowerCase() === "bolsa") {
-    console.log(dbName);
-    console.log(object.id);
-
     const updateRef = doc(db, dbName, object.id);
     try {
       if (candidato) {
@@ -90,9 +85,7 @@ const updateResourceHelper = async (dbName, object, candidato, idDeleteCandidato
           const deleteRef = ref(storage, `${object.id}/CV-${idDeleteCandidato.email}`);
 
           deleteObject(deleteRef)
-            .then(() => {
-              console.log("eliminado con éxito");
-            })
+            .then(() => {})
             .catch((error) => {
               console.error(error);
             });
@@ -101,8 +94,6 @@ const updateResourceHelper = async (dbName, object, candidato, idDeleteCandidato
         object = { ...object, candidatos: filteredBolsaCand[1] };
         return object;
       } else {
-        console.log("object", object);
-
         await updateDoc(updateRef, object);
         return object;
       }
@@ -152,11 +143,9 @@ const deleteResourceHelper = async (isBolsa, object) => {
       const deleteRef = ref(storage, `${object.id}/`);
       try {
         const res = await listAll(deleteRef);
-        console.log(res);
 
         const deletePromises = res.items.map((itemRef) => deleteObject(itemRef));
         await Promise.all(deletePromises);
-        console.log(`Todos los archivos fueron eliminados con éxito.`);
       } catch (error) {
         console.error(`Error al listar o eliminar archivos`, error);
       }
@@ -167,17 +156,15 @@ const deleteResourceHelper = async (isBolsa, object) => {
         const deleteRef = ref(storage, `${object.idFirestore}/`);
         try {
           const res = await listAll(deleteRef);
-          console.log(res);
 
-          // const deletePromises = res.items.map((itemRef) => deleteObject(itemRef));
-          // await Promise.all(deletePromises);
-          console.log(`Todos los archivos fueron eliminados con éxito.`);
+          const deletePromises = res.items.map((itemRef) => deleteObject(itemRef));
+          await Promise.all(deletePromises);
         } catch (error) {
           console.error(`Error al listar o eliminar archivos`, error);
         }
       }
 
-      // await deleteDoc(doc(db, "Candidatos", object.id));
+      await deleteDoc(doc(db, "Candidatos", object.id));
     }
   } catch (error) {
     console.error("Error deleting document:", error);
@@ -212,7 +199,6 @@ const resource = (set, get) => ({
     try {
       let docRef = await setResourceHelper("BolsaDeTrabajo", newBolsa, "bolsa");
       set((resource) => ({ bolsa: [...resource.bolsa, { ...newBolsa, id: docRef.id }] }));
-      console.log("Document written with ID: ", docRef.id);
     } catch (e) {
       console.error("Error fetching data:", e);
     }
@@ -274,8 +260,6 @@ const resource = (set, get) => ({
 
       let newCandidatos = [];
       querySnapshot.forEach((doc) => {
-        console.log({ ...doc.data() });
-
         newCandidatos.push({ ...doc.data() });
       });
       set(() => ({ candidatos: newCandidatos }));
@@ -291,7 +275,6 @@ const resource = (set, get) => ({
       }
       let docRef = await setResourceHelper("Candidatos", newCandidato, "candidato");
       set((resource) => ({ candidatos: [...resource.candidatos, { ...docRef[1], id: docRef[0].id }] }));
-      console.log("Document written with ID: ", docRef[0].id);
     } catch (e) {
       console.error("Error fetching data:", e);
     }
@@ -327,4 +310,33 @@ const resource = (set, get) => ({
   }
 });
 
-export const useResource = create(persist(resource, { name: "store" }));
+export const useResource = create(
+  persist(resource, {
+    name: "store",
+    partialize: (state) => {
+      const persistedState = { ...state }; // Creamos una copia del estado
+
+      if (!state.logedIn) {
+        // Si no está logueado, eliminamos los campos sensibles de la bolsa
+        if (persistedState.bolsa && Array.isArray(persistedState.bolsa)) {
+          persistedState.bolsa = persistedState.bolsa
+            .filter((oferta) => oferta.closed === "open")
+            .map((oferta) => {
+              const { candidatos, ...rest } = oferta;
+              return rest;
+            });
+        }
+
+        // Si no está logueado, eliminamos los campos sensibles de los candidatos
+        if (persistedState.candidatos && Array.isArray(persistedState.candidatos)) {
+          persistedState.candidatos = persistedState.candidatos.map((candidato) => {
+            const { cv, aptoPsico, idFirestore, ...rest } = candidato;
+            return rest;
+          });
+        }
+      }
+
+      return persistedState;
+    }
+  })
+);

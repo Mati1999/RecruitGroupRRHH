@@ -6,6 +6,8 @@ import Footer from "../components/Footer";
 import "../../styles/postulantes.scss";
 import { CiStar } from "react-icons/ci";
 import { FaStar } from "react-icons/fa";
+import { ToastContainer, toast } from "react-toastify";
+import Swal from "sweetalert2";
 
 const Postulantes = () => {
   const estadoBolsaActualizado = useRef(false);
@@ -35,6 +37,19 @@ const Postulantes = () => {
   return (
     <>
       <Header />
+      <ToastContainer
+        position="top-right"
+        style={{ top: "6rem" }}
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick={false}
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
       <div className="postulantesMain">
         <h2>BOLSA DE TRABAJO</h2>
         <input type="text" placeholder="Buscar nombre candidato" onChange={(e) => filterCands(e.target.value)} />
@@ -45,6 +60,7 @@ const Postulantes = () => {
                 <div key={cand.email}>
                   <h4>{cand.nombre}</h4>
                   <button
+                    className="verButton"
                     onClick={() => {
                       setCurrentBolsa(cand);
                     }}
@@ -70,6 +86,7 @@ const Postulantes = () => {
                     {cand.fav ? <FaStar style={{ color: "rgb(241, 245, 0)" }} /> : <CiStar />}
                   </button>
                   <button
+                    className="verButton"
                     onClick={() => {
                       setCurrentBolsa(cand);
                     }}
@@ -97,11 +114,30 @@ const Postulantes = () => {
                   )}
                   <button
                     onClick={() => {
-                      updateBolsa(bolsaActual, false, currentBolsa);
-                      setCurrentBolsa({});
-                      setBolsaActual({
-                        ...bolsaActual,
-                        candidatos: bolsaActual.candidatos.filter((cand) => cand.email !== currentBolsa.email)
+                      Swal.fire({
+                        title:
+                          "Seguro que quieres eliminar este postulante? Se eliminarán todos los postulantes también.",
+                        showCancelButton: true,
+                        confirmButtonText: "Eliminar"
+                      }).then((result) => {
+                        if (result.isConfirmed) {
+                          updateBolsa(bolsaActual, false, currentBolsa);
+                          setCurrentBolsa({});
+                          setBolsaActual({
+                            ...bolsaActual,
+                            candidatos: bolsaActual.candidatos.filter((cand) => cand.email !== currentBolsa.email)
+                          });
+                          toast.success("Has eliminado un postulante", {
+                            position: "top-right",
+                            autoClose: 3000,
+                            hideProgressBar: false,
+                            closeOnClick: false,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                            theme: "colored"
+                          });
+                        }
                       });
                     }}
                   >

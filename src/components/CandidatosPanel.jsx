@@ -4,6 +4,8 @@ import "../../styles/candidatosPanel.scss";
 import Header from "./Header";
 import Footer from "./Footer";
 import { Navigate } from "react-router";
+import { ToastContainer, toast } from "react-toastify";
+import Swal from "sweetalert2";
 
 const CandidatosPanel = () => {
   const getCandidatos = useResource((resource) => resource.getCandidatos);
@@ -47,13 +49,10 @@ const CandidatosPanel = () => {
       getCandidatos();
 
       estadoCandidatosActualizado.current = true;
-      console.log(candidatos);
     }
   }, [getCandidatos, setCantidatos, deteleCandidato, updateCandidatos, candidatos]);
 
-  useEffect(() => {
-    console.log(currentCand);
-  }, [currentCand, candidatos, getCandidatos]);
+  useEffect(() => {}, [currentCand, candidatos, getCandidatos]);
 
   const filterCands = (text) => {
     const filteredCands = candidatos.filter((candidato) => {
@@ -73,10 +72,20 @@ const CandidatosPanel = () => {
       aptoPsico: psicoCand,
       foto: fotoCand
     };
-    console.log(updatedCand);
     updateCandidatos(updatedCand);
     setCurrentCand({});
     setEditCand(false);
+
+    toast.success("Has actualizado un candidato", {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: false,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored"
+    });
   };
 
   const handleCreateCand = () => {
@@ -90,18 +99,46 @@ const CandidatosPanel = () => {
       aptoPsico: psicoCand,
       foto: fotoCand
     };
-    console.log(updatedCand);
     setCantidatos(updatedCand);
     setCurrentCand({});
     setEditCand(false);
+
+    toast.success("Has agregado un nuevo candidato", {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: false,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored"
+    });
   };
 
   return (
     <>
       <Header />
+      <ToastContainer
+        position="top-right"
+        style={{ top: "6rem" }}
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick={false}
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
       <div className="candidatosPanel">
         <h2>CANDIDATOS</h2>
-        <input type="text" placeholder="Buscar nombre candidato" onChange={(e) => filterCands(e.target.value)} />
+        <input
+          className="candidatosPanel-searchInput"
+          type="text"
+          placeholder="Buscar nombre candidato"
+          onChange={(e) => filterCands(e.target.value)}
+        />
         <div className="candidatosPanel_candidatos">
           <div className="candidatosPanel_candidatos-cand">
             <button
@@ -119,37 +156,39 @@ const CandidatosPanel = () => {
             >
               + Agregar nuevo candidato
             </button>
-            {candsInPanel.length > 0
-              ? candsInPanel.map((candidato) => (
-                  <div key={candidato.nombre}>
-                    <h4>{candidato.nombre}</h4>
-                    <button
-                      onClick={() => {
-                        setCurrentCand(candidato);
-                      }}
-                    >
-                      Ver
-                    </button>
-                  </div>
-                ))
-              : candidatos.map((candidato) => (
-                  <div key={candidato.nombre}>
-                    <h4>{candidato.nombre}</h4>
-                    <button
-                      onClick={() => {
-                        setCurrentCand(candidato);
-                      }}
-                    >
-                      Ver
-                    </button>
-                  </div>
-                ))}
+            <div className="candidatosPanel_candidatos-candPanel">
+              {candsInPanel.length > 0
+                ? candsInPanel.map((candidato) => (
+                    <div key={candidato.id}>
+                      <h4>{candidato.nombre}</h4>
+                      <button
+                        onClick={() => {
+                          setCurrentCand(candidato);
+                        }}
+                      >
+                        Ver
+                      </button>
+                    </div>
+                  ))
+                : candidatos.map((candidato) => (
+                    <div key={candidato.id}>
+                      <h4>{candidato.nombre}</h4>
+                      <button
+                        onClick={() => {
+                          setCurrentCand(candidato);
+                        }}
+                      >
+                        Ver
+                      </button>
+                    </div>
+                  ))}
+            </div>
           </div>
           <div className="candidatosPanel_candidatos-info">
             {currentCand.nombre || editCand ? (
               <form onSubmit={(e) => e.preventDefault()}>
                 <h4>
-                  Nombre y Apellido:{" "}
+                  <b>Nombre y Apellido:</b>{" "}
                   {editCand ? (
                     <input type="text" value={nombreCand} onChange={(e) => setNombreCand(e.target.value)} />
                   ) : (
@@ -157,15 +196,15 @@ const CandidatosPanel = () => {
                   )}
                 </h4>
                 <h4>
-                  Edad:{" "}
+                  <b>Edad:</b>{" "}
                   {editCand ? (
-                    <input type="text" value={edadCand} onChange={(e) => setEdadCand(e.target.value)} />
+                    <input type="number" value={edadCand} onChange={(e) => setEdadCand(e.target.value)} />
                   ) : (
                     currentCand.edad
                   )}
                 </h4>
                 <h4>
-                  Trabajo:{" "}
+                  <b>Trabajo:</b>{" "}
                   {editCand ? (
                     <input type="text" value={profesionCand} onChange={(e) => setProfesionCand(e.target.value)} />
                   ) : (
@@ -173,9 +212,9 @@ const CandidatosPanel = () => {
                   )}
                 </h4>
                 <h4>
-                  Años de experiencia:{" "}
+                  <b>Años de experiencia:</b>{" "}
                   {editCand ? (
-                    <input type="text" value={anosExpCand} onChange={(e) => setAnosExpCand(e.target.value)} />
+                    <input type="number" value={anosExpCand} onChange={(e) => setAnosExpCand(e.target.value)} />
                   ) : (
                     currentCand.anosExp
                   )}
@@ -212,9 +251,28 @@ const CandidatosPanel = () => {
                   {!editCand && (
                     <button
                       onClick={() => {
-                        deteleCandidato(currentCand);
-                        setCurrentCand({});
-                        setEditCand(false);
+                        Swal.fire({
+                          title:
+                            "Seguro que quieres eliminar al/la candidato/a?. Se liminará toda su información de la base de datos.",
+                          showCancelButton: true,
+                          confirmButtonText: "Eliminar"
+                        }).then((result) => {
+                          if (result.isConfirmed) {
+                            deteleCandidato(currentCand);
+                            setCurrentCand({});
+                            setEditCand(false);
+                            toast.success("Has eliminado un candidato", {
+                              position: "top-right",
+                              autoClose: 3000,
+                              hideProgressBar: false,
+                              closeOnClick: false,
+                              pauseOnHover: true,
+                              draggable: true,
+                              progress: undefined,
+                              theme: "colored"
+                            });
+                          }
+                        });
                       }}
                     >
                       Eliminar

@@ -67,7 +67,7 @@ const InstitucionalPage = () => {
           <div className="institucionalMain-quienesSomos_contenedor">
             <div>
               <div>
-                <a href="">
+                <a href="https://www.linkedin.com/in/agustina-marini-946161252/" target="_blank">
                   <img className="profileLinkedIn" src={linkedIn} alt="" />
                 </a>
                 <img className="profileImg" src={agusImg} alt="" />
@@ -78,7 +78,7 @@ const InstitucionalPage = () => {
             </div>
             <div>
               <div>
-                <a href="">
+                <a href="https://www.linkedin.com/in/romina-abdala-2396981a7/" target="_blank">
                   <img className="profileLinkedIn" src={linkedIn} alt="" />
                 </a>
                 <img className="profileImg" src={romiImg} alt="" />
@@ -89,7 +89,7 @@ const InstitucionalPage = () => {
             </div>
             <div>
               <div>
-                <a href="">
+                <a href="https://www.linkedin.com/in/daniel-cebreros-6b790018/" target="_blank">
                   <img className="profileLinkedIn" src={linkedIn} alt="" />
                 </a>
                 <img className="profileImg" src={daniImg} alt="" />
@@ -100,7 +100,7 @@ const InstitucionalPage = () => {
             </div>
             <div>
               <div>
-                <a href="">
+                <a href="https://www.linkedin.com/in/lucia-pecoraro-psicolog%C3%ADa/" target="_blank">
                   <img className="profileLinkedIn" src={linkedIn} alt="" />
                 </a>
                 <img className="profileImg" src={luciImg} alt="" />
@@ -109,6 +109,11 @@ const InstitucionalPage = () => {
               <p>Recruiter</p>
             </div>
           </div>
+        </div>
+
+        <div className="institucionalPageContact">
+          <h3>¿QUIERES TRABAJAR CON NUESTRO EQUIPO?</h3>
+          <button>CONTÁCTANOS</button>
         </div>
       </main>
       <Footer />

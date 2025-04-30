@@ -1,9 +1,35 @@
 @use "./variable.scss" as v;
 
 .servicioPageBanner {
-  @include v.medidas(100%, 35rem);
+  @include v.medidas(100%, 50rem);
   padding-top: 5rem;
   margin-bottom: 2rem;
+
+  @include v.desktop() {
+    @include v.medidas(100%, 42em);
+    padding-top: 5rem;
+  }
+
+  @include v.tabletBig() {
+    @include v.medidas(100%, 30rem);
+    padding-top: 5rem;
+  }
+
+  @include v.tablet() {
+    @include v.medidas(100%, 30rem);
+    padding-top: 5rem;
+  }
+
+  @include v.mobile() {
+    @include v.medidas(100%, 25rem);
+    padding-top: 6rem;
+  }
+
+  @include v.miniMobile() {
+    @include v.medidas(100%, 20rem);
+    padding-top: 6rem;
+    margin-bottom: 0;
+  }
 
   img {
     @include v.medidas(100%, 100%);
@@ -18,7 +44,28 @@
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  padding: 0 5rem;
+  padding: 0 1rem;
+  gap: 3rem;
+
+  @include v.tabletBig() {
+    padding: 0 1rem;
+    gap: 1rem;
+  }
+
+  @include v.tablet() {
+    padding: 0 1rem;
+    gap: 1rem;
+  }
+
+  @include v.mobile() {
+    padding: 0 1rem;
+    gap: 1rem;
+  }
+
+  @include v.miniMobile() {
+    padding: 0 1rem;
+    gap: 1rem;
+  }
 }
 
 .servicioPageModalContainer {
@@ -34,6 +81,34 @@
 }
 
 .servicioPageModal {
+  @include v.tabletBig() {
+    @include v.medidas(60%, 50%);
+    overflow-y: scroll;
+    font-size: 1rem;
+    color: v.$colorPrimario;
+  }
+
+  @include v.tablet() {
+    @include v.medidas(90%, 50%);
+    overflow-y: scroll;
+    font-size: 1rem;
+    color: v.$colorPrimario;
+  }
+
+  @include v.mobile() {
+    @include v.medidas(90%, 50%);
+    overflow-y: scroll;
+    font-size: 1rem;
+    color: v.$colorPrimario;
+  }
+
+  @include v.miniMobile() {
+    @include v.medidas(90%, 60%);
+    overflow-y: scroll;
+    font-size: 1rem;
+    color: v.$colorPrimario;
+  }
+
   @include v.medidas(40%, 50%);
   position: fixed;
   top: 50%;
@@ -50,6 +125,12 @@
   align-items: center;
   text-align: center;
   border-radius: 0.5rem;
+  font-family: Arial, Helvetica, sans-serif;
+
+  h2 {
+    @include v.fonts("Julius Sans One", 400);
+    font-size: 2rem;
+  }
 
   button {
     @include v.medidas(3rem, 3rem);
@@ -78,5 +159,25 @@
     background-color: v.$colorPrimario;
     color: v.$colorFontPrimario;
     font-size: 2rem;
+
+    @include v.tabletBig() {
+      @include v.medidas(30%, 4rem);
+      font-size: 1.5rem;
+    }
+
+    @include v.tablet() {
+      @include v.medidas(50%, 4rem);
+      font-size: 1.5rem;
+    }
+
+    @include v.mobile() {
+      @include v.medidas(50%, 4rem);
+      font-size: 1.5rem;
+    }
+
+    @include v.miniMobile() {
+      @include v.medidas(50%, 4rem);
+      font-size: 1.5rem;
+    }
   }
 }

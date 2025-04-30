@@ -1,24 +1,66 @@
 @use "./variable.scss" as v;
 
 .institucionalPageBanner {
-  @include v.medidas(100%, 35rem);
+  @include v.medidas(100%, 50rem);
   padding-top: 5rem;
   margin-bottom: 2rem;
+
+  @include v.desktop() {
+    @include v.medidas(100%, 42em);
+    padding-top: 5rem;
+  }
+
+  @include v.tabletBig() {
+    @include v.medidas(100%, 35rem);
+    padding-top: 5rem;
+  }
+
+  @include v.tablet() {
+    @include v.medidas(100%, 30rem);
+    padding-top: 5rem;
+  }
+
+  @include v.mobile() {
+    @include v.medidas(100%, 25rem);
+    padding-top: 6rem;
+  }
+
+  @include v.miniMobile() {
+    @include v.medidas(100%, 20rem);
+    padding-top: 6rem;
+  }
 
   img {
     @include v.medidas(100%, 100%);
     object-fit: contain;
+    object-position: top;
     aspect-ratio: 16;
   }
 }
 
 .institucionalMain {
   @include v.medidas(100%, 100%);
-  padding: 0 10rem;
+  padding: 0 5rem;
   display: flex;
   flex-direction: column;
   gap: 2rem;
   color: v.$colorFontSecundario;
+
+  @include v.tabletBig() {
+    padding: 0 2rem;
+  }
+
+  @include v.tablet() {
+    padding: 0 1rem;
+  }
+
+  @include v.mobile() {
+    padding: 0 1rem;
+  }
+
+  @include v.miniMobile() {
+    padding: 0 1rem;
+  }
 }
 
 .institucionalMain-quienesSomos,
@@ -27,30 +69,114 @@
   display: flex;
   justify-content: space-evenly;
 
+  @include v.tablet() {
+    flex-direction: column;
+  }
+
+  @include v.mobile() {
+    flex-direction: column;
+  }
+
+  @include v.miniMobile() {
+    flex-direction: column;
+  }
   div {
     @include v.medidas(30%, 100%);
 
+    @include v.tabletBig() {
+      @include v.medidas(100%, 100%);
+      text-align: center;
+    }
+
+    @include v.tablet() {
+      @include v.medidas(100%, 100%);
+      text-align: center;
+    }
+
+    @include v.mobile() {
+      text-align: center;
+      @include v.medidas(100%, 100%);
+    }
+
+    @include v.miniMobile() {
+      text-align: center;
+      @include v.medidas(100%, 100%);
+    }
+
     h2 {
-      font-size: 1.5rem;
+      font-size: 2rem;
     }
     p {
       @include v.medidas(100%, 100%);
-      font-size: 1.2rem;
+      font-size: 1.5rem;
+      font-family: Arial, Helvetica, sans-serif;
     }
   }
 
   img {
     @include v.medidas(50%, 100%);
+    object-fit: contain;
     border-radius: 0.5rem;
-    aspect-ratio: 16/9;
+
+    @include v.tablet() {
+      @include v.medidas(100%, 100%);
+      margin-top: 1rem;
+    }
+
+    @include v.mobile() {
+      @include v.medidas(100%, 100%);
+      margin-top: 1rem;
+    }
+
+    @include v.miniMobile() {
+      @include v.medidas(100%, 100%);
+    }
   }
 }
 
 .institucionalMain-quienesSomos2 {
+  @include v.tablet() {
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+
+  @include v.mobile() {
+    flex-direction: column-reverse;
+  }
+
+  @include v.miniMobile() {
+    flex-direction: column-reverse;
+  }
+
+  p {
+    text-align: right;
+  }
+
   img {
     @include v.medidas(40%, 100%);
     border-radius: 0.5rem;
-    aspect-ratio: 1;
+    object-fit: contain;
+
+    @include v.tabletBig() {
+      @include v.medidas(50%, 100%);
+      margin-bottom: 1rem;
+      margin-top: 1rem;
+    }
+
+    @include v.tablet() {
+      @include v.medidas(70%, 100%);
+      margin-bottom: 1rem;
+      margin-top: 1rem;
+    }
+
+    @include v.mobile() {
+      @include v.medidas(100%, 100%);
+      margin-bottom: 1rem;
+      margin-top: 0;
+    }
+    @include v.miniMobile() {
+      @include v.medidas(100%, 100%);
+    }
   }
 
   div {
@@ -58,6 +184,16 @@
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    @include v.tablet() {
+      @include v.medidas(100%, 100%);
+    }
+
+    @include v.mobile() {
+      @include v.medidas(100%, 100%);
+    }
+    @include v.miniMobile() {
+      @include v.medidas(100%, 100%);
+    }
   }
 }
 
@@ -68,6 +204,23 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
+  gap: 1.5rem;
+
+  @include v.mobile() {
+    padding: 0 1rem;
+  }
+  @include v.miniMobile() {
+    padding: 0 1rem;
+  }
+
+  h2 {
+    font-size: 2rem;
+  }
+  p {
+    @include v.medidas(60%, 100%);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.5rem;
+  }
 }
 
 .institucionalMain-nuestroEquipo {
@@ -78,6 +231,21 @@
   align-items: center;
   text-align: center;
   gap: 2rem;
+
+  @include v.tablet() {
+    padding: 0 1rem;
+  }
+
+  @include v.mobile() {
+    padding: 0 1rem;
+  }
+  @include v.miniMobile() {
+    padding: 0 1rem;
+  }
+
+  h2 {
+    font-size: 2rem;
+  }
 }
 
 .institucionalMain-quienesSomos_contenedor {
@@ -87,14 +255,32 @@
   align-items: start;
   text-align: center;
   gap: 2rem;
+  font-family: Arial, Helvetica, sans-serif;
+
+  @include v.mobile() {
+    flex-wrap: wrap;
+  }
+  @include v.miniMobile() {
+    flex-wrap: wrap;
+  }
 
   & > div {
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
     gap: 1rem;
     position: relative;
+    font-size: 1.5rem;
+
+    @include v.mobile() {
+      width: 45%;
+    }
+
+    @include v.miniMobile() {
+      width: 45%;
+    }
 
     & > div {
       @include v.medidas(10rem, 10rem);
@@ -134,6 +320,46 @@
     }
     p {
       width: 70%;
+    }
+  }
+}
+
+.institucionalPageContact {
+  @include v.medidas(100%, 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  h3 {
+    @include v.medidas(30%, 100%);
+    text-align: center;
+    font-size: 2rem;
+  }
+  button {
+    @include v.medidas(20%, 4rem);
+    cursor: pointer;
+    background-color: v.$colorPrimario;
+    color: v.$colorFontPrimario;
+    font-size: 2rem;
+
+    @include v.tabletBig() {
+      @include v.medidas(30%, 4rem);
+      font-size: 1.5rem;
+    }
+
+    @include v.tablet() {
+      @include v.medidas(50%, 4rem);
+      font-size: 1.5rem;
+    }
+
+    @include v.mobile() {
+      @include v.medidas(50%, 4rem);
+      font-size: 1.5rem;
+    }
+
+    @include v.miniMobile() {
+      @include v.medidas(50%, 4rem);
+      font-size: 1.5rem;
     }
   }
 }

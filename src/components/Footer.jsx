@@ -10,10 +10,10 @@ const Footer = () => {
       <img src={logoBlanco} alt="" />
       <div className="footer--infoContainer">
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste, rerum nemo quod modi repellendus qui sint
-          accusantium voluptates, fugit voluptatum vel sit fuga minus. Temporibus nostrum omnis sint doloribus harum?
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste, rerum nemo quod modi repellendus qui sint
-          accusantium voluptates, fugit voluptatum vel sit fuga minus.
+          Desde Recruit Group, nos dedicamos con entusiasmo, pasión y compromiso a ofrecer soluciones integrales de
+          Recursos Humanos. Acompañamos a tu empresa en la selección, evaluación y desarrollo de talento, proporcionando
+          un servicio cercano y totalmente personalizado. Nuestro objetivo es impulsar tu crecimiento organizacional y
+          fortalecer tu equipo con el mejor capital humano.
         </p>
         <div className="footer--contact">
           <h4>CONTACTO</h4>
@@ -25,11 +25,49 @@ const Footer = () => {
         <div className="footer--social">
           <h4>REDES SOCIALES</h4>
           <div className="iconsDiv">
-            <img src={LinkedInLogo} alt="" />
-            <img src={InstagramLogo} alt="" />
+            <a href="https://www.linkedin.com/company/recuit-group-consultora-rrhh/" target="_blank">
+              <img src={LinkedInLogo} alt="" />
+            </a>
+            <a href="https://www.instagram.com/recruitgrouprrhh?igsh=MWsxa2lrbml0aXhiMg==" target="_blank">
+              <img src={InstagramLogo} alt="" />
+            </a>
           </div>
         </div>
       </div>
+
+      <div className="footer--infoContainerMobile">
+        <h3>Mendoza, Argentina</h3>
+        <div className="footer--infoContainerMobile_content">
+          <p>
+            Desde Recruit Group, nos dedicamos con entusiasmo, pasión y compromiso a ofrecer soluciones integrales de
+            Recursos Humanos. Acompañamos a tu empresa en la selección, evaluación y desarrollo de talento,
+            proporcionando un servicio cercano y totalmente personalizado. Nuestro objetivo es impulsar tu crecimiento
+            organizacional y fortalecer tu equipo con el mejor capital humano.
+          </p>
+          <div className="footer--contact">
+            <div>
+              <h4>CONTACTO</h4>
+              <p>rrhh@recruitgroupar.com</p>
+            </div>
+            <div>
+              <h4 style={{ marginTop: "1rem" }}>¡ENVIANOS TU CV!</h4>
+              <p>seleccion@recruitgroupar.com</p>
+            </div>
+            <div className="footer--social">
+              <h4>REDES SOCIALES</h4>
+              <div className="iconsDiv">
+                <a href="https://www.linkedin.com/company/recuit-group-consultora-rrhh/" target="_blank">
+                  <img src={LinkedInLogo} alt="" />
+                </a>
+                <a href="https://www.instagram.com/recruitgrouprrhh?igsh=MWsxa2lrbml0aXhiMg==" target="_blank">
+                  <img src={InstagramLogo} alt="" />
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <p className="byZeko">Página por: ZEKO</p>
     </div>
   );

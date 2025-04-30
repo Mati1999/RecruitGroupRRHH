@@ -12,22 +12,109 @@
   padding-top: 1rem;
   margin-top: 5rem;
   position: relative;
-  img {
-    @include v.medidas(15%, auto);
+  font-family: Arial, Helvetica, sans-serif;
+
+  @include v.tablet() {
+    @include v.medidas(100%, 100%);
+    padding: 1rem;
+    margin-top: 2rem;
   }
 
+  @include v.mobile() {
+    @include v.medidas(100%, 35vh);
+    padding: 1rem;
+    margin-top: 2rem;
+  }
+
+  @include v.miniMobile() {
+    @include v.medidas(100%, 100%);
+    padding: 1rem;
+    margin-top: 2rem;
+  }
+
+  img {
+    @include v.medidas(15%, auto);
+
+    @include v.miniMobile() {
+      @include v.medidas(50%, auto);
+    }
+  }
+
+  //tablet
+  &--infoContainerMobile {
+    display: none;
+    @include v.mobile() {
+      @include v.medidas(100%, 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      align-items: center;
+      font-size: 0.8rem;
+
+      &_content {
+        p {
+          @include v.medidas(100%, 70%);
+          padding: 0 5rem;
+          text-align: center;
+        }
+      }
+
+      .footer--contact {
+        @include v.medidas(100%, 30%);
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        text-align: center;
+
+        h4 {
+          @include v.fonts("Julius Sans One", 400);
+        }
+
+        div {
+          @include v.medidas(100%, 30%);
+        }
+
+        .iconsDiv {
+          justify-content: center;
+        }
+      }
+    }
+
+    @include v.miniMobile() {
+      display: none;
+    }
+  }
+
+  //mobile
   &--infoContainer {
     @include v.medidas(100%, 100%);
     display: flex;
     justify-content: space-evenly;
 
+    @include v.mobile() {
+      display: none;
+    }
+
+    @include v.miniMobile() {
+      display: block;
+      flex-direction: column;
+      text-align: center;
+    }
+
     div {
       @include v.medidas(25%, auto);
+      @include v.miniMobile() {
+        @include v.medidas(100%, auto);
+      }
     }
 
     p {
       @include v.medidas(40%, auto);
       padding: 0 1rem 1rem 1rem;
+
+      @include v.miniMobile() {
+        @include v.medidas(100%, auto);
+      }
     }
   }
 
@@ -36,6 +123,10 @@
     flex-direction: column;
     justify-content: start;
     gap: 0.3rem;
+
+    h4 {
+      @include v.fonts("Julius Sans One", 400);
+    }
     p {
       @include v.medidas(100%, auto);
       padding: 0;
@@ -46,11 +137,23 @@
     display: flex;
     flex-direction: column;
     gap: 1rem;
+
+    h4 {
+      @include v.fonts("Julius Sans One", 400);
+    }
   }
 
   .iconsDiv {
     display: flex;
     gap: 1rem;
+
+    @include v.miniMobile() {
+      @include v.medidas(100%, auto);
+      justify-content: center;
+      align-items: center;
+      gap: 2rem;
+    }
+
     img {
       @include v.medidas(2rem, 2rem);
     }
@@ -61,4 +164,16 @@
   position: absolute;
   right: 10rem;
   bottom: 2rem;
+
+  @include v.mobile() {
+    position: absolute;
+    right: unset;
+    bottom: 0;
+  }
+
+  @include v.miniMobile() {
+    position: relative;
+    right: unset;
+    bottom: unset;
+  }
 }

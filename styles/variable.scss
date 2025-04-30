@@ -10,9 +10,30 @@ $colorBoderEnd: #015c7e;
 
 // $colorTerciario:#fdfffa;
 
+//"Julius Sans One" 400 //"Inter"
+@mixin fonts($font, $weight) {
+  & {
+    font-family: $font, sans-serif;
+    font-weight: $weight;
+    font-optical-sizing: auto;
+  }
+}
+
 @mixin medidas($width, $height) {
   width: $width;
   height: $height;
+}
+
+@mixin desktop {
+  @media only screen and (max-width: 1536px) {
+    @content;
+  }
+}
+
+@mixin tabletBig {
+  @media only screen and (max-width: 1280px) {
+    @content;
+  }
 }
 
 @mixin tablet {

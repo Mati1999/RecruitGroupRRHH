@@ -2,10 +2,36 @@
 
 .App {
   .swiper-button-prev {
-    left: 5rem;
+    left: 1rem;
+    top: 50%;
+
+    @include v.tablet {
+      left: 2rem;
+      top: 50%;
+    }
+
+    @include v.mobile {
+      display: none;
+    }
+
+    @include v.miniMobile {
+      display: none;
+    }
   }
   .swiper-button-next {
-    right: 5rem;
+    right: 1rem;
+    top: 50%;
+
+    @include v.tablet {
+      right: 2rem;
+      top: 50%;
+    }
+    @include v.mobile {
+      display: none;
+    }
+    @include v.miniMobile {
+      display: none;
+    }
   }
 }
 
@@ -22,6 +48,14 @@
     @include v.medidas(85%, 100%);
     display: flex;
     justify-content: center;
+
+    @include v.mobile {
+      @include v.medidas(100%, 100%);
+    }
+
+    @include v.miniMobile {
+      @include v.medidas(100%, 100%);
+    }
   }
 }
 
@@ -30,6 +64,14 @@
   aspect-ratio: 16;
   object-fit: contain;
   object-position: top;
+
+  @include v.mobile {
+    object-fit: contain;
+  }
+
+  @include v.miniMobile {
+    object-fit: contain;
+  }
 }
 
 [data-id="0"],
@@ -45,4 +87,16 @@
   position: absolute;
   bottom: 4rem;
   right: 5rem;
+}
+
+.swiper {
+  @include v.mobile {
+    padding-bottom: 0rem !important;
+    margin-top: 0rem !important;
+  }
+
+  @include v.miniMobile {
+    padding-bottom: 0rem !important;
+    margin-top: 0rem !important;
+  }
 }

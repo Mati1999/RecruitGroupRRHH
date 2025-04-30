@@ -20,7 +20,6 @@ const CandidatosPage = () => {
       getCandidatos();
       estadoCandidatosActualizado.current = true;
     }
-    console.log("candidatos actualizados:", candidatos);
   }, [getCandidatos, candidatos]);
 
   const form = useRef();
@@ -98,7 +97,7 @@ const CandidatosPage = () => {
             ? candidatos.map((item, i) => (
                 <div key={i} className="candidatosPageItem">
                   <div>
-                    <img loading="lazy" src={item.foto} alt="" />
+                    {item.foto ? <img loading="lazy" src={item.foto} alt="" /> : <ion-icon name="person"></ion-icon>}
                     <button
                       onClick={() => {
                         setCurrentCand(item);

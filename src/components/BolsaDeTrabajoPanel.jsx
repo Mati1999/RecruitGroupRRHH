@@ -4,6 +4,8 @@ import Header from "./Header";
 import Footer from "./Footer";
 import "../../styles/bolsaDeTrabajoPanel.scss";
 import { NavLink, useNavigate } from "react-router";
+import { ToastContainer, toast } from "react-toastify";
+import Swal from "sweetalert2";
 
 const BolsaDeTrabajoPanel = () => {
   let navigate = useNavigate();
@@ -62,7 +64,16 @@ const BolsaDeTrabajoPanel = () => {
         }
       });
       setResponsabilidadesBolsa(modalFormResponsabilidades);
-      console.log("Responsabilidades ingresadas:", modalFormResponsabilidades);
+      toast.success("Se han guardado las responsabilidades.", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored"
+      });
     } else {
       setCurrentBolsa({
         ...currentBolsa,
@@ -73,7 +84,16 @@ const BolsaDeTrabajoPanel = () => {
         }
       });
       setRequisitosBolsa(modalFormRequisitos);
-      console.log("Responsabilidades ingresadas:", modalFormRequisitos);
+      toast.success("Se han guardado los requisitos.", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored"
+      });
     }
   };
 
@@ -111,13 +131,10 @@ const BolsaDeTrabajoPanel = () => {
       getBolsa();
 
       estadoBolsaActualizado.current = true;
-      console.log(bolsa);
     }
   }, [getBolsa, setBolsa, deteleBolsa, updateBolsa, bolsa]);
 
-  useEffect(() => {
-    console.log(currentBolsa);
-  }, [currentBolsa, bolsa, getBolsa]);
+  useEffect(() => {}, [currentBolsa, bolsa, getBolsa]);
 
   const filterCands = (text) => {
     const filteredCands = bolsa.filter((candidato) => {
@@ -131,10 +148,32 @@ const BolsaDeTrabajoPanel = () => {
       ...currentBolsa,
       closed: closedBolsa === "closed" ? "open" : "closed"
     };
-    console.log("Cerrando bolsa", currentBolsa);
     updateBolsa(updatedBolsa, "", "");
     setCurrentBolsa({});
     setEditBolsa(false);
+    if (updatedBolsa.closed === "closed") {
+      toast.success("Has cerrado una bolsa de trabajo", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored"
+      });
+    } else {
+      toast.success("Has abierto una bolsa de trabajo", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored"
+      });
+    }
     setClosedBolsa(closedBolsa === "closed" ? "open" : "closed");
   };
 
@@ -149,35 +188,86 @@ const BolsaDeTrabajoPanel = () => {
       candidatos: [...candidatosBolsa],
       closed: closedBolsa
     };
-    console.log(updatedBolsa);
     updateBolsa(updatedBolsa, "", "");
     setCurrentBolsa({});
     setEditBolsa(false);
+
+    toast.success("Has actualizado una bolsa de trabajo", {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: false,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored"
+    });
   };
 
   const handleCreateBolsa = () => {
-    const updatedBolsa = {
-      ...currentBolsa,
-      nombre: nombreBolsa,
-      ubicacion: ubicacionBolsa,
-      modalidad: modalidadBolsa,
-      disponibilidad: disponibilidadBolsa,
-      info: { descripcion: descripcionBolsa, responsabilidades: responsabilidadesBolsa, requisitos: requisitosBolsa },
-      candidatos: [...candidatosBolsa],
-      closed: "closed"
-    };
-    console.log(updatedBolsa);
-    setBolsa(updatedBolsa);
-    setCurrentBolsa({});
-    setEditBolsa(false);
+    if (nombreBolsa) {
+      const updatedBolsa = {
+        ...currentBolsa,
+        nombre: nombreBolsa,
+        ubicacion: ubicacionBolsa,
+        modalidad: modalidadBolsa,
+        disponibilidad: disponibilidadBolsa,
+        info: { descripcion: descripcionBolsa, responsabilidades: responsabilidadesBolsa, requisitos: requisitosBolsa },
+        candidatos: [...candidatosBolsa],
+        closed: "closed"
+      };
+      setBolsa(updatedBolsa);
+      setCurrentBolsa({});
+      setEditBolsa(false);
+
+      toast.success("Has creado una bolsa de trabajo", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored"
+      });
+    } else {
+      toast.error("Es obligatorio que contenga un nombre", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored"
+      });
+    }
   };
 
   return (
     <>
       <Header />
+      <ToastContainer
+        position="top-right"
+        style={{ top: "6rem" }}
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick={false}
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
       <div className="bolsaDeTrabajoPanel">
         <h2>BOLSA DE TRABAJO</h2>
-        <input type="text" placeholder="Buscar nombre candidato" onChange={(e) => filterCands(e.target.value)} />
+        <input
+          className="bolsaDeTrabajoPanel-searchInput"
+          type="text"
+          placeholder="Buscar nombre candidato"
+          onChange={(e) => filterCands(e.target.value)}
+        />
         <div className="bolsaDeTrabajoPanel_bolsaDeTrabajo">
           <div className="bolsaDeTrabajoPanel_bolsaDeTrabajo-cand">
             <button
@@ -197,35 +287,37 @@ const BolsaDeTrabajoPanel = () => {
             >
               + Agregar nuevo puesto
             </button>
-            {candsInPanel.length > 0
-              ? candsInPanel.map((bolsa) => (
-                  <div key={bolsa.nombre}>
-                    <h4>{bolsa.nombre}</h4>
-                    <button
-                      onClick={() => {
-                        setCurrentBolsa(bolsa);
-                        setEditBolsa(false);
-                        setOpenModal(false);
-                      }}
-                    >
-                      Ver
-                    </button>
-                  </div>
-                ))
-              : bolsa.map((bolsa) => (
-                  <div key={bolsa.nombre}>
-                    <h4>{bolsa.nombre}</h4>
-                    <button
-                      onClick={() => {
-                        setCurrentBolsa(bolsa);
-                        setEditBolsa(false);
-                        setOpenModal(false);
-                      }}
-                    >
-                      Ver
-                    </button>
-                  </div>
-                ))}
+            <div className="bolsaDeTrabajoPanel_bolsaDeTrabajo-candContainer">
+              {candsInPanel.length > 0
+                ? candsInPanel.map((bolsa) => (
+                    <div key={bolsa.nombre}>
+                      <h4>{bolsa.nombre}</h4>
+                      <button
+                        onClick={() => {
+                          setCurrentBolsa(bolsa);
+                          setEditBolsa(false);
+                          setOpenModal(false);
+                        }}
+                      >
+                        Ver
+                      </button>
+                    </div>
+                  ))
+                : bolsa.map((bolsa) => (
+                    <div key={bolsa.nombre}>
+                      <h4>{bolsa.nombre}</h4>
+                      <button
+                        onClick={() => {
+                          setCurrentBolsa(bolsa);
+                          setEditBolsa(false);
+                          setOpenModal(false);
+                        }}
+                      >
+                        Ver
+                      </button>
+                    </div>
+                  ))}
+            </div>
           </div>
           <div className="bolsaDeTrabajoPanel_bolsaDeTrabajo-info">
             {currentBolsa.nombre || editBolsa ? (
@@ -269,7 +361,11 @@ const BolsaDeTrabajoPanel = () => {
                 <h4>
                   Breve descripción:{" "}
                   {editBolsa ? (
-                    <input type="text" value={descripcionBolsa} onChange={(e) => setDescripcionBolsa(e.target.value)} />
+                    <textarea
+                      type="text"
+                      value={descripcionBolsa}
+                      onChange={(e) => setDescripcionBolsa(e.target.value)}
+                    />
                   ) : (
                     currentBolsa.info.descripcion
                   )}
@@ -351,9 +447,29 @@ const BolsaDeTrabajoPanel = () => {
                   {!editBolsa && (
                     <button
                       onClick={() => {
-                        deteleBolsa(currentBolsa);
-                        setCurrentBolsa({});
-                        setEditBolsa(false);
+                        Swal.fire({
+                          title:
+                            "Seguro que quieres eliminar esta bolsa de empleo? Se eliminarán todos los postulantes también.",
+                          showCancelButton: true,
+                          confirmButtonText: "Eliminar"
+                        }).then((result) => {
+                          if (result.isConfirmed) {
+                            deteleBolsa(currentBolsa);
+                            setCurrentBolsa({});
+                            setEditBolsa(false);
+                            toast.success("Has eliminado una bolsa de trabajo", {
+                              position: "top-right",
+                              autoClose: 3000,
+                              hideProgressBar: false,
+                              closeOnClick: false,
+                              pauseOnHover: true,
+                              draggable: true,
+                              progress: undefined,
+                              theme: "colored"
+                            });
+                          }
+                        });
+                        //
                       }}
                     >
                       Eliminar

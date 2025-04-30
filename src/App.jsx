@@ -20,22 +20,23 @@ function App() {
             <div>
               <h3>PROFESIONALES DE SALUD MENTAL:</h3>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vel tristique mauris. Aliquam nec lectus
-                egestas, pretium felis id, sodales tortor.
+                Somos un quipo integrado por psicólogos clínicos con sólida trayectoria en evaluación diagnóstica,
+                recursos humanos y acompañamiento organizacional, garantizando rigor técnico y comprensión profunda de
+                tus necesidades.
               </p>
             </div>
             <div>
               <h3>INNOVACIÓN:</h3>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vel tristique mauris. Aliquam nec lectus
-                egestas, pretium felis id, sodales tortor..
+                Empleamos técnicas actualizadas, baremadas según estándares internacionales y adaptadas a tus
+                necesidades corporativas, dejando atrás métodos genéricos.
               </p>
             </div>
             <div>
               <h3>RESULTADOS:</h3>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vel tristique mauris. Aliquam nec lectus
-                egestas, pretium felis id, sodales tortor.
+                Logramos impactos visibles y medibles. Brindamos acompañamiento continuo para maximizar el retorno de
+                inversión en tu capital humano. Además, ofrecemos garantía de nuestros servicios.
               </p>
             </div>
           </div>

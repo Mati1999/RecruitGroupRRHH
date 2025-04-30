@@ -1,15 +1,44 @@
 @use "./variable.scss" as v;
 
 .bolsaDeTrabajoPageBanner {
-  @include v.medidas(100%, 35rem);
+  @include v.medidas(100%, 50rem);
   padding-top: 5rem;
   margin-bottom: 2rem;
+
+  @include v.desktop() {
+    @include v.medidas(100%, 42em);
+    padding-top: 5rem;
+  }
+
+  @include v.tabletBig() {
+    @include v.medidas(100%, 35rem);
+    padding-top: 5rem;
+  }
+
+  @include v.tablet() {
+    @include v.medidas(100%, 30rem);
+    padding-top: 5rem;
+  }
+
+  @include v.mobile() {
+    @include v.medidas(100%, 25rem);
+    padding-top: 6rem;
+  }
+
+  @include v.miniMobile() {
+    @include v.medidas(100%, 20rem);
+    padding-top: 6rem;
+  }
 
   img {
     @include v.medidas(100%, 100%);
     object-fit: contain;
     object-position: top;
     aspect-ratio: 16;
+
+    // @include v.miniMobile() {
+    //   object-fit: cover;
+    // }
   }
 }
 
@@ -22,6 +51,18 @@
   padding: 0 5rem;
   gap: 2rem;
 
+  @include v.tablet() {
+    padding: 0 1rem;
+  }
+
+  @include v.mobile() {
+    padding: 0 1rem;
+  }
+
+  @include v.miniMobile() {
+    padding: 0 1rem;
+  }
+
   a {
     @include v.medidas(10%, 3rem);
     display: flex;
@@ -30,6 +71,11 @@
     background: v.$colorPrimario;
     color: v.$colorFontPrimario;
     border-radius: 0.5rem;
+
+    @include v.mobile() {
+      @include v.medidas(20%, 3rem);
+      padding: 0 1rem;
+    }
   }
 }
 
@@ -44,4 +90,42 @@
   border-radius: 0.5rem;
   box-shadow: 4px 4px 4px rgba(128, 128, 128, 0.5);
   padding: 0 2rem;
+  font-family: Arial, Helvetica, sans-serif;
+
+  h2,
+  p {
+    @include v.medidas(25%, 100%);
+    display: flex;
+    align-items: center;
+    color: v.$colorPrimario;
+  }
+
+  @include v.miniMobile() {
+    display: none;
+  }
+}
+
+.bolsaDeTrabajoPageItemMobile {
+  display: none;
+
+  @include v.miniMobile() {
+    @include v.medidas(100%, 100%);
+    display: flex;
+    padding: 0.5rem;
+    background: linear-gradient(white, white) padding-box,
+      linear-gradient(to top, v.$colorBoderStart, v.$colorBoderEnd) border-box;
+    border: 1px solid transparent;
+    border-radius: 0.5rem;
+    box-shadow: 4px 4px 4px rgba(128, 128, 128, 0.5);
+
+    a {
+      @include v.medidas(25%, 2rem);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: v.$colorPrimario;
+      color: v.$colorFontPrimario;
+      border-radius: 0.5rem;
+    }
+  }
 }

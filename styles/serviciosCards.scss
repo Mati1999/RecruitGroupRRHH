@@ -1,28 +1,115 @@
 @use "./variable.scss" as v;
 
 .serviciosCard {
-  @include v.medidas(22%, 30rem);
+  @include v.medidas(25%, 30rem);
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-evenly;
   align-items: center;
-  gap: 1rem;
-  padding: 1rem;
-  margin: 2rem;
+  gap: 0rem;
+  padding: 1rem 1rem 1rem 1rem;
   background: linear-gradient(white, white) padding-box,
     linear-gradient(to top, v.$colorBoderStart, v.$colorBoderEnd) border-box;
   border: 2px solid transparent;
   border-radius: 0.5rem;
   box-shadow: 4px 4px 4px rgba(128, 128, 128, 0.5);
 
+  @include v.tabletBig() {
+    @include v.medidas(30%, 30rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0;
+    padding: 1rem;
+    text-align: center;
+  }
+
+  @include v.tablet() {
+    @include v.medidas(30%, 20rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0;
+    padding: 1rem;
+    text-align: center;
+  }
+
+  @include v.mobile() {
+    @include v.medidas(30%, 20rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0;
+    padding: 1rem;
+    text-align: center;
+  }
+
+  @include v.miniMobile() {
+    @include v.medidas(90%, 8rem);
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0;
+    padding: 0.5rem;
+  }
+
   h2 {
+    @include v.medidas(100%, 10%);
     text-transform: uppercase;
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    @include v.tablet() {
+      @include v.medidas(100%, 10%);
+      font-size: 1.2rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    @include v.mobile() {
+      @include v.medidas(100%, 10%);
+      font-size: 0.8rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    @include v.miniMobile() {
+      @include v.medidas(100%, 10%);
+      display: flex;
+      align-items: center;
+    }
   }
 
   img {
-    width: 90%;
-    aspect-ratio: 1/1;
+    @include v.medidas(80%, 80%);
     border-radius: 0.5rem;
+
+    @include v.tablet() {
+      @include v.medidas(auto, 80%);
+      aspect-ratio: 1/1;
+      border-radius: 0.5rem;
+    }
+
+    @include v.mobile() {
+      @include v.medidas(auto, 80%);
+      aspect-ratio: 1/1;
+      border-radius: 0.5rem;
+    }
+
+    @include v.miniMobile() {
+      @include v.medidas(auto, 80%);
+      aspect-ratio: 1/1;
+      border-radius: 0.5rem;
+    }
   }
 
   &:hover {

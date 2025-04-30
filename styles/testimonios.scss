@@ -1,12 +1,64 @@
 @use "./variable.scss" as v;
 
+.customSwiper {
+  @include v.miniMobile() {
+    display: none;
+  }
+}
+.customSwiperMobile {
+  display: none;
+  @include v.miniMobile() {
+    display: block;
+  }
+}
+
 .testimonios {
-  @include v.medidas(100%, 25rem);
+  @include v.medidas(100%, 33rem);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   margin-top: 2rem;
+
+  h2 {
+    margin-bottom: 1rem;
+  }
+
+  @include v.tabletBig() {
+    @include v.medidas(100%, 33rem);
+  }
+
+  @include v.tablet() {
+    @include v.medidas(100%, 33rem);
+  }
+
+  @include v.mobile() {
+    @include v.medidas(100%, 33rem);
+  }
+
+  @include v.miniMobile() {
+    @include v.medidas(100%, 20rem);
+    padding: 0 1rem;
+  }
+
+  .swiper-button-prev,
+  .swiper-button-next {
+    @include v.tabletBig() {
+      display: none;
+    }
+
+    @include v.tablet() {
+      display: none;
+    }
+
+    @include v.mobile() {
+      display: none;
+    }
+
+    @include v.miniMobile() {
+      display: block;
+    }
+  }
 
   &--empresas {
     display: flex;
@@ -42,13 +94,52 @@
 .swiper-button-prev {
   left: -20px;
   top: 60%;
+
+  @include v.miniMobile() {
+    left: 3px;
+    top: 60%;
+  }
 }
 
 .swiper-button-next {
-  right: -20px;
+  right: -35px;
   top: 60%;
+
+  @include v.miniMobile() {
+    right: 3px;
+    top: 60%;
+  }
 }
 
 .testimoniosDiv {
+  @include v.medidas(110%, 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  gap: 2rem;
   padding: 1rem;
+  font-family: Arial, Helvetica, sans-serif;
+
+  h3 {
+    @include v.fonts("Julius Sans One", 400);
+  }
+
+  img {
+    border-radius: 100%;
+  }
+
+  @include v.tablet() {
+    gap: 0;
+    padding-top: 0.5rem;
+  }
+
+  @include v.mobile() {
+    gap: 0;
+    padding-top: 0.5rem;
+  }
+  @include v.miniMobile() {
+    @include v.medidas(100%, 100%);
+    gap: 0;
+    padding-top: 0.5rem;
+  }
 }

@@ -1,12 +1,7 @@
 import React from "react";
 import "../../styles/serviciosSection.scss";
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { NavLink } from "react-router";
 import { FaBrain } from "react-icons/fa";
-// import servicioBanner1 from "/servicioBanner1.png";
-// import servicioBanner2 from "/servicioBanner2.png";
-// import servicioBanner3 from "/servicioBanner3.png";
-// import servicioBanner4 from "/servicioBanner4.png";
-// import servicioBanner5 from "/servicioBanner5.png";
 
 const ServiciosSection = () => {
   return (
@@ -34,7 +29,9 @@ const ServiciosSection = () => {
           <p>ARMADO DE CV</p>
         </div>
       </div>
-      <button className="w-1/10 text-center">¡VER MÁS SERVICIOS!</button>
+      <NavLink to="/servicios">
+        <button className="w-1/2 md:1/10 text-center">¡VER MÁS INFORMACIÓN!</button>
+      </NavLink>
     </div>
   );
 };

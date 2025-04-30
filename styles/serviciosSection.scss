@@ -7,12 +7,57 @@
   align-items: center;
   margin: 3rem 0 0 0;
 
+  h2 {
+    font-size: 2.5rem;
+    color: v.$colorPrimario;
+  }
+
+  @include v.tablet() {
+    margin: 0;
+  }
+
+  @include v.mobile() {
+    margin: 0;
+  }
+
+  @include v.miniMobile() {
+    margin: 0;
+  }
+
   &--logos {
     @include v.medidas(80%, auto);
     display: flex;
     justify-content: space-evenly;
     align-items: center;
     margin: 3rem 0 3rem 0;
+
+    @include v.tabletBig() {
+      @include v.medidas(100%, auto);
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin: 1rem 0 3rem 0;
+    }
+
+    @include v.tablet() {
+      @include v.medidas(100%, auto);
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin: 1rem 0 3rem 0;
+    }
+
+    @include v.mobile() {
+      @include v.medidas(100%, auto);
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin: 1rem 0 3rem 0;
+    }
+
+    @include v.miniMobile() {
+      @include v.medidas(100%, auto);
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin: 1rem 0 3rem 0;
+    }
 
     div {
       @include v.medidas(16%, 18rem);
@@ -28,6 +73,34 @@
       background-color: v.$colorFontPrimario;
       cursor: pointer;
 
+      @include v.tabletBig() {
+        @include v.medidas(16%, 12rem);
+        gap: 1rem;
+        padding: 0.5rem;
+        font-size: 0.8em;
+      }
+
+      @include v.tablet() {
+        @include v.medidas(20%, 12rem);
+        gap: 1rem;
+        padding: 0.5rem;
+        font-size: 0.8em;
+      }
+
+      @include v.mobile() {
+        @include v.medidas(45%, 12rem);
+        gap: 1rem;
+        padding: 0.5rem;
+        font-size: 0.8em;
+      }
+
+      @include v.miniMobile() {
+        @include v.medidas(45%, 8rem);
+        gap: 1rem;
+        padding: 0.5rem;
+        font-size: 0.8em;
+      }
+
       &:hover {
         background-color: v.$colorSecundario;
         color: v.$colorFontPrimario;
@@ -42,6 +115,16 @@
           transition: all 0.3s ease;
         }
       }
+    }
+  }
+
+  a {
+    font-size: 2rem;
+    color: v.$colorPrimario;
+    text-align: center;
+
+    button {
+      @include v.medidas(100%, 100%);
     }
   }
 

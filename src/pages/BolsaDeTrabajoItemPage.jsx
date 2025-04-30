@@ -30,8 +30,6 @@ const BolsaDeTrabajoItemPage = () => {
   }, [getBolsa, updateBolsa, bolsa, bolsaId]);
 
   const submitForm = async () => {
-    console.log("envía");
-
     let candidato = {
       nombre: formNombre || "" + " " + formApellido || "",
       email: formEmail || "",

@@ -8,21 +8,52 @@
   align-items: center;
   overflow: hidden;
   padding: 5rem 0 0 0;
+
+  @include v.mobile() {
+    padding-top: 6rem;
+  }
 }
 
 .crecemosConVos {
-  @include v.medidas(100vw, 30rem);
+  @include v.medidas(100vw, 100%);
   display: flex;
   justify-content: flex-start;
   color: v.$colorPrimario;
   position: relative;
   padding: 0 5rem;
 
+  @include v.tablet() {
+    @include v.medidas(100vw, 100%);
+    padding: 0 1rem;
+    justify-content: flex-start;
+    margin-top: 2rem;
+  }
+
+  @include v.mobile() {
+    @include v.medidas(100vw, 100%);
+    padding: 0 1rem;
+    justify-content: center;
+    margin-top: 2rem;
+  }
+
   img {
     @include v.medidas(50%, 100%);
+    max-width: 30rem;
     position: absolute;
-    right: 10rem;
+    right: 5rem;
     top: 0;
+
+    @include v.tablet() {
+      @include v.medidas(60%, 100%);
+      max-height: 110%;
+      position: absolute;
+      right: 1rem;
+      top: 0;
+    }
+
+    @include v.mobile() {
+      display: none;
+    }
   }
   h3 {
     font-size: 1rem;
@@ -35,13 +66,28 @@
   }
 
   .infoContainer {
-    @include v.medidas(40%, 100%);
+    @include v.medidas(50%, 100%);
     display: flex;
-    justify-content: center;
-    align-items: center;
     flex-direction: column;
+    justify-content: center;
+    align-items: start;
     text-align: center;
     position: relative;
+    gap: 1rem;
+
+    h2 {
+      font-size: 2rem;
+    }
+
+    @include v.tablet() {
+      @include v.medidas(40%, 100%);
+      gap: 1rem;
+    }
+
+    @include v.mobile() {
+      @include v.medidas(100%, 100%);
+      gap: 1rem;
+    }
 
     div {
       @include v.medidas(100%, 100%);
@@ -50,6 +96,11 @@
       justify-content: center;
       align-items: center;
       text-align: left;
+      font-family: Arial, Helvetica, sans-serif;
+      @include v.mobile() {
+        text-align: center;
+      }
+
       h3 {
         @include v.medidas(100%, 20%);
       }
