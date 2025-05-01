@@ -20,7 +20,7 @@ function App() {
             <div>
               <h3>PROFESIONALES DE SALUD MENTAL:</h3>
               <p>
-                Somos un quipo integrado por psicólogos clínicos con sólida trayectoria en evaluación diagnóstica,
+                Somos un equipo integrado por psicólogos clínicos con sólida trayectoria en evaluación diagnóstica,
                 recursos humanos y acompañamiento organizacional, garantizando rigor técnico y comprensión profunda de
                 tus necesidades.
               </p>

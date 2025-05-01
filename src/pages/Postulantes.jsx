@@ -60,6 +60,18 @@ const Postulantes = () => {
                 <div key={cand.email}>
                   <h4>{cand.nombre}</h4>
                   <button
+                    onClick={() => {
+                      cand.fav = !cand.fav;
+                      updateBolsa(bolsaActual, cand, "");
+                      setBolsaActual({
+                        ...bolsaActual,
+                        candidatos: bolsaActual.candidatos.map((c) => (c.email === cand.email ? cand : c))
+                      });
+                    }}
+                  >
+                    {cand.fav ? <FaStar style={{ color: "rgb(241, 245, 0)" }} /> : <CiStar />}
+                  </button>
+                  <button
                     className="verButton"
                     onClick={() => {
                       setCurrentBolsa(cand);

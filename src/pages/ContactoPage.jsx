@@ -88,7 +88,7 @@ const ContactoPage = () => {
                 El nombre es requerido!
               </p>
             )}
-            <input type="text" id="apellido" placeholder="apellido" {...register("apellido", { required: true })} />
+            <input type="text" id="apellido" placeholder="Apellido" {...register("apellido", { required: true })} />
             {errors.email?.type === "required" && (
               <p className="bg-red-400 text-white pl-3 rounded-md w-1/3" role="alert">
                 El apellido es requerido!
@@ -115,14 +115,14 @@ const ContactoPage = () => {
             <p className="bg-red-400 text-white pl-3 rounded-md w-1/3">Ingresa un email válido.</p>
           )}
 
-          <input type="telefono" id="telefono" placeholder="telefono" {...register("telefono", { required: true })} />
+          <input type="telefono" id="telefono" placeholder="Telefono" {...register("telefono", { required: true })} />
           {errors.email?.type === "required" && (
             <p className="bg-red-400 text-white pl-3 rounded-md w-1/3" role="alert">
               El telefono es requerido!
             </p>
           )}
 
-          <input type="asunto" id="asunto" placeholder="asunto" {...register("asunto", { required: true })} />
+          <input type="asunto" id="asunto" placeholder="Asunto" {...register("asunto", { required: true })} />
           {errors.email?.type === "required" && (
             <p className="bg-red-400 text-white pl-3 rounded-md w-1/3" role="alert">
               El asunto es requerido!

@@ -73,7 +73,7 @@ const InstitucionalPage = () => {
                 </a>
                 <img className="profileImg" src={agusImg} alt="" />
               </div>
-              <h3>Agustina Marini</h3>
+              <h3>Lic. Agustina Marini</h3>
               <p>Psicóloga y fundadora</p>
               <p>Mat 3351</p>
             </div>
@@ -84,7 +84,7 @@ const InstitucionalPage = () => {
                 </a>
                 <img className="profileImg" src={romiImg} alt="" />
               </div>
-              <h3>Romina Abdala</h3>
+              <h3>Lic. Romina Abdala</h3>
               <p>Psicóloga y fundadora</p>
               <p>Mat 3617</p>
             </div>
@@ -95,7 +95,7 @@ const InstitucionalPage = () => {
                 </a>
                 <img className="profileImg" src={daniImg} alt="" />
               </div>
-              <h3>Daniel Cebreros</h3>
+              <h3>Mgter. Daniel Cebreros</h3>
               <p>Psicólogo clínico</p>
               <p>Mat 1886</p>
             </div>

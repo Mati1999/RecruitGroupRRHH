@@ -26,11 +26,11 @@ const ServiciosPage = () => {
     {
       nombre: "Psicodiagnóstico",
       descripcion:
-        "Lorem ipsum dolor sit amet consectetur adipiscing elit fermentum curabitur vestibulum elementum, tempor bibendum cum quisque aliquet auctor hendrerit morbi eu cras fusce, phasellus malesuada scelerisque curae habitant consequat montes nascetur eget dapibus. Lacinia montes mauris praesent nec varius odio in proin ornare mattis himenaeos aenean, inceptos metus porttitor facilisis sociis sagittis euismod vel quam risus.",
+        "El proceso psicotécnico evalúa, a partir de técnicas psicológicas actualizadas y con respaldo científico, competencias personales, habilidades específicas y características de personalidad relevantes para el desempeño del puesto. Se aplican pruebas enfocadas en analizar aspectos como habilidades interpersonales, rasgos de personalidad, experiencia, trabajo en equipo y manejo del estrés. Además, se incluyen herramientas para evaluar competencias laborales clave, como atención al detalle, organización y capacidad de aprendizaje. Este proceso se complementa con una entrevista en profundidad para explorar antecedentes laborales, motivaciones y ajuste al rol. Su enfoque semi estructurado permite seleccionar candidatos idóneos basándose en características objetivas, optimizando la toma de decisiones en los procesos de selección.",
       image: "/servicios/PsicodiagnósticoCuadrado.jpg"
     },
     {
-      nombre: "Diasnóstico organizacional",
+      nombre: "Diagnóstico organizacional",
       descripcion:
         "Analizamos la estructura, dinámicas, procesos internos y cultura organizacional de tu empresa para identificar fortalezas, áreas de mejora y oportunidades clave. Nuestro enfoque psicológico nos permite profundizar en aspectos relacionados con el clima laboral, los estilos de liderazgo y los flujos de comunicación. A través de entrevistas, encuestas diagnósticas y revisión de documentación, elaboramos un informe detallado con estrategias concretas que optimizan el desempeño de la organización. Este diagnóstico es fundamental para implementar cambios sostenibles, fomentar un entorno de trabajo positivo y tomar decisiones estratégicas que contribuyan al crecimiento empresarial.",
       image: "/servicios/diagnósticoOrganizacional.jpg"
