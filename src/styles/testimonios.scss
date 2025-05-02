@@ -1,13 +1,13 @@
 @use "./variable.scss" as v;
 
 .customSwiper {
-  @include v.miniMobile() {
+  @include v.mobile() {
     display: none;
   }
 }
 .customSwiperMobile {
   display: none;
-  @include v.miniMobile() {
+  @include v.mobile() {
     display: block;
   }
 }
@@ -22,7 +22,8 @@
 
   h2 {
     margin-bottom: 1rem;
-    padding-left: 50px;
+    @include v.fonts("Julius Sans One", 400);
+    color: v.$colorPrimario;
   }
 
   @include v.tabletBig() {
@@ -30,22 +31,22 @@
   }
 
   @include v.tablet() {
-    @include v.medidas(100%, 33rem);
+    @include v.medidas(100%, 35rem);
   }
 
   @include v.mobile() {
     @include v.medidas(100%, 33rem);
+    padding: 0 1rem;
   }
 
   @include v.miniMobile() {
-    @include v.medidas(100%, 23rem);
-    padding: 0 1rem;
+    @include v.medidas(100%, 25rem);
   }
 
   .swiper-button-prev,
   .swiper-button-next {
     @include v.tabletBig() {
-      display: none;
+      display: block;
     }
 
     @include v.tablet() {
@@ -53,10 +54,6 @@
     }
 
     @include v.mobile() {
-      display: none;
-    }
-
-    @include v.miniMobile() {
       display: block;
     }
   }
@@ -86,6 +83,11 @@
 .swiper {
   padding-bottom: 2rem;
   margin-top: 2rem;
+  padding-right: 50px;
+
+  @include v.miniMobile() {
+    padding-right: 0px;
+  }
 }
 
 .swiper-wrapper {
@@ -96,6 +98,16 @@
   left: -20px;
   top: 60%;
 
+  @include v.tabletBig() {
+    left: 15px;
+    top: 60%;
+  }
+
+  @include v.mobile() {
+    left: 15px;
+    top: 60%;
+  }
+
   @include v.miniMobile() {
     left: 3px;
     top: 60%;
@@ -103,8 +115,18 @@
 }
 
 .swiper-button-next {
-  right: -40px;
+  right: -30px;
   top: 60%;
+
+  @include v.tabletBig() {
+    right: 15px;
+    top: 60%;
+  }
+
+  @include v.mobile() {
+    right: 15px;
+    top: 60%;
+  }
 
   @include v.miniMobile() {
     right: 3px;
