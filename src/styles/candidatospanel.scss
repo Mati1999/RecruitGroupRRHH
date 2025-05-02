@@ -1,7 +1,7 @@
 @use "./variable.scss" as v;
 
 .candidatosPanel {
-  @include v.medidas(100%, 90vh);
+  @include v.medidas(100%, 80vh);
   padding-top: 8rem;
   display: flex;
   flex-direction: column;
@@ -95,7 +95,7 @@
     }
 
     &-info {
-      @include v.medidas(80%, 30rem);
+      @include v.medidas(80%, 100%);
       background: linear-gradient(white, white) padding-box,
         linear-gradient(to top, v.$colorBoderStart, v.$colorBoderEnd) border-box;
       border: 1px solid transparent;

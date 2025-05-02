@@ -10,26 +10,23 @@
   color: v.$colorFontPrimario;
   gap: 1rem;
   padding-top: 1rem;
-  margin-top: 5rem;
+  margin-top: 2rem;
   position: relative;
   font-family: Arial, Helvetica, sans-serif;
 
   @include v.tablet() {
     @include v.medidas(100%, 100%);
     padding: 1rem;
-    margin-top: 2rem;
   }
 
   @include v.mobile() {
     @include v.medidas(100%, 35vh);
     padding: 1rem;
-    margin-top: 2rem;
   }
 
   @include v.miniMobile() {
     @include v.medidas(100%, 100%);
     padding: 1rem;
-    margin-top: 2rem;
   }
 
   img {
