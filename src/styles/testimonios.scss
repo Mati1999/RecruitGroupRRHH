@@ -22,6 +22,7 @@
 
   h2 {
     margin-bottom: 1rem;
+    padding-left: 50px;
   }
 
   @include v.tabletBig() {
@@ -82,10 +83,6 @@
   }
 }
 
-.swiper-slide {
-  margin-right: 0 !important;
-}
-
 .swiper {
   padding-bottom: 2rem;
   margin-top: 2rem;
@@ -106,7 +103,7 @@
 }
 
 .swiper-button-next {
-  right: -35px;
+  right: -40px;
   top: 60%;
 
   @include v.miniMobile() {
