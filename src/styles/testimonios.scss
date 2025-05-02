@@ -24,6 +24,7 @@
     margin-bottom: 1rem;
     @include v.fonts("Julius Sans One", 400);
     color: v.$colorPrimario;
+    font-size: 2rem;
   }
 
   @include v.tabletBig() {
@@ -82,7 +83,7 @@
 
 .swiper {
   padding-bottom: 2rem;
-  margin-top: 2rem;
+  margin-top: 0rem;
   padding-right: 50px;
 
   @include v.miniMobile() {
