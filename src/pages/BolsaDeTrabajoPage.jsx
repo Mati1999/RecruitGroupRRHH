@@ -5,7 +5,6 @@ import "../styles/bolsadetrabajopage.scss";
 import { useResource } from "../recursos";
 import { NavLink } from "react-router";
 import Footer from "../components/Footer";
-import { Helmet } from "react-helmet";
 
 const BolsaDeTrabajoPage = () => {
   const estadoBolsaActualizado = useRef(false);
@@ -21,10 +20,11 @@ const BolsaDeTrabajoPage = () => {
 
   return (
     <>
-      <Helmet>
-        <title>Bolsa de Trabajo</title>
-        <meta name="description" content="Free Web tutorials" />
-      </Helmet>
+      <title>Portal Empleo | Bolsa de Trabajo en Mendoza – Recruit Consultora</title>
+      <meta
+        name="description"
+        content="Descubrí el portal empleo de Recruit Consultora: ofertas actualizadas en nuestra bolsa de trabajo, con foco en Mendoza y conexión directa con las mejores empresas. ¡Esperamos tu postulación!"
+      />
       <Header />
       <div className="bolsaDeTrabajoPageBanner">
         <img src={bolsaDeTrabajoBanner} alt="" />

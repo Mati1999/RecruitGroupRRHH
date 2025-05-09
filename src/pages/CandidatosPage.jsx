@@ -7,7 +7,6 @@ import Footer from "../components/Footer";
 import { useForm } from "react-hook-form";
 import emailjs from "@emailjs/browser";
 import { ToastContainer, toast } from "react-toastify";
-import { Helmet } from "react-helmet";
 
 const CandidatosPage = () => {
   const estadoCandidatosActualizado = useRef(false);
@@ -75,10 +74,11 @@ const CandidatosPage = () => {
 
   return (
     <>
-      <Helmet>
-        <title>Candidatos</title>
-        <meta name="description" content="Free Web tutorials" />
-      </Helmet>
+      <title>Candidatos</title>
+      <meta
+        name="description"
+        content="Encontrá trabajos en Mendoza, empleos sin experiencia, trabajos online en Argentina y oportunidades para mujeres. Postulate gratis en el portal de Recruit Consultora."
+      />
       <Header />
       <ToastContainer
         position="top-right"

@@ -11,15 +11,15 @@ import Footer from "../components/Footer";
 import linkedIn from "/linkedInLogo.png";
 import "../styles/institucionalpage.scss";
 import { NavLink } from "react-router";
-import { Helmet } from "react-helmet";
 
 const InstitucionalPage = () => {
   return (
     <>
-      <Helmet>
-        <title>Equipo</title>
-        <meta name="description" content="Free Web tutorials" />
-      </Helmet>
+      <title>Equipo</title>
+      <meta
+        name="description"
+        content="Expertos en selección de personal, perfiles IT y profesionales DAI/AT. Procesos de reclutamiento personalizados, inclusivos y basados en competencias para encontrar el talento ideal."
+      />
       <Header />
       <div className="institucionalPageBanner">
         <img src={somorRecruitBanner} alt="" />

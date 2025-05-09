@@ -7,15 +7,15 @@ import Testimonios from "./components/Testimonios";
 import HomeCrecemosConVos from "/bannersHome/HomeCrecemosConVos.png";
 import Footer from "./components/Footer";
 import { NavLink } from "react-router";
-import { Helmet } from "react-helmet";
 
 function App() {
   return (
     <>
-      <Helmet>
-        <title>Recruit Group</title>
-        <meta name="description" content="Helmet application" />
-      </Helmet>
+      <title>Recruit Group</title>
+      <meta
+        name="description"
+        content="Recruit Consultora es una agencia de trabajo y consultora de recursos humanos con enfoque clínico y organizacional. Expertos en selección de personal, evaluaciones psicológicas y portal de empleo en Mendoza."
+      />
       <Header />
       <main className="appMain">
         <Carousel />

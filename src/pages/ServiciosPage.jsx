@@ -5,7 +5,6 @@ import ServiciosBanner from "/servicios/ServiciosBanner.png";
 import ServiciosCards from "../components/ServiciosCards";
 import Footer from "../components/Footer";
 import { NavLink } from "react-router";
-import { Helmet } from "react-helmet";
 
 const ServiciosPage = () => {
   const [currentServicio, setCurrentServicio] = useState({});
@@ -106,10 +105,11 @@ const ServiciosPage = () => {
 
   return (
     <>
-      <Helmet>
-        <title>Servicios</title>
-        <meta name="description" content="Free Web tutorials" />
-      </Helmet>
+      <title>Selección de Talento | Reclutamiento Especializado y Diverso en RRHH</title>
+      <meta
+        name="description"
+        content="Expertos en selección de personal, perfiles IT y profesionales DAI/AT. Procesos de reclutamiento personalizados, inclusivos y basados en competencias para encontrar el talento ideal."
+      />
       <Header />
       <div className="servicioPageBanner">
         <img src={ServiciosBanner} alt="" />
