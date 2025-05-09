@@ -25,10 +25,7 @@ const Carousel = () => {
         pagination={{
           clickable: true
         }}
-        modules={[
-          Navigation
-          // , Autoplay
-        ]}
+        modules={[Navigation, Autoplay]}
         navigation={{
           nextEl: ".swiper-button-next",
           prevEl: ".swiper-button-prev"
@@ -38,7 +35,7 @@ const Carousel = () => {
         centeredSlides={true}
         spaceBetween={30}
         autoplay={{
-          // delay: 4000,
+          delay: 4000,
           disableOnInteraction: false
         }}
         className="mySwiper h-[10rem] sm:h-[15rem] md:w-full md:h-full"
