@@ -14,6 +14,75 @@
   }
 }
 
+.buscasTrabajoMendoza {
+  @include v.medidas(100vw, 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 0 5rem;
+  margin-top: 2rem;
+  color: v.$colorPrimario;
+  gap: 1rem;
+
+  @include v.tabletBig() {
+    padding: 0 2rem;
+  }
+  @include v.mobile() {
+    padding: 0 1rem;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    color: v.$colorPrimario;
+
+    @include v.tablet() {
+      font-size: 2.2rem;
+    }
+
+    @include v.mobile() {
+      font-size: 2rem;
+    }
+  }
+
+  p {
+    font-size: 1.2rem;
+    padding: 0 12rem;
+
+    @include v.tabletBig() {
+      padding: 0 2rem;
+    }
+    @include v.tablet() {
+      padding: 0 1rem;
+    }
+    @include v.mobile() {
+      padding: 0;
+    }
+  }
+
+  a {
+    @include v.medidas(40%, 100%);
+    font-size: 1.5rem;
+
+    @include v.tabletBig() {
+      @include v.medidas(80%, 100%);
+    }
+
+    @include v.tablet() {
+      @include v.medidas(80%, 100%);
+    }
+
+    @include v.mobile() {
+      @include v.medidas(100%, 100%);
+    }
+
+    button {
+      @include v.medidas(100%, 100%);
+      cursor: pointer;
+    }
+  }
+}
+
 .crecemosConVos {
   @include v.medidas(100vw, 100%);
   display: flex;

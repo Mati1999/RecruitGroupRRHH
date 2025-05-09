@@ -5,17 +5,39 @@ import ServiciosBanner from "/servicios/ServiciosBanner.png";
 import ServiciosCards from "../components/ServiciosCards";
 import Footer from "../components/Footer";
 import { NavLink } from "react-router";
+import { Helmet } from "react-helmet";
 
 const ServiciosPage = () => {
   const [currentServicio, setCurrentServicio] = useState({});
   const [showModal, setShowModal] = useState(false);
 
-  const servicios = [
+  const seleccionDeTalento = [
     {
       nombre: "Selección de personal",
       descripcion:
         "Realizamos procesos de selección diseñados para identificar a los candidatos más adecuados para cada posición, alineando sus competencias técnicas, habilidades interpersonales y valores con las necesidades del puesto y de la organización. A través de entrevistas semidirigidas, e instrumentos especializados, aseguramos una elección que favorezca tanto a la empresa como al talento humano. Nuestro enfoque no solo se basa en el análisis del perfil profesional, sino también en garantizar una integración positiva al equipo, con el objetivo de contribuir al éxito organizacional y a la satisfacción de los empleados seleccionados. Este servicio incluye la toma de psicotécnico o psicodiagnóstico (según se requiera) del candidato en cuestión, para asegurar que el mismo se encuentre el un estado óptimo y que sus habilidades y competencias se alineen con la empresa y el puesto a cubrir.",
       image: "/servicios/selecciónDePersonal.jpg"
+    },
+    {
+      nombre: "Selección it",
+      descripcion:
+        "Nos especializamos en identificar y atraer talento altamente calificado en tecnologías de la información, un sector clave en la transformación digital de las empresas. A través de procesos de selección innovadores, evaluamos conocimientos técnicos, adaptabilidad, salud mental y experiencia en roles complejos. Nuestros psicólogos trabajan junto con expertos en tecnología para garantizar que cada candidato no solo cumpla con los requisitos técnicos, sino que también se integre exitosamente en el equipo y cultura de la empresa. Este servicio asegura la contratación de perfiles estratégicos y capaces, indispensables para el desarrollo de proyectos tecnológicos. A través del HeadHunting y habilidades de reclutamiento, nos encargamos de conseguir los mejores perfiles de posiciones como desarrolladores, arquitectos, PM, etc.",
+      image: "/servicios/selecciónIt.jpg"
+    },
+    {
+      nombre: "Selección DAI y AT.",
+      descripcion:
+        "Nuestro equipo está conformado por profesionales de salud mental, no solo con experiencia organizacional, sino también con un abanico de herramientas y formación clínica. Realizamos búsquedas de Docentes de Apoyo a la Inclusión (DAI) y Acompañantes Terapéuticos (AT) para cada persona que lo necesite y solicite. Somos ampliamente conscientes de la necesidad de que las personas que vayan a ocupar estos lugares, deben de tener ciertas competencias y un perfil que se ajuste a cada familia. A partir de escuchar tus necesidades, en conjunto con expertos en el área, realizamos un cuidadoso filtrado de nuestros CV y escuchamos con mucha atención cada entrevista con los candidatos para observar su capacidad de comunicación, inteligencia emocional, conocimientos técnicos y experiencia, además, se le realizan pruebas psicológicas, para que, de esa forma, se elija a quien sea el más indicado.",
+      image: "/servicios/ATyDAI.jpg"
+    }
+  ];
+
+  const evaluacionesLaborales = [
+    {
+      nombre: "Evaluación de calidad de servicio",
+      descripcion:
+        "Medimos la calidad del servicio ofrecido por tu empresa a través de la metodología de 'Mystery Shopper', donde evaluadores se hacen pasar por clientes para analizar sus experiencias. Este servicio permite identificar aciertos y áreas de mejora en la atención, brindando una perspectiva real del servicio desde el punto de vista del cliente. A partir de estos resultados, elaboramos recomendaciones personalizadas que ayudan a optimizar la experiencia del cliente, potenciar la satisfacción y mejorar los equipos de venta o atención al público. Es una herramienta clave para las empresas que buscan destacarse frente a la competencia.",
+      image: "/servicios/evaluaciónDeCalidad.jpg"
     },
     {
       nombre: "Psicotécnico",
@@ -28,7 +50,10 @@ const ServiciosPage = () => {
       descripcion:
         "El proceso psicotécnico evalúa, a partir de técnicas psicológicas actualizadas y con respaldo científico, competencias personales, habilidades específicas y características de personalidad relevantes para el desempeño del puesto. Se aplican pruebas enfocadas en analizar aspectos como habilidades interpersonales, rasgos de personalidad, experiencia, trabajo en equipo y manejo del estrés. Además, se incluyen herramientas para evaluar competencias laborales clave, como atención al detalle, organización y capacidad de aprendizaje. Este proceso se complementa con una entrevista en profundidad para explorar antecedentes laborales, motivaciones y ajuste al rol. Su enfoque semi estructurado permite seleccionar candidatos idóneos basándose en características objetivas, optimizando la toma de decisiones en los procesos de selección.",
       image: "/servicios/PsicodiagnósticoCuadrado.jpg"
-    },
+    }
+  ];
+
+  const diagnosticoYEstrategiaOrga = [
     {
       nombre: "Diagnóstico organizacional",
       descripcion:
@@ -46,19 +71,25 @@ const ServiciosPage = () => {
       descripcion:
         "Nos encargamos de gestionar integralmente el área de RRHH de tu empresa, asegurando un enfoque profesional y estratégico en cada proceso. Iniciamos con un diagnóstico organizacional que incluye entrevistas con líderes y colaboradores, encuestas de clima laboral y análisis de procedimientos, para identificar áreas de mejora y necesidades específicas. Posteriormente, diseñamos e implementamos soluciones personalizadas que optimizan la gestión de talento, adaptándonos a la cultura de la empresa. Nuestro servicio incluye la implementación de estrategias de selección, capacitación, evaluación y desarrollo, garantizando resultados sostenibles que impulsen la productividad, independencia y bienestar organizacional. Este es un servicio orientado principalmente a empresas que no poseen un área de RRHH interno, o que en caso de poseerla, necesitan tercerizar algunos servicios.",
       image: "/servicios/tercerizaciónDeRrhh.jpg"
-    },
-    {
-      nombre: "Evaluación de calidad de servicio",
-      descripcion:
-        "Medimos la calidad del servicio ofrecido por tu empresa a través de la metodología de 'Mystery Shopper', donde evaluadores se hacen pasar por clientes para analizar sus experiencias. Este servicio permite identificar aciertos y áreas de mejora en la atención, brindando una perspectiva real del servicio desde el punto de vista del cliente. A partir de estos resultados, elaboramos recomendaciones personalizadas que ayudan a optimizar la experiencia del cliente, potenciar la satisfacción y mejorar los equipos de venta o atención al público. Es una herramienta clave para las empresas que buscan destacarse frente a la competencia.",
-      image: "/servicios/evaluaciónDeCalidad.jpg"
-    },
+    }
+  ];
+
+  const desarrolloDeTalento = [
     {
       nombre: "Capacitaciones",
       descripcion:
         "Diseñamos programas de capacitación personalizados para fortalecer las competencias de tus equipos y promover el desarrollo profesional continuo. Nuestros entrenamientos están orientados a áreas como trabajo en equipo, liderazgo, comunicación efectiva, inteligencia emocional, programa de inducción, bienestar institucional, entre otros. Los programas son dinámicos, interactivos y ajustados a las necesidades específicas de la empresa, logrando un impacto positivo en el desempeño laboral. Además, nuestras capacitaciones promueven el bienestar organizacional al fomentar la motivación, la productividad y un clima laboral saludable, contribuyendo al crecimiento integral de la organización y sus colaboradores. Buscamos brindar a los empleados el mejor bagaje de herramientas posibles, para que el día de mañana puedan contar con ellas al tener que tomar decisiones y resolver conflictos.",
       image: "/servicios/capacitaciones.jpg"
     },
+    {
+      nombre: "Asesoramiento personal",
+      descripcion:
+        "Brindamos un servicio de apoyo y orientación personalizada para personas que buscan mejorar su desarrollo profesional y bienestar emocional. Este asesoramiento incluye herramientas para gestionar cambios laborales, manejar conflictos, potenciar habilidades personales y planificar su carrera. ¿No conseguís empleo? Te ayudamos a encontrar tus puntos fuertes y áreas de mejora para que esta búsqueda sea más eficiente. Nuestro enfoque integral y humanista se basa en la escucha activa y en brindar soluciones prácticas para alcanzar metas y objetivos individuales. ",
+      image: "/servicios/asesoramientoPersonal.jpg"
+    }
+  ];
+
+  const marcaEmpleadoraYCom = [
     {
       nombre: "Armado de avisos",
       descripcion:
@@ -70,45 +101,96 @@ const ServiciosPage = () => {
       descripcion:
         "A partir de nuestra amplia experiencia en selección, filtrado y confección, ayudamos a candidatos a destacar sus logros y competencias mediante la confección de currículos personalizados y estratégicos. Este servicio incluye asesoramiento especializado para identificar y resaltar los puntos más importantes del perfil profesional, adaptándolo a las demandas del mercado actual. Nuestro enfoque se centra en crear un CV claro, profesional y atractivo, que refleje tanto las habilidades técnicas como los aspectos humanos del candidato, maximizando sus oportunidades laborales. ¡La primer impresión importa mucho! un buen CV es el primer paso a tu trabajo soñado.",
       image: "/servicios/armadoDeCv.jpg"
-    },
-    {
-      nombre: "Asesoramiento personal",
-      descripcion:
-        "Brindamos un servicio de apoyo y orientación personalizada para personas que buscan mejorar su desarrollo profesional y bienestar emocional. Este asesoramiento incluye herramientas para gestionar cambios laborales, manejar conflictos, potenciar habilidades personales y planificar su carrera. ¿No conseguís empleo? Te ayudamos a encontrar tus puntos fuertes y áreas de mejora para que esta búsqueda sea más eficiente. Nuestro enfoque integral y humanista se basa en la escucha activa y en brindar soluciones prácticas para alcanzar metas y objetivos individuales. ",
-      image: "/servicios/asesoramientoPersonal.jpg"
-    },
-    {
-      nombre: "Selección it",
-      descripcion:
-        "Nos especializamos en identificar y atraer talento altamente calificado en tecnologías de la información, un sector clave en la transformación digital de las empresas. A través de procesos de selección innovadores, evaluamos conocimientos técnicos, adaptabilidad, salud mental y experiencia en roles complejos. Nuestros psicólogos trabajan junto con expertos en tecnología para garantizar que cada candidato no solo cumpla con los requisitos técnicos, sino que también se integre exitosamente en el equipo y cultura de la empresa. Este servicio asegura la contratación de perfiles estratégicos y capaces, indispensables para el desarrollo de proyectos tecnológicos. A través del HeadHunting y habilidades de reclutamiento, nos encargamos de conseguir los mejores perfiles de posiciones como desarrolladores, arquitectos, PM, etc.",
-      image: "/servicios/selecciónIt.jpg"
-    },
-    {
-      nombre: "Selección DAI y AT.",
-      descripcion:
-        "Nuestro equipo está conformado por profesionales de salud mental, no solo con experiencia organizacional, sino también con un abanico de herramientas y formación clínica. Realizamos búsquedas de Docentes de Apoyo a la Inclusión (DAI) y Acompañantes Terapéuticos (AT) para cada persona que lo necesite y solicite. Somos ampliamente conscientes de la necesidad de que las personas que vayan a ocupar estos lugares, deben de tener ciertas competencias y un perfil que se ajuste a cada familia. A partir de escuchar tus necesidades, en conjunto con expertos en el área, realizamos un cuidadoso filtrado de nuestros CV y escuchamos con mucha atención cada entrevista con los candidatos para observar su capacidad de comunicación, inteligencia emocional, conocimientos técnicos y experiencia, además, se le realizan pruebas psicológicas, para que, de esa forma, se elija a quien sea el más indicado.",
-      image: "/servicios/ATyDAI.jpg"
     }
   ];
 
   return (
     <>
+      <Helmet>
+        <title>Servicios</title>
+        <meta name="description" content="Free Web tutorials" />
+      </Helmet>
       <Header />
       <div className="servicioPageBanner">
         <img src={ServiciosBanner} alt="" />
       </div>
 
       <main className="servicioPageMain">
-        {servicios.map((servicio, index) => (
-          <ServiciosCards
-            key={index}
-            nombre={servicio.nombre}
-            descripcion={servicio.descripcion}
-            imgRoute={servicio.image}
-            setCurrentServicio={() => setCurrentServicio(servicio)}
-            setShowModal={() => setShowModal(true)}
-          />
-        ))}
+        <div className="servicioPageMain--sections">
+          <h2>SELECCIÓN DE TALENTO</h2>
+          <div className="servicioPageMain--sectionsDiv">
+            {seleccionDeTalento.map((servicio, index) => (
+              <ServiciosCards
+                key={index}
+                nombre={servicio.nombre}
+                descripcion={servicio.descripcion}
+                imgRoute={servicio.image}
+                setCurrentServicio={() => setCurrentServicio(servicio)}
+                setShowModal={() => setShowModal(true)}
+              />
+            ))}
+          </div>
+        </div>
+        <div className="servicioPageMain--sections">
+          <h2>EVALUACIONES LABORALES</h2>
+          <div className="servicioPageMain--sectionsDiv">
+            {evaluacionesLaborales.map((servicio, index) => (
+              <ServiciosCards
+                key={index}
+                nombre={servicio.nombre}
+                descripcion={servicio.descripcion}
+                imgRoute={servicio.image}
+                setCurrentServicio={() => setCurrentServicio(servicio)}
+                setShowModal={() => setShowModal(true)}
+              />
+            ))}
+          </div>
+        </div>
+        <div className="servicioPageMain--sections">
+          <h2>DIAGNÓSTICO Y ESTRATEGIA ORGANIZACIONAL</h2>
+          <div className="servicioPageMain--sectionsDiv">
+            {diagnosticoYEstrategiaOrga.map((servicio, index) => (
+              <ServiciosCards
+                key={index}
+                nombre={servicio.nombre}
+                descripcion={servicio.descripcion}
+                imgRoute={servicio.image}
+                setCurrentServicio={() => setCurrentServicio(servicio)}
+                setShowModal={() => setShowModal(true)}
+              />
+            ))}
+          </div>
+        </div>
+        <div className="servicioPageMain--sections">
+          <h2>DESARROLLO DE TALENTO</h2>
+          <div className="servicioPageMain--sectionsDiv">
+            {desarrolloDeTalento.map((servicio, index) => (
+              <ServiciosCards
+                key={index}
+                nombre={servicio.nombre}
+                descripcion={servicio.descripcion}
+                imgRoute={servicio.image}
+                setCurrentServicio={() => setCurrentServicio(servicio)}
+                setShowModal={() => setShowModal(true)}
+              />
+            ))}
+          </div>
+        </div>
+        <div className="servicioPageMain--sections">
+          <h2>MARCA EMPLEADORA Y COMUNICACIÓN</h2>
+          <div className="servicioPageMain--sectionsDiv">
+            {marcaEmpleadoraYCom.map((servicio, index) => (
+              <ServiciosCards
+                key={index}
+                nombre={servicio.nombre}
+                descripcion={servicio.descripcion}
+                imgRoute={servicio.image}
+                setCurrentServicio={() => setCurrentServicio(servicio)}
+                setShowModal={() => setShowModal(true)}
+              />
+            ))}
+          </div>
+        </div>
       </main>
 
       {showModal && (

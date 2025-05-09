@@ -6,6 +6,7 @@ import contactoBanner from "/contactos/contacto.png";
 import { useForm } from "react-hook-form";
 import emailjs from "@emailjs/browser";
 import { ToastContainer, toast } from "react-toastify";
+import { Helmet } from "react-helmet";
 
 const ContactoPage = () => {
   const form = useRef();
@@ -60,6 +61,10 @@ const ContactoPage = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Contacto</title>
+        <meta name="description" content="Free Web tutorials" />
+      </Helmet>
       <Header />
       <ToastContainer
         position="top-right"

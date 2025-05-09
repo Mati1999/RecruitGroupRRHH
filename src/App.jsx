@@ -6,10 +6,16 @@ import ServiciosSection from "./components/ServiciosSection";
 import Testimonios from "./components/Testimonios";
 import HomeCrecemosConVos from "/bannersHome/HomeCrecemosConVos.png";
 import Footer from "./components/Footer";
+import { NavLink } from "react-router";
+import { Helmet } from "react-helmet";
 
 function App() {
   return (
     <>
+      <Helmet>
+        <title>Recruit Group</title>
+        <meta name="description" content="Helmet application" />
+      </Helmet>
       <Header />
       <main className="appMain">
         <Carousel />
@@ -41,6 +47,19 @@ function App() {
             </div>
           </div>
           <img src={HomeCrecemosConVos} alt="" />
+        </div>
+
+        <div className="buscasTrabajoMendoza">
+          <h1>¿BUSCAS TRABAJO EN MENDOZA?</h1>
+          <p>
+            Si buscás trabajo y querés avanzar en tu carrera profesional, llegaste al lugar indicado. En nuestra
+            plataforma de búsqueda laboral en Mendoza, te conectamos con las mejores oportunidades del mercado. Ya sea
+            que estés empezando, quieras cambiar de rubro o crecer dentro de tu sector, te ayudamos a encontrar el
+            empleo ideal.
+          </p>
+          <NavLink to="/bolsa-de-trabajo">
+            <button className="w-1/2 md:1/10 text-center">IR A BOLSA DE TRABAJO</button>
+          </NavLink>
         </div>
         <Testimonios />
         <InfiniteCarousel />

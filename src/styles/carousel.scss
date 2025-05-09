@@ -45,7 +45,7 @@
   position: relative;
 
   a {
-    @include v.medidas(85%, 100%);
+    @include v.medidas(100%, 100%);
     display: flex;
     justify-content: center;
 
@@ -99,4 +99,8 @@
     padding-bottom: 0rem !important;
     margin-top: 0rem !important;
   }
+}
+
+.mySwiper {
+  padding-right: 0 !important;
 }

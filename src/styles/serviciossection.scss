@@ -5,11 +5,34 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 3rem 0 0 0;
+  margin: 2rem 0 0 0;
 
   h2 {
     font-size: 2.5rem;
     color: v.$colorPrimario;
+  }
+
+  &--h2 {
+    font-size: 2rem !important;
+    padding: 0 8rem;
+    text-align: center;
+    color: #00212f !important;
+    margin-bottom: 2rem;
+
+    @include v.tabletBig() {
+      font-size: 1.5rem !important;
+      padding: 0 5rem;
+    }
+
+    @include v.mobile() {
+      font-size: 1.2rem !important;
+      padding: 0 1rem;
+    }
+
+    @include v.miniMobile() {
+      font-size: 1rem !important;
+      padding: 0 1rem;
+    }
   }
 
   @include v.tablet() {

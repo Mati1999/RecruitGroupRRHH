@@ -20,12 +20,15 @@ const Carousel = () => {
   ];
 
   return (
-    <div className="App w-full h-[15rem] sm:h-[16rem] md:h-[20rem] lg:h-[25rem] xl:h-[30rem] flex justify-center relative">
+    <div className="App w-full h-[15rem] sm:h-[16rem] md:h-[20rem] lg:h-[25rem] xl:h-[34rem] flex justify-center relative">
       <Swiper
         pagination={{
           clickable: true
         }}
-        modules={[Navigation, Autoplay]}
+        modules={[
+          Navigation
+          // , Autoplay
+        ]}
         navigation={{
           nextEl: ".swiper-button-next",
           prevEl: ".swiper-button-prev"
@@ -35,7 +38,7 @@ const Carousel = () => {
         centeredSlides={true}
         spaceBetween={30}
         autoplay={{
-          delay: 4000,
+          // delay: 4000,
           disableOnInteraction: false
         }}
         className="mySwiper h-[10rem] sm:h-[15rem] md:w-full md:h-full"

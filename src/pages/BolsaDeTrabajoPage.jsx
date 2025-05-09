@@ -5,6 +5,7 @@ import "../styles/bolsadetrabajopage.scss";
 import { useResource } from "../recursos";
 import { NavLink } from "react-router";
 import Footer from "../components/Footer";
+import { Helmet } from "react-helmet";
 
 const BolsaDeTrabajoPage = () => {
   const estadoBolsaActualizado = useRef(false);
@@ -20,11 +21,20 @@ const BolsaDeTrabajoPage = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Bolsa de Trabajo</title>
+        <meta name="description" content="Free Web tutorials" />
+      </Helmet>
       <Header />
       <div className="bolsaDeTrabajoPageBanner">
         <img src={bolsaDeTrabajoBanner} alt="" />
       </div>
       <div className="bolsaDeTrabajoPageTrabajos">
+        <h1>¿BUSCAS TRABAJO EN MENDOZA?</h1>
+        <p className="pDescription">
+          Descubrí nuevas oportunidades, conectá con empresas que te valoran y empezá hoy el camino hacia tu próximo
+          empleo.
+        </p>
         {bolsa.length != 0
           ? bolsa.map(
               (item, i) =>
@@ -56,7 +66,9 @@ const BolsaDeTrabajoPage = () => {
                             </svg>
                           </span>
                         </summary>
-                        <p className="text-neutral-600 mt-[1rem] group-open:animate-fadeIn">{item.ubicacion}</p>
+                        <p className="text-neutral-600 mt-[1rem] group-open:animate-fadeIn text-start">
+                          {item.ubicacion}
+                        </p>
                         <NavLink
                           className="text-neutral-600 mb-2 group-open:animate-fadeIn"
                           to={`/bolsa-de-trabajo/${item.id}`}

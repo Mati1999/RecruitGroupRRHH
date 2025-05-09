@@ -1,7 +1,7 @@
 @use "./variable.scss" as v;
 
 .serviciosCard {
-  @include v.medidas(25%, 30rem);
+  @include v.medidas(30%, 30rem);
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -14,8 +14,19 @@
   border-radius: 0.5rem;
   box-shadow: 4px 4px 4px rgba(128, 128, 128, 0.5);
 
+  @include v.desktop() {
+    @include v.medidas(30%, 25rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0;
+    padding: 1rem;
+    text-align: center;
+  }
+
   @include v.tabletBig() {
-    @include v.medidas(30%, 30rem);
+    @include v.medidas(30%, 22rem);
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -26,7 +37,7 @@
   }
 
   @include v.tablet() {
-    @include v.medidas(30%, 20rem);
+    @include v.medidas(30%, 18rem);
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -37,7 +48,7 @@
   }
 
   @include v.mobile() {
-    @include v.medidas(30%, 20rem);
+    @include v.medidas(30%, 13rem);
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -48,7 +59,7 @@
   }
 
   @include v.miniMobile() {
-    @include v.medidas(90%, 8rem);
+    @include v.medidas(100%, 8rem);
     display: flex;
     flex-direction: row-reverse;
     justify-content: space-between;
@@ -68,7 +79,7 @@
 
     @include v.tablet() {
       @include v.medidas(100%, 10%);
-      font-size: 1.2rem;
+      font-size: 1rem;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -76,7 +87,7 @@
 
     @include v.mobile() {
       @include v.medidas(100%, 10%);
-      font-size: 0.8rem;
+      font-size: 0.6rem;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -84,29 +95,30 @@
 
     @include v.miniMobile() {
       @include v.medidas(100%, 10%);
+      font-size: 1.2rem;
       display: flex;
       align-items: center;
     }
   }
 
   img {
-    @include v.medidas(80%, 80%);
+    @include v.medidas(90%, 80%);
     border-radius: 0.5rem;
 
     @include v.tablet() {
-      @include v.medidas(auto, 80%);
+      @include v.medidas(90%, 80%);
       aspect-ratio: 1/1;
       border-radius: 0.5rem;
     }
 
     @include v.mobile() {
-      @include v.medidas(auto, 80%);
+      @include v.medidas(90%, 80%);
       aspect-ratio: 1/1;
       border-radius: 0.5rem;
     }
 
     @include v.miniMobile() {
-      @include v.medidas(auto, 80%);
+      @include v.medidas(30%, 100%);
       aspect-ratio: 1/1;
       border-radius: 0.5rem;
     }
