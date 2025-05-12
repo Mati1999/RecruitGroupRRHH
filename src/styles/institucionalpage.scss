@@ -105,6 +105,11 @@
 
     h2 {
       font-size: 2rem;
+      text-align: left;
+
+      @include v.tablet() {
+        text-align: center;
+      }
     }
     p {
       @include v.medidas(100%, 100%);

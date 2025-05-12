@@ -11,7 +11,7 @@
   }
 
   @include v.tabletBig() {
-    @include v.medidas(100%, 30rem);
+    @include v.medidas(100%, 35rem);
     padding-top: 5rem;
   }
 
