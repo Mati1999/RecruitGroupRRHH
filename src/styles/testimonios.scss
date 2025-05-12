@@ -28,11 +28,11 @@
   }
 
   @include v.tabletBig() {
-    @include v.medidas(100%, 33rem);
+    @include v.medidas(100%, 36rem);
   }
 
   @include v.tablet() {
-    @include v.medidas(100%, 35rem);
+    @include v.medidas(100%, 43rem);
   }
 
   @include v.mobile() {
@@ -41,7 +41,7 @@
   }
 
   @include v.miniMobile() {
-    @include v.medidas(100%, 25rem);
+    @include v.medidas(100%, 31rem);
   }
 
   .swiper-button-prev,
@@ -99,6 +99,11 @@
   left: -20px;
   top: 60%;
 
+  @include v.desktop() {
+    left: -15px;
+    top: 60%;
+  }
+
   @include v.tabletBig() {
     left: 15px;
     top: 60%;
@@ -118,6 +123,11 @@
 .swiper-button-next {
   right: -30px;
   top: 60%;
+
+  @include v.desktop() {
+    right: -25px;
+    top: 60%;
+  }
 
   @include v.tabletBig() {
     right: 15px;
@@ -144,6 +154,10 @@
   padding: 1rem;
   font-family: Arial, Helvetica, sans-serif;
 
+  // @include v.tabletBig() {
+  //   @include v.medidas(110%, 110%);
+  // }
+
   h3 {
     @include v.fonts("Julius Sans One", 400);
   }
@@ -158,6 +172,8 @@
   }
 
   @include v.mobile() {
+    @include v.medidas(100%, 100%);
+    justify-content: space-evenly;
     gap: 0;
     padding-top: 0.5rem;
   }
@@ -165,5 +181,13 @@
     @include v.medidas(100%, 100%);
     gap: 0;
     padding-top: 0.5rem;
+  }
+}
+
+.mySwiper {
+  padding-right: 30px !important;
+
+  @include v.mobile() {
+    padding-right: 0px !important;
   }
 }

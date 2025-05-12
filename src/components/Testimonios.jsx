@@ -102,7 +102,7 @@ const Testimonios = () => {
               >
                 <img src={testimonio.img} alt={testimonio.empresa} className="mx-auto mb-2 w-20" />
                 <h3 className="font-bold text-lg">{testimonio.empresa}</h3>
-                <p className="text-sm ">{testimonio.testimonio}</p>
+                <p className="text-md">{testimonio.testimonio}</p>
               </div>
             )}
           </SwiperSlide>
@@ -134,7 +134,7 @@ const Testimonios = () => {
               >
                 <img src={testimonio.img} alt={testimonio.empresa} className="mx-auto mb-2 w-20" />
                 <h3 className="font-bold text-lg">{testimonio.empresa}</h3>
-                <p className="text-sm ">{testimonio.testimonio}</p>
+                <p className="text-md ">{testimonio.testimonio}</p>
               </div>
             )}
           </SwiperSlide>

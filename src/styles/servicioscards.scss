@@ -15,7 +15,7 @@
   box-shadow: 4px 4px 4px rgba(128, 128, 128, 0.5);
 
   @include v.desktop() {
-    @include v.medidas(30%, 25rem);
+    @include v.medidas(30%, 27rem);
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -26,7 +26,7 @@
   }
 
   @include v.tabletBig() {
-    @include v.medidas(30%, 22rem);
+    @include v.medidas(30%, 23rem);
     display: flex;
     flex-direction: column;
     justify-content: space-around;

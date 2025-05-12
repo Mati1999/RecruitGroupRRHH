@@ -5,7 +5,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 2rem 0 0 0;
+  margin: 2rem 0 3rem 0;
 
   h2 {
     font-size: 2.5rem;
@@ -52,7 +52,7 @@
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    margin: 3rem 0 3rem 0;
+    margin: 3rem 0 4rem 0;
 
     @include v.tabletBig() {
       @include v.medidas(100%, auto);
@@ -147,6 +147,7 @@
     text-align: center;
 
     button {
+      cursor: pointer;
       @include v.medidas(100%, 100%);
     }
   }

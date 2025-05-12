@@ -47,6 +47,7 @@
   padding: 0 5rem;
   gap: 2rem;
   margin-top: -3rem;
+  margin-bottom: 5rem;
   text-align: center;
 
   @include v.tabletBig() {
@@ -80,6 +81,7 @@
     @include v.medidas(70%, 100%);
     font-size: 1.2rem;
     color: v.$colorPrimario;
+    font-family: Arial, Helvetica, sans-serif;
 
     @include v.tabletBig() {
       @include v.medidas(80%, 100%);
