@@ -38,7 +38,7 @@ const Carousel = () => {
           delay: 4000,
           disableOnInteraction: false
         }}
-        className="mySwiper h-[10rem] sm:h-[15rem] md:w-full md:h-full"
+        className="mySwiperCarousel h-[10rem] sm:h-[15rem] md:w-full md:h-full"
       >
         {slides.map((img, i) => (
           <SwiperSlide key={i}>

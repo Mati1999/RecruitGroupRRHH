@@ -2,7 +2,7 @@
 
 .footer {
   @include v.medidas(100%, 25rem);
-  background-color: v.$colorSecundario;
+  background-color: v.$colorPrimario;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
