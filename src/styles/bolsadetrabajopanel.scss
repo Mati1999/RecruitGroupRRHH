@@ -161,7 +161,7 @@
   position: absolute;
   top: 25%;
   left: 25%;
-  @include v.medidas(50%, 50%);
+  @include v.medidas(50%, 50vh);
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -171,4 +171,5 @@
   box-shadow: 4px 4px 4px rgba(128, 128, 128, 0.5);
   border-radius: 0.5rem;
   padding: 0.5rem;
+  overflow-y: auto;
 }

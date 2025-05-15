@@ -1,7 +1,7 @@
 @use "./variable.scss" as v;
 
 .postulantesMain {
-  @include v.medidas(100%, 100%);
+  @include v.medidas(100%, 80vh);
   padding-top: 8rem;
   display: flex;
   flex-direction: column;

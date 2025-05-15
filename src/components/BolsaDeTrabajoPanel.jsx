@@ -265,7 +265,7 @@ const BolsaDeTrabajoPanel = () => {
         <input
           className="bolsaDeTrabajoPanel-searchInput"
           type="text"
-          placeholder="Buscar nombre candidato"
+          placeholder="Buscar bolsa de trabajo"
           onChange={(e) => filterCands(e.target.value)}
         />
         <div className="bolsaDeTrabajoPanel_bolsaDeTrabajo">
