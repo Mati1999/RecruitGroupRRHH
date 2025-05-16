@@ -31,12 +31,13 @@ const BolsaDeTrabajoItemPage = () => {
 
   const submitForm = async () => {
     let candidato = {
-      nombre: formNombre || "" + " " + formApellido || "",
+      nombre: formNombre + " " + formApellido,
       email: formEmail || "",
       telefono: formTelefono || "",
       motivo: formMotivo || "",
       cv: formCv || ""
     };
+    console.log(candidato);
 
     setFormNombre("");
     setFormApellido("");
