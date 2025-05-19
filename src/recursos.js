@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 // firestore
-import { query, collection, getDocs, addDoc, doc, updateDoc, deleteDoc } from "firebase/firestore/lite";
+import { query, collection, getDocs, addDoc, doc, updateDoc, deleteDoc, arrayUnion } from "firebase/firestore/lite";
 import { db, storage } from "./firebase/firebaseConfig";
 import { listAll } from "firebase/storage";
 // storage
@@ -77,7 +77,9 @@ const updateResourceHelper = async (dbName, object, candidato, idDeleteCandidato
           const candidatosActualizados = [...candidatosActuales, candidato]; // Agregar el nuevo candidato
           object.candidatos = candidatosActualizados;
         }
-        await updateDoc(updateRef, object);
+        await updateDoc(updateRef, {
+          candidatos: arrayUnion(candidato)
+        });
         return object;
       } else if (idDeleteCandidato) {
         //eliminar archivo de storage
@@ -232,6 +234,7 @@ const resource = (set, get) => ({
         // IMPORTANTE, cuando haga el cambio del parámetro a un id, tengo que hacer el find o filter correspondiente y mandarlo a la función helper
 
         // IMPORTANTE, "candidato" es el objeto del candidato a agregar en la bolsa
+
         helperResult = await updateResourceHelper("BolsaDeTrabajo", updatedBolsa, candidato, false, "bolsa", "");
       } else if (idDeleteCandidato) {
         let filteredBolsa = get().bolsa.find((bol) => bol.id === updatedBolsa.id);
