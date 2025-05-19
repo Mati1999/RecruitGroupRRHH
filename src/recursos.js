@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 // firestore
-import { query, collection, getDocs, addDoc, doc, updateDoc, deleteDoc, arrayUnion } from "firebase/firestore/lite";
+import { query, collection, getDocs, addDoc, doc, updateDoc, deleteDoc } from "firebase/firestore/lite";
 import { db, storage } from "./firebase/firebaseConfig";
 import { listAll } from "firebase/storage";
 // storage
@@ -77,9 +77,7 @@ const updateResourceHelper = async (dbName, object, candidato, idDeleteCandidato
           const candidatosActualizados = [...candidatosActuales, candidato]; // Agregar el nuevo candidato
           object.candidatos = candidatosActualizados;
         }
-        await updateDoc(updateRef, {
-          candidatos: arrayUnion(candidato)
-        });
+        await updateDoc(updateRef, object);
         return object;
       } else if (idDeleteCandidato) {
         //eliminar archivo de storage
