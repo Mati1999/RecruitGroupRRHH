@@ -17,10 +17,6 @@ const AdminPanel = () => {
   const submitSignIn = (e) => {
     e.preventDefault();
 
-    console.log("env", import.meta.env.VITE_PSWLI);
-    console.log(e.target.children[1].value);
-    console.log(e.target.children[1].value !== import.meta.env.VITE_PSWLI);
-
     // Si ya se excedieron los intentos y la contraseña no es correcta, no hacer nada
     if (logInCounter >= 1 && e.target.children[1].value !== import.meta.env.VITE_PSWLI) {
       console.error("Demasiados intentos fallidos. Inténtalo de nuevo más tarde o ingresa la contraseña correcta.");
