@@ -127,8 +127,7 @@ const Postulantes = () => {
                   <button
                     onClick={() => {
                       Swal.fire({
-                        title:
-                          "Seguro que quieres eliminar este postulante? Se eliminarán todos los postulantes también.",
+                        title: "Seguro que quieres eliminar este postulante?",
                         showCancelButton: true,
                         confirmButtonText: "Eliminar"
                       }).then((result) => {
