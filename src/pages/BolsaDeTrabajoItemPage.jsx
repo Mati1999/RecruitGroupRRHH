@@ -61,31 +61,44 @@ const BolsaDeTrabajoItemPage = () => {
     };
     console.log(candidato);
 
-    setFormNombre("");
-    setFormApellido("");
-    setFormEmail("");
-    setFormTelefono("");
-    setFormMotivo("");
-    setFormCv("");
+    let updateBolsaResult = await updateBolsa(bolsaActual[0], candidato, false);
+    if (updateBolsaResult) {
+      toast.error("El archivo tiene que ser .pdf", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored"
+      });
+    } else {
+      setFormNombre("");
+      setFormApellido("");
+      setFormEmail("");
+      setFormTelefono("");
+      setFormMotivo("");
+      setFormCv("");
 
-    resetField("email");
-    resetField("motivo");
-    resetField("nombre");
-    resetField("apellido");
-    resetField("cv");
-    resetField("telefono");
+      resetField("email");
+      resetField("motivo");
+      resetField("nombre");
+      resetField("apellido");
+      resetField("cv");
+      resetField("telefono");
 
-    toast.success("Gracias por postularte!", {
-      position: "top-right",
-      autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: false,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "colored"
-    });
-    await updateBolsa(bolsaActual[0], candidato, false);
+      toast.success("Gracias por postularte!", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored"
+      });
+    }
   };
 
   const {

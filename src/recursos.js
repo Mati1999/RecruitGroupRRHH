@@ -66,11 +66,16 @@ const updateResourceHelper = async (dbName, object, candidato, idDeleteCandidato
     try {
       if (candidato) {
         if (typeof candidato.cv === "object") {
-          const response = candidato.cv;
-          const mountainsRef = ref(storage, `${object.id}/CV-${candidato.email}`);
-          const snapshot = await uploadBytes(mountainsRef, response);
-          const urlDescarga = await getDownloadURL(snapshot.ref);
-          candidato.cv = urlDescarga;
+          if (candidato.cv.type === "application/pdf") {
+            const response = candidato.cv;
+            const mountainsRef = ref(storage, `${object.id}/CV-${candidato.email}`);
+            const snapshot = await uploadBytes(mountainsRef, response);
+            const urlDescarga = await getDownloadURL(snapshot.ref);
+            candidato.cv = urlDescarga;
+          } else {
+            console.error("Error: El archivo subido no es un PDF.");
+            return { error: "El archivo debe ser un PDF." };
+          }
         }
         const candidatosActuales = object.candidatos || []; // Obtener el array actual o un array vacío si no existe
         if (!candidatosActuales.some((cand) => cand.email === candidato.email)) {
@@ -229,8 +234,14 @@ const resource = (set, get) => ({
     try {
       if (candidato) {
         helperResult = await updateResourceHelper("BolsaDeTrabajo", updatedBolsa, candidato, false, "bolsa", "");
-        let serultBolsa = get().bolsa.map((bol) => (bol.id === helperResult.id ? helperResult : bol));
-        set(() => ({ bolsa: serultBolsa }));
+
+        if (helperResult.error) {
+          console.error(helperResult.error);
+          return helperResult;
+        } else {
+          let serultBolsa = get().bolsa.map((bol) => (bol.id === helperResult.id ? helperResult : bol));
+          set(() => ({ bolsa: serultBolsa }));
+        }
       } else if (idDeleteCandidato) {
         const getRef = doc(db, "BolsaDeTrabajo", updatedBolsa.id);
         const bolsaSnap = await getDoc(getRef);
