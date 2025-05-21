@@ -7,12 +7,14 @@ import "../styles/bolsadetrabajoitempage.scss";
 import Footer from "../components/Footer";
 import { useForm } from "react-hook-form";
 import { ToastContainer, toast } from "react-toastify";
+import { doc, getDoc } from "firebase/firestore/lite";
+import { db } from "../firebase/firebaseConfig";
 
 const BolsaDeTrabajoItemPage = () => {
   const estadoBolsaActualizado = useRef(false);
   const updateBolsa = useResource((resource) => resource.updateBolsa);
-  const getBolsa = useResource((resource) => resource.getBolsa);
-  const bolsa = useResource((resource) => resource.bolsa);
+  // const getBolsa = useResource((resource) => resource.getBolsa);
+  // const bolsa = useResource((resource) => resource.bolsa);
   const [bolsaActual, setBolsaActual] = useState([]);
   const [formNombre, setFormNombre] = useState("");
   const [formApellido, setFormApellido] = useState("");
@@ -22,12 +24,32 @@ const BolsaDeTrabajoItemPage = () => {
   const [formCv, setFormCv] = useState("");
   let { bolsaId } = useParams();
 
+  // useEffect(() => {
+  //   if (!estadoBolsaActualizado.current) {
+  //     setBolsaActual([bolsa.find((item) => item.id === bolsaId)]);
+  //     estadoBolsaActualizado.current = true;
+  //   }
+  // }, [getBolsa, updateBolsa, bolsa, bolsaId]);
+
   useEffect(() => {
+    const fetchBolsa = async () => {
+      const bolsaRef = doc(db, "BolsaDeTrabajo", bolsaId);
+      const bolsaSnap = await getDoc(bolsaRef);
+
+      if (bolsaSnap.exists()) {
+        setBolsaActual([bolsaSnap.data()]); // Establece bolsaActual con los datos de Firestore
+        estadoBolsaActualizado.current = true;
+      } else {
+        console.error("No se encontró la bolsa de trabajo con el ID:", bolsaId);
+        // Podrías mostrar un mensaje de error al usuario aquí
+        setBolsaActual([]); // o establecer un estado de error
+      }
+    };
+
     if (!estadoBolsaActualizado.current) {
-      setBolsaActual([bolsa.find((item) => item.id === bolsaId)]);
-      estadoBolsaActualizado.current = true;
+      fetchBolsa(); // Llama a la función para obtener los datos de Firestore
     }
-  }, [getBolsa, updateBolsa, bolsa, bolsaId]);
+  }, [bolsaId]); // Depende solo de bolsaId, ya que siempre queremos refetch si cambia
 
   const submitForm = async () => {
     let candidato = {

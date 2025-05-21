@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 // firestore
-import { query, collection, getDocs, addDoc, doc, updateDoc, deleteDoc } from "firebase/firestore/lite";
+import { query, collection, getDocs, addDoc, doc, updateDoc, deleteDoc, getDoc } from "firebase/firestore/lite";
 import { db, storage } from "./firebase/firebaseConfig";
 import { listAll } from "firebase/storage";
 // storage
@@ -225,26 +225,42 @@ const resource = (set, get) => ({
    * @param {*} idDeleteCandidato: recibe el id del candidato
    */
   updateBolsa: async (updatedBolsa, candidato, idDeleteCandidato) => {
-    /****** IMPORTANTE!!!  Tener en cuenta, updatedBolsa tiene que ser el id de la bolsa que va a venir por el button de submit del form, tengo que hacer find en la bolsa y luego hacer el updated con la bolsa encontrada en el find.  *******/
     let helperResult;
     try {
       if (candidato) {
-        // IMPORTANTE, cuando haga el cambio del parámetro a un id, tengo que hacer el find o filter correspondiente y mandarlo a la función helper
-
-        // IMPORTANTE, "candidato" es el objeto del candidato a agregar en la bolsa
-
         helperResult = await updateResourceHelper("BolsaDeTrabajo", updatedBolsa, candidato, false, "bolsa", "");
+        let serultBolsa = get().bolsa.map((bol) => (bol.id === helperResult.id ? helperResult : bol));
+        set(() => ({ bolsa: serultBolsa }));
       } else if (idDeleteCandidato) {
-        let filteredBolsa = get().bolsa.find((bol) => bol.id === updatedBolsa.id);
-        let filteredCandidatos = filteredBolsa.candidatos.filter((cand) => cand.email !== idDeleteCandidato.email);
-        helperResult = await updateResourceHelper(
-          "BolsaDeTrabajo",
-          updatedBolsa,
-          candidato,
-          idDeleteCandidato,
-          "bolsa",
-          [filteredBolsa, filteredCandidatos]
-        );
+        const getRef = doc(db, "BolsaDeTrabajo", updatedBolsa.id);
+        const bolsaSnap = await getDoc(getRef);
+
+        if (bolsaSnap.exists()) {
+          const bolsaData = bolsaSnap.data();
+          const candidatosActuales = bolsaData.candidatos || [];
+
+          // 2. Filtrar el array de candidatos
+          const filteredCandidatos = candidatosActuales.filter((cand) => cand.email !== idDeleteCandidato.email);
+
+          // 3. Llamar a updateResourceHelper para actualizar Firestore
+          helperResult = await updateResourceHelper(
+            "BolsaDeTrabajo",
+            { id: updatedBolsa.id }, // Solo necesitamos el ID para la actualización
+            null, // candidato es null para la eliminación
+            idDeleteCandidato,
+            "bolsa",
+            [bolsaData, filteredCandidatos]
+          );
+
+          // 4. Actualizar el estado local (opcional, dependiendo de cómo uses 'get' y 'set')
+          let serultBolsa = get().bolsa.map((bol) =>
+            bol.id === updatedBolsa.id ? { ...bol, candidatos: filteredCandidatos } : bol
+          );
+          set(() => ({ bolsa: serultBolsa }));
+        } else {
+          console.error("No se encontró la bolsa de trabajo con el ID:", updatedBolsa.id);
+          return;
+        }
       } else {
         helperResult = await updateResourceHelper("BolsaDeTrabajo", updatedBolsa, false, false, "bolsa", "");
       }
