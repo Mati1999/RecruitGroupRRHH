@@ -80,9 +80,9 @@ const ContactoPage = () => {
         theme="colored"
       />
       <div className="contactoPageBanner">
-        <img src={contactoBanner} alt="" />
+        <img id="imgContact" src={contactoBanner} alt="" />
       </div>
-
+      <h3 id="imgH3"></h3>
       <div className="contactMain">
         <h2>ENVIANOS UN MENSAJE</h2>
         <form ref={form} action="" className="contactForm" onSubmit={handleSubmit(onSubmit)}>
