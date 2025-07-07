@@ -57,7 +57,7 @@ const Postulantes = () => {
           <div className="postulantesMain_postulante-cand">
             {candsInPanel.length > 0 ? (
               candsInPanel.map((cand) => (
-                <div key={cand.email}>
+                <div key={cand.email} style={cand.revisado ? { background: "#5555552e" } : {}}>
                   <h4>{cand.nombre}</h4>
                   <button
                     onClick={() => {
@@ -75,6 +75,14 @@ const Postulantes = () => {
                     className="verButton"
                     onClick={() => {
                       setCurrentBolsa(cand);
+                      if (!cand.revisado) {
+                        cand.revisado = !cand.revisado;
+                        updateBolsa(bolsaActual, cand, "");
+                        setBolsaActual({
+                          ...bolsaActual,
+                          candidatos: bolsaActual.candidatos.map((c) => (c.email === cand.email ? cand : c))
+                        });
+                      }
                     }}
                   >
                     Ver
@@ -83,7 +91,7 @@ const Postulantes = () => {
               ))
             ) : bolsaActual.candidatos?.length > 0 ? (
               bolsaActual.candidatos.map((cand) => (
-                <div key={cand.email}>
+                <div key={cand.email} style={cand.revisado ? { background: "#5555552e" } : {}}>
                   <h4>{cand.nombre}</h4>
                   <button
                     onClick={() => {
@@ -101,6 +109,14 @@ const Postulantes = () => {
                     className="verButton"
                     onClick={() => {
                       setCurrentBolsa(cand);
+                      if (!cand.revisado) {
+                        cand.revisado = true;
+                        updateBolsa(bolsaActual, cand, "");
+                        setBolsaActual({
+                          ...bolsaActual,
+                          candidatos: bolsaActual.candidatos.map((c) => (c.email === cand.email ? cand : c))
+                        });
+                      }
                     }}
                   >
                     Ver

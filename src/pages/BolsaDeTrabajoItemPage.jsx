@@ -57,7 +57,8 @@ const BolsaDeTrabajoItemPage = () => {
       email: formEmail || "",
       telefono: formTelefono || "",
       motivo: formMotivo || "",
-      cv: formCv || ""
+      cv: formCv || "",
+      revisado: false
     };
     console.log(candidato);
 
