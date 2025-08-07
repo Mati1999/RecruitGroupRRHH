@@ -74,7 +74,7 @@ const Postulantes = () => {
                   <button
                     className="verButton"
                     onClick={() => {
-                      setCurrentBolsa(cand);
+                      setCurrentBolsa({ ...cand });
                       if (!cand.revisado) {
                         cand.revisado = !cand.revisado;
                         updateBolsa(bolsaActual, cand, "");
@@ -108,7 +108,7 @@ const Postulantes = () => {
                   <button
                     className="verButton"
                     onClick={() => {
-                      setCurrentBolsa(cand);
+                      setCurrentBolsa({ ...cand });
                       if (!cand.revisado) {
                         cand.revisado = true;
                         updateBolsa(bolsaActual, cand, "");
