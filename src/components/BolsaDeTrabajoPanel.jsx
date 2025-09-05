@@ -178,6 +178,8 @@ const BolsaDeTrabajoPanel = () => {
   };
 
   const handleUpdateBolsa = () => {
+    const candidatosActuales = currentBolsa.candidatos;
+
     const updatedBolsa = {
       ...currentBolsa,
       nombre: nombreBolsa,
@@ -185,7 +187,7 @@ const BolsaDeTrabajoPanel = () => {
       modalidad: modalidadBolsa,
       disponibilidad: disponibilidadBolsa,
       info: { descripcion: descripcionBolsa, responsabilidades: responsabilidadesBolsa, requisitos: requisitosBolsa },
-      candidatos: [...candidatosBolsa],
+      candidatos: candidatosActuales,
       closed: closedBolsa
     };
     updateBolsa(updatedBolsa, "", "");
@@ -321,7 +323,16 @@ const BolsaDeTrabajoPanel = () => {
           </div>
           <div className="bolsaDeTrabajoPanel_bolsaDeTrabajo-info">
             {currentBolsa.nombre || editBolsa ? (
-              <form onSubmit={(e) => e.preventDefault()}>
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault(); // Previene el submit por defecto del formulario
+                  if (currentBolsa.id) {
+                    handleUpdateBolsa();
+                  } else {
+                    handleCreateBolsa();
+                  }
+                }}
+              >
                 <h4>
                   Nombre del puesto:{" "}
                   {editBolsa ? (
@@ -416,14 +427,18 @@ const BolsaDeTrabajoPanel = () => {
 
                   {editBolsa ? (
                     <>
-                      <button onClick={() => setEditBolsa(false)}>Cancelar</button>
+                      {/* <button onClick={() => setEditBolsa(false)}>Cancelar</button>
                       <button
                         onClick={() => {
                           currentBolsa.id ? handleUpdateBolsa() : handleCreateBolsa();
                         }}
                       >
                         Aceptar
+                      </button> */}
+                      <button type="button" onClick={() => setEditBolsa(false)}>
+                        Cancelar
                       </button>
+                      <button type="submit">Aceptar</button>
                     </>
                   ) : (
                     <button
