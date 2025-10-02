@@ -149,6 +149,9 @@ const BolsaDeTrabajoItemPage = () => {
                 <p className="bolsaDeTrabajoItemMain-info_modalidad">
                   Modalidad: <span>{item.modalidad}</span>
                 </p>
+                <p className="bolsaDeTrabajoItemMain-info_disponibilidad">
+                  Disponibilidad: <span>{item.disponibilidad}</span>
+                </p>
                 <p className="bolsaDeTrabajoItemMain-info_descripcion">{item.info.descripcion}</p>
                 <div className="bolsaDeTrabajoItemMain-info_responsabilidades">
                   <p>Responsabilidades:</p>
