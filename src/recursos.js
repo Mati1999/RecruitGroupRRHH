@@ -176,6 +176,15 @@ const deleteResourceHelper = async (isBolsa, object) => {
   }
 };
 
+// Función para ordenar bolsas por nombre
+const sortBolsasByName = (array) => {
+  const sorted = [...array];
+  sorted.sort((a, b) => {
+    return (a.nombre || "").localeCompare(b.nombre || "");
+  });
+  return sorted;
+};
+
 const resource = (set, get) => ({
   bolsa: [],
   candidatos: [],
@@ -191,7 +200,10 @@ const resource = (set, get) => ({
       querySnapshot.forEach((doc) => {
         newBolsa.push({ ...doc.data() });
       });
-      set(() => ({ bolsa: newBolsa }));
+
+      // Aplicar sort
+      const sortedBolsa = sortBolsasByName(newBolsa);
+      set(() => ({ bolsa: sortedBolsa }));
     } catch (e) {
       console.error("Error fetching data:", e);
     }
