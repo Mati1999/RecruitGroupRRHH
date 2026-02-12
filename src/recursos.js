@@ -198,7 +198,7 @@ const resource = (set, get) => ({
 
       let newBolsa = [];
       querySnapshot.forEach((doc) => {
-        newBolsa.push({ ...doc.data() });
+        newBolsa.push({ ...doc.data(), id: doc.id });
       });
 
       // Aplicar sort
@@ -300,7 +300,7 @@ const resource = (set, get) => ({
 
       let newCandidatos = [];
       querySnapshot.forEach((doc) => {
-        newCandidatos.push({ ...doc.data() });
+        newCandidatos.push({ ...doc.data(), id: doc.id });
       });
       set(() => ({ candidatos: newCandidatos }));
     } catch (e) {
@@ -362,7 +362,7 @@ export const useResource = create(
           persistedState.bolsa = persistedState.bolsa
             .filter((oferta) => oferta.closed === "open")
             .map((oferta) => {
-              const { candidatos, ...rest } = oferta;
+              const { candidatos: _candidatos, ...rest } = oferta;
               return rest;
             });
         }
@@ -370,7 +370,7 @@ export const useResource = create(
         // Si no está logueado, eliminamos los campos sensibles de los candidatos
         if (persistedState.candidatos && Array.isArray(persistedState.candidatos)) {
           persistedState.candidatos = persistedState.candidatos.map((candidato) => {
-            const { cv, aptoPsico, idFirestore, ...rest } = candidato;
+            const { cv: _cv, aptoPsico: _aptoPsico, idFirestore: _idFirestore, ...rest } = candidato;
             return rest;
           });
         }
