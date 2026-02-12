@@ -141,14 +141,16 @@ const BolsaDeTrabajoPanel = () => {
   });
 
   const handleCloseBolsa = () => {
+    if (!currentBolsa.id) return;
+    const newStatus = currentBolsa.closed === "closed" ? "open" : "closed";
     const updatedBolsa = {
       ...currentBolsa,
-      closed: closedBolsa === "closed" ? "open" : "closed"
+      closed: newStatus
     };
     updateBolsa(updatedBolsa, "", "");
     setCurrentBolsa({});
     setEditBolsa(false);
-    if (updatedBolsa.closed === "closed") {
+    if (newStatus === "closed") {
       toast.success("Has cerrado una bolsa de trabajo", {
         position: "top-right",
         autoClose: 3000,
@@ -171,7 +173,7 @@ const BolsaDeTrabajoPanel = () => {
         theme: "colored"
       });
     }
-    setClosedBolsa(closedBolsa === "closed" ? "open" : "closed");
+    setClosedBolsa(newStatus);
   };
 
   const handleUpdateBolsa = () => {
