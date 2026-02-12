@@ -99,7 +99,7 @@ const BolsaDeTrabajoPanel = () => {
 
   // Estados para los valores de los inputs de búsqueda y edición
   const [currentBolsa, setCurrentBolsa] = useState({});
-  const [candsInPanel, setCandsInPanel] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
   const [editBolsa, setEditBolsa] = useState(false);
   const [currentEditedBolsa, setCurrentEditedBolsa] = useState({});
 
@@ -136,12 +136,9 @@ const BolsaDeTrabajoPanel = () => {
 
   useEffect(() => {}, [currentBolsa, bolsa, getBolsa]);
 
-  const filterCands = (text) => {
-    const filteredCands = bolsa.filter((candidato) => {
-      return candidato.nombre.toLowerCase().includes(text.toLowerCase());
-    });
-    setCandsInPanel(filteredCands);
-  };
+  const filteredBolsa = bolsa.filter((candidato) => {
+    return candidato.nombre.toLowerCase().includes(searchTerm.toLowerCase());
+  });
 
   const handleCloseBolsa = () => {
     const updatedBolsa = {
@@ -268,7 +265,8 @@ const BolsaDeTrabajoPanel = () => {
           className="bolsaDeTrabajoPanel-searchInput"
           type="text"
           placeholder="Buscar bolsa de trabajo"
-          onChange={(e) => filterCands(e.target.value)}
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
         />
         <div className="bolsaDeTrabajoPanel_bolsaDeTrabajo">
           <div className="bolsaDeTrabajoPanel_bolsaDeTrabajo-cand">
@@ -290,35 +288,20 @@ const BolsaDeTrabajoPanel = () => {
               + Agregar nuevo puesto
             </button>
             <div className="bolsaDeTrabajoPanel_bolsaDeTrabajo-candContainer">
-              {candsInPanel.length > 0
-                ? candsInPanel.map((bolsa) => (
-                    <div key={bolsa.nombre}>
-                      <h4>{bolsa.nombre}</h4>
-                      <button
-                        onClick={() => {
-                          setCurrentBolsa(bolsa);
-                          setEditBolsa(false);
-                          setOpenModal(false);
-                        }}
-                      >
-                        Ver
-                      </button>
-                    </div>
-                  ))
-                : bolsa.map((bolsa) => (
-                    <div key={bolsa.nombre}>
-                      <h4>{bolsa.nombre}</h4>
-                      <button
-                        onClick={() => {
-                          setCurrentBolsa(bolsa);
-                          setEditBolsa(false);
-                          setOpenModal(false);
-                        }}
-                      >
-                        Ver
-                      </button>
-                    </div>
-                  ))}
+              {filteredBolsa.map((bolsa) => (
+                <div key={bolsa.id}>
+                  <h4>{bolsa.nombre}</h4>
+                  <button
+                    onClick={() => {
+                      setCurrentBolsa(bolsa);
+                      setEditBolsa(false);
+                      setOpenModal(false);
+                    }}
+                  >
+                    Ver
+                  </button>
+                </div>
+              ))}
             </div>
           </div>
           <div className="bolsaDeTrabajoPanel_bolsaDeTrabajo-info">

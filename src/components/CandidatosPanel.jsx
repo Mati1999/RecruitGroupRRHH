@@ -21,7 +21,7 @@ const CandidatosPanel = () => {
   }
 
   const [currentCand, setCurrentCand] = useState({});
-  const [candsInPanel, setCandsInPanel] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
   const [editCand, setEditCand] = useState(false);
   const [currentEditedCand, setCurrentEditedCand] = useState({});
 
@@ -54,12 +54,9 @@ const CandidatosPanel = () => {
 
   useEffect(() => {}, [currentCand, candidatos, getCandidatos]);
 
-  const filterCands = (text) => {
-    const filteredCands = candidatos.filter((candidato) => {
-      return candidato.nombre.toLowerCase().includes(text.toLowerCase());
-    });
-    setCandsInPanel(filteredCands);
-  };
+  const filteredCands = candidatos.filter((candidato) => {
+    return candidato.nombre.toLowerCase().includes(searchTerm.toLowerCase());
+  });
 
   const handleUpdateCand = () => {
     const updatedCand = {
@@ -137,7 +134,8 @@ const CandidatosPanel = () => {
           className="candidatosPanel-searchInput"
           type="text"
           placeholder="Buscar nombre candidato"
-          onChange={(e) => filterCands(e.target.value)}
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
         />
         <div className="candidatosPanel_candidatos">
           <div className="candidatosPanel_candidatos-cand">
@@ -157,31 +155,18 @@ const CandidatosPanel = () => {
               + Agregar nuevo candidato
             </button>
             <div className="candidatosPanel_candidatos-candPanel">
-              {candsInPanel.length > 0
-                ? candsInPanel.map((candidato) => (
-                    <div key={candidato.id}>
-                      <h4>{candidato.nombre}</h4>
-                      <button
-                        onClick={() => {
-                          setCurrentCand(candidato);
-                        }}
-                      >
-                        Ver
-                      </button>
-                    </div>
-                  ))
-                : candidatos.map((candidato) => (
-                    <div key={candidato.id}>
-                      <h4>{candidato.nombre}</h4>
-                      <button
-                        onClick={() => {
-                          setCurrentCand(candidato);
-                        }}
-                      >
-                        Ver
-                      </button>
-                    </div>
-                  ))}
+              {filteredCands.map((candidato) => (
+                <div key={candidato.id}>
+                  <h4>{candidato.nombre}</h4>
+                  <button
+                    onClick={() => {
+                      setCurrentCand(candidato);
+                    }}
+                  >
+                    Ver
+                  </button>
+                </div>
+              ))}
             </div>
           </div>
           <div className="candidatosPanel_candidatos-info">
