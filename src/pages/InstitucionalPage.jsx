@@ -111,8 +111,9 @@ const InstitucionalPage = () => {
                 </a>
                 <img className="profileImg" src={luciImg} alt="" />
               </div>
-              <h3>Lucia Pecoraro</h3>
-              <p>Recruiter</p>
+              <h3>Lic. Lucia Pecoraro</h3>
+              <p>Psicóloga</p>
+              <p>Mat 6029</p>
             </div>
           </div>
         </div>
