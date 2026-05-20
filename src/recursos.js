@@ -64,6 +64,9 @@ const updateResourceHelper = async (dbName, object, candidato, idDeleteCandidato
   if (bolOrCand.toLowerCase() === "bolsa") {
     const updateRef = doc(db, dbName, object.id);
     try {
+      const updateData = { ...object };
+      delete updateData.id;
+
       if (candidato) {
         if (typeof candidato.cv === "object") {
           if (candidato.cv.type === "application/pdf") {
@@ -80,12 +83,12 @@ const updateResourceHelper = async (dbName, object, candidato, idDeleteCandidato
         const candidatosActuales = object.candidatos || []; // Obtener el array actual o un array vacío si no existe
         if (!candidatosActuales.some((cand) => cand.email === candidato.email)) {
           const candidatosActualizados = [...candidatosActuales, candidato]; // Agregar el nuevo candidato
-          object.candidatos = candidatosActualizados;
+          updateData.candidatos = candidatosActualizados;
         }
-        await updateDoc(updateRef, object);
+        await updateDoc(updateRef, updateData);
         return object;
       } else if (idDeleteCandidato) {
-        //eliminar archivo de storage
+        // eliminar archivo de storage
         if (idDeleteCandidato.cv) {
           const deleteRef = ref(storage, `${object.id}/CV-${idDeleteCandidato.email}`);
 
@@ -95,11 +98,11 @@ const updateResourceHelper = async (dbName, object, candidato, idDeleteCandidato
               console.error(error);
             });
         }
-        await updateDoc(updateRef, { ...filteredBolsaCand[0], candidatos: filteredBolsaCand[1] });
+        await updateDoc(updateRef, { candidatos: filteredBolsaCand[1] });
         object = { ...object, candidatos: filteredBolsaCand[1] };
         return object;
       } else {
-        await updateDoc(updateRef, object);
+        await updateDoc(updateRef, updateData);
         return object;
       }
     } catch (e) {
@@ -109,6 +112,8 @@ const updateResourceHelper = async (dbName, object, candidato, idDeleteCandidato
     //update candidatos
     try {
       const updateRef = doc(db, dbName, object.id);
+      const updateData = { ...object };
+      delete updateData.id;
 
       if (
         object.idFirestore &&
@@ -118,22 +123,22 @@ const updateResourceHelper = async (dbName, object, candidato, idDeleteCandidato
         if (typeof object.cv === "object") {
           const snapshot = await uploadBytes(mountainsRef, object.cv);
           const urlDescarga = await getDownloadURL(snapshot.ref);
-          object.cv = urlDescarga;
+          updateData.cv = urlDescarga;
         }
         mountainsRef = ref(storage, `${object.idFirestore}/aptoPsico-${object.idFirestore}`);
         if (typeof object.aptoPsico === "object") {
           const snapshotPsico = await uploadBytes(mountainsRef, object.aptoPsico);
           const urlDescargaPsico = await getDownloadURL(snapshotPsico.ref);
-          object.aptoPsico = urlDescargaPsico;
+          updateData.aptoPsico = urlDescargaPsico;
         }
         mountainsRef = ref(storage, `${object.idFirestore}/foto-${object.idFirestore}`);
         if (typeof object.foto === "object") {
           const snapshotFoto = await uploadBytes(mountainsRef, object.foto);
           const urlDescargaFoto = await getDownloadURL(snapshotFoto.ref);
-          object.foto = urlDescargaFoto;
+          updateData.foto = urlDescargaFoto;
         }
       }
-      await updateDoc(updateRef, object);
+      await updateDoc(updateRef, updateData);
       return object;
     } catch (e) {
       console.error("Error fetching data:", e);

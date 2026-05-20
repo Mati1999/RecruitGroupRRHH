@@ -53,17 +53,15 @@ const BolsaDeTrabajoPanel = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (currentFormData === "responsabilidades") {
+      const responsabilidades = modalFormResponsabilidades.filter((item) => item?.trim() !== "");
       setCurrentBolsa({
         ...currentBolsa,
         info: {
           ...currentBolsa.info,
-          responsabilidades:
-            modalFormResponsabilidades[modalFormResponsabilidades.length - 1] === ""
-              ? modalFormResponsabilidades.pop()
-              : modalFormResponsabilidades
+          responsabilidades
         }
       });
-      setResponsabilidadesBolsa(modalFormResponsabilidades);
+      setResponsabilidadesBolsa(responsabilidades);
       toast.success("Se han guardado las responsabilidades.", {
         position: "top-right",
         autoClose: 3000,
@@ -75,15 +73,15 @@ const BolsaDeTrabajoPanel = () => {
         theme: "colored"
       });
     } else {
+      const requisitos = modalFormRequisitos.filter((item) => item?.trim() !== "");
       setCurrentBolsa({
         ...currentBolsa,
         info: {
           ...currentBolsa.info,
-          requisitos:
-            modalFormRequisitos[modalFormRequisitos.length - 1] === "" ? modalFormRequisitos.pop() : modalFormRequisitos
+          requisitos
         }
       });
-      setRequisitosBolsa(modalFormRequisitos);
+      setRequisitosBolsa(requisitos);
       toast.success("Se han guardado los requisitos.", {
         position: "top-right",
         autoClose: 3000,
@@ -137,18 +135,18 @@ const BolsaDeTrabajoPanel = () => {
   useEffect(() => {}, [currentBolsa, bolsa, getBolsa]);
 
   const filteredBolsa = bolsa.filter((candidato) => {
-    return candidato.nombre.toLowerCase().includes(searchTerm.toLowerCase());
+    return (candidato.nombre || "").toLowerCase().includes(searchTerm.toLowerCase());
   });
 
   const handleCloseBolsa = () => {
     if (!currentBolsa.id) return;
     const newStatus = currentBolsa.closed === "closed" ? "open" : "closed";
     const updatedBolsa = {
-      ...currentBolsa,
+      id: currentBolsa.id,
       closed: newStatus
     };
     updateBolsa(updatedBolsa, "", "");
-    setCurrentBolsa({});
+    setCurrentBolsa(updatedBolsa);
     setEditBolsa(false);
     if (newStatus === "closed") {
       toast.success("Has cerrado una bolsa de trabajo", {
@@ -177,16 +175,17 @@ const BolsaDeTrabajoPanel = () => {
   };
 
   const handleUpdateBolsa = () => {
-    const candidatosActuales = currentBolsa.candidatos;
+    const responsabilidades = responsabilidadesBolsa.filter((item) => item?.trim() !== "");
+    const requisitos = requisitosBolsa.filter((item) => item?.trim() !== "");
 
     const updatedBolsa = {
-      ...currentBolsa,
+      id: currentBolsa.id,
       nombre: nombreBolsa,
       ubicacion: ubicacionBolsa,
       modalidad: modalidadBolsa,
       disponibilidad: disponibilidadBolsa,
-      info: { descripcion: descripcionBolsa, responsabilidades: responsabilidadesBolsa, requisitos: requisitosBolsa },
-      candidatos: candidatosActuales,
+      info: { descripcion: descripcionBolsa, responsabilidades, requisitos },
+      ...(currentBolsa.candidatos ? { candidatos: currentBolsa.candidatos } : {}),
       closed: closedBolsa
     };
     updateBolsa(updatedBolsa, "", "");
@@ -207,13 +206,15 @@ const BolsaDeTrabajoPanel = () => {
 
   const handleCreateBolsa = () => {
     if (nombreBolsa) {
+      const responsabilidades = responsabilidadesBolsa.filter((item) => item?.trim() !== "");
+      const requisitos = requisitosBolsa.filter((item) => item?.trim() !== "");
       const updatedBolsa = {
         ...currentBolsa,
         nombre: nombreBolsa,
         ubicacion: ubicacionBolsa,
         modalidad: modalidadBolsa,
         disponibilidad: disponibilidadBolsa,
-        info: { descripcion: descripcionBolsa, responsabilidades: responsabilidadesBolsa, requisitos: requisitosBolsa },
+        info: { descripcion: descripcionBolsa, responsabilidades, requisitos },
         candidatos: [...candidatosBolsa],
         closed: "closed"
       };
