@@ -36,7 +36,12 @@ createRoot(document.getElementById("root")).render(
       </Routes>
     </BrowserRouter>
     <button className="wppIcon">
-      <a href="https://wa.me/+5492617741234" target="_blank" rel="noopener noreferrer">
+      <a
+        href="https://api.whatsapp.com/send/?phone=%2B5492617741234..."
+        target="_blank"
+        rel="noopener noreferrer"
+        onclick="return gtag_report_conversion('https://api.whatsapp.com/send/?phone=%2B5492617741234...');"
+      >
         <img src={wppIcon} alt="" />
       </a>
     </button>

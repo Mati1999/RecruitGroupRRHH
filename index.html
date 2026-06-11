@@ -24,6 +24,20 @@
 
       gtag("config", "AW-18141446526");
     </script>
+    <script>
+      function gtag_report_conversion(url) {
+        var callback = function () {
+          if (typeof url != "undefined") {
+            window.location = url;
+          }
+        };
+        gtag("event", "conversion", {
+          send_to: "AW-18141446526/A4JSCJ_y7bMcEP6CwspD",
+          event_callback: callback
+        });
+        return false;
+      }
+    </script>
     <title>Recruit Group</title>
   </head>
   <body>

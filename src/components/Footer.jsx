@@ -25,10 +25,10 @@ const Footer = () => {
         <div className="footer--social">
           <h4>REDES SOCIALES</h4>
           <div className="iconsDiv">
-            <a href="https://www.linkedin.com/company/recuit-group-consultora-rrhh/" target="_blank">
+            <a href="https://www.linkedin.com/company/recuit-group-consultora-rrhh/" target="_blank" onclick="gtag('event', 'conversion', {'send_to': 'AW-18141446526/sp0ACLja1rMcEP6CwspD'});">
               <img src={LinkedInLogo} alt="" />
             </a>
-            <a href="https://www.instagram.com/recruitgrouprrhh?igsh=MWsxa2lrbml0aXhiMg==" target="_blank">
+            <a href="https://www.instagram.com/recruitgrouprrhh?igsh=MWsxa2lrbml0aXhiMg==" target="_blank" onclick="gtag('event', 'conversion', {'send_to': 'AW-18141446526/dGEtCJbc1rMcEP6CwspD'});">
               <img src={InstagramLogo} alt="" />
             </a>
           </div>
@@ -56,10 +56,10 @@ const Footer = () => {
             <div className="footer--social">
               <h4>REDES SOCIALES</h4>
               <div className="iconsDiv">
-                <a href="https://www.linkedin.com/company/recuit-group-consultora-rrhh/" target="_blank">
+                <a href="https://www.linkedin.com/company/recuit-group-consultora-rrhh/" target="_blank" onclick="gtag('event', 'conversion', {'send_to': 'AW-18141446526/sp0ACLja1rMcEP6CwspD'});">
                   <img src={LinkedInLogo} alt="" />
                 </a>
-                <a href="https://www.instagram.com/recruitgrouprrhh?igsh=MWsxa2lrbml0aXhiMg==" target="_blank">
+                <a href="https://www.instagram.com/recruitgrouprrhh?igsh=MWsxa2lrbml0aXhiMg==" target="_blank" onclick="gtag('event', 'conversion', {'send_to': 'AW-18141446526/dGEtCJbc1rMcEP6CwspD'});">
                   <img src={InstagramLogo} alt="" />
                 </a>
               </div>

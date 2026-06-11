@@ -12,6 +12,12 @@ import passardi from "/logos/passardi.jpg";
 import dipolo from "/logos/dipolo.jpg";
 import fliRubino from "/logos/fliRubino.jpg";
 import arquimetal from "/logos/arquimetal.jpg";
+import acacia from "/logos/acacia.jpg";
+import bagual from "/logos/bagual.jpg";
+import leon2 from "/logos/leon2.jpg";
+import mendozapost from "/logos/mendozapost.jpg";
+import msr from "/logos/msr.jpg";
+import trebol from "/logos/trebol.jpg";
 
 const testimonios = [
   {
@@ -69,6 +75,48 @@ const testimonios = [
     testimonio:
       "Desde el primer contacto, pude notar el alto nivel de profesionalismo y compromiso en la atención, que se destacó especialmente por contar con un equipo de psicólogos, el cual genera un valor agregado muy importante. A diferencia de otras experiencias con empresas de RRHH, se adaptaron a nuestras demandan buscando la mejor calidad posible de los candidatos seleccionados. Cabe destacar el compromiso con los tiempos requeridos.",
     img: arquimetal
+  },
+  {
+    id: 9,
+    empresa: "Acacia",
+    testimonio:
+      "Tuve una excelente experiencia con Recruit Group. Destaco su capacidad para entender rápidamente nuestras necesidades, la calidad de los candidatos presentados y el acompañamiento durante todo el proceso. Además, el servicio de evaluaciones y el seguimiento posterior a la contratación aportan un gran valor. Recomiendo su trabajo y profesionalismo.",
+    img: acacia
+  },
+  {
+    id: 10,
+    empresa: "Bodega Bagual",
+    testimonio:
+      "El trabajar con Recruit es dejar procesos en manos profesionales. Con la bodega realizó un trabajo excepcional, una búsqueda masiva con mucho esfuerzo de fondo que cumplió nuestras expectativas. Se dedicaron tanto a la búsqueda de puestos operativos especializados, encargados y líderes para configurar el equipo completo de la temporada de cosecha. Sin duda, una elección acertada.",
+    img: bagual
+  },
+  {
+    id: 11,
+    empresa: "Estudio contable Leon",
+    testimonio:
+      "Nos presentaron perfiles excelentes y transparentes, logrando una incorporación exitosa para nuestra área contable. Como asesores contables en aspectos laborales, valoramos mucho este servicio previo y consideramos que es elemental para una pyme en la actualidad.",
+    img: leon2
+  },
+  {
+    id: 12,
+    empresa: "Mendoza Post",
+    testimonio:
+      "Todo el equipo de Recruit Group Consultora demostró profesionalismo desde el minuto cero, entendiendo la necesidad del puesto a cubrir y los tiempos de la empresa. Valoramos mucho la excelente comunicación durante todo el proceso.",
+    img: mendozapost
+  },
+  {
+    id: 13,
+    empresa: "MSR",
+    testimonio:
+      "Tuve una muy buena experiencia con Recruit Group, especialmente con Agustina y Romina. Destaco su enfoque personalizado, el acompañamiento constante durante todo el proceso y la calidad de los perfiles presentados. Se nota el trabajo de búsqueda y evaluación detrás de cada candidato, logrando una selección alineada con nuestras necesidades.",
+    img: msr
+  },
+  {
+    id: 14,
+    empresa: "Trebol",
+    testimonio:
+      "La experiencia con las chicas fue excelente, realmente respondieron en tiempo y forma a nuestras necesidades e inquietudes. El servicio prestado fue muy bueno, nos sirvió mucho para orientarnos y tomar decisiones acertadas, muchas gracias por su profesionalismo.",
+    img: trebol
   }
 ];
 
@@ -102,7 +150,7 @@ const Testimonios = () => {
               >
                 <img src={testimonio.img} alt={testimonio.empresa} className="mx-auto mb-2 w-20" />
                 <h3 className="font-bold text-lg">{testimonio.empresa}</h3>
-                <p className="text-md">{testimonio.testimonio}</p>
+                <p className="text-md overflow">{testimonio.testimonio}</p>
               </div>
             )}
           </SwiperSlide>
