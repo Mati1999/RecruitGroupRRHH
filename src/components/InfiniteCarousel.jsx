@@ -17,6 +17,11 @@ import rocasDelPlata from "/logos/rocasDelPlata.jpg";
 import silvestre from "/logos/silvestre.jpg";
 import spinQuimica from "/logos/spinQuimica.jpg";
 import winear from "/logos/winear.jpg";
+import acacia from "/logos/acacia.jpg";
+import bagual from "/logos/bagual.jpg";
+import mendozapost from "/logos/mendozapost.jpg";
+import msr from "/logos/msr.jpg";
+import trebol from "/logos/trebol.jpg";
 import "../styles/infinitecarousel.scss";
 
 const InfiniteCarousel = () => {
@@ -77,6 +82,21 @@ const InfiniteCarousel = () => {
         <div className="infiniteCarousel-item">
           <img src={winear} alt="" />
         </div>
+        <div className="infiniteCarousel-item">
+          <img src={acacia} alt="" />
+        </div>
+        <div className="infiniteCarousel-item">
+          <img src={bagual} alt="" />
+        </div>
+        <div className="infiniteCarousel-item">
+          <img src={mendozapost} alt="" />
+        </div>
+        <div className="infiniteCarousel-item">
+          <img src={msr} alt="" />
+        </div>
+        <div className="infiniteCarousel-item">
+          <img src={trebol} alt="" />
+        </div>
       </div>
 
       <div className="infiniteCarousel-slide">
@@ -133,6 +153,21 @@ const InfiniteCarousel = () => {
         </div>
         <div className="infiniteCarousel-item">
           <img src={winear} alt="" />
+        </div>
+        <div className="infiniteCarousel-item">
+          <img src={acacia} alt="" />
+        </div>
+        <div className="infiniteCarousel-item">
+          <img src={bagual} alt="" />
+        </div>
+        <div className="infiniteCarousel-item">
+          <img src={mendozapost} alt="" />
+        </div>
+        <div className="infiniteCarousel-item">
+          <img src={msr} alt="" />
+        </div>
+        <div className="infiniteCarousel-item">
+          <img src={trebol} alt="" />
         </div>
       </div>
     </div>

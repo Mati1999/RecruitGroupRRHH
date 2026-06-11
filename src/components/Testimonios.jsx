@@ -78,7 +78,7 @@ const testimonios = [
   },
   {
     id: 9,
-    empresa: "Acacia",
+    empresa: "ACACIASEC",
     testimonio:
       "Tuve una excelente experiencia con Recruit Group. Destaco su capacidad para entender rápidamente nuestras necesidades, la calidad de los candidatos presentados y el acompañamiento durante todo el proceso. Además, el servicio de evaluaciones y el seguimiento posterior a la contratación aportan un gran valor. Recomiendo su trabajo y profesionalismo.",
     img: acacia
@@ -106,14 +106,14 @@ const testimonios = [
   },
   {
     id: 13,
-    empresa: "MSR",
+    empresa: "MEDICAL STAFF RELIEF",
     testimonio:
       "Tuve una muy buena experiencia con Recruit Group, especialmente con Agustina y Romina. Destaco su enfoque personalizado, el acompañamiento constante durante todo el proceso y la calidad de los perfiles presentados. Se nota el trabajo de búsqueda y evaluación detrás de cada candidato, logrando una selección alineada con nuestras necesidades.",
     img: msr
   },
   {
     id: 14,
-    empresa: "Trebol",
+    empresa: "TRÉBOL CENTRO DE DÍA",
     testimonio:
       "La experiencia con las chicas fue excelente, realmente respondieron en tiempo y forma a nuestras necesidades e inquietudes. El servicio prestado fue muy bueno, nos sirvió mucho para orientarnos y tomar decisiones acertadas, muchas gracias por su profesionalismo.",
     img: trebol
